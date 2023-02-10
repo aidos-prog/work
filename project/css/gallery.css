@@ -1,0 +1,519 @@
+.gallery {
+  background: url(../img/gallery/birmingham-museums-3.jpg);
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 596px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 86px;
+}
+
+.gallery-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+}
+
+.gallery-one {
+  margin-top: 88px;
+  min-height: 350px;
+  width: 430px;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery__h2 {
+  color: var(--white);
+  font-size: 46px;
+  margin: 0;
+}
+
+.gallery__h3 {
+  color: var(--white);
+  font-size: 18px;
+  margin-top: 26px;
+  margin-bottom: 16px;
+}
+
+.check {
+  position: relative;
+  cursor: pointer;
+}
+
+#check,
+  #check_2,
+    #check_3 {
+  display: none;
+}
+
+
+#check + span ,
+  #check_2 + span ,
+    #check_3 + span {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--white);
+  top: 5px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+#check:hover + span ,
+  #check_2:hover + span ,
+    #check_3:hover + span {
+  border: 1px solid #C283F3;
+}
+
+#check:checked + span ,
+  #check_2:checked + span ,
+    #check_3:checked + span {
+  border: 1px solid #C283F3;
+}
+
+#check + span:before ,
+  #check_2 + span:before ,
+    #check_3 + span:before {
+  position: absolute;
+}
+
+#check:checked + span:before ,
+  #check_2:checked + span:before ,
+    #check_3:checked + span:before {
+  position: absolute;
+  content: '';
+  background-image: url(../img/gallery/Ellipse16.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  top: 1px;
+  bottom: 0;
+  right: 0;
+  left: 0px;
+}
+
+.gallery__text:hover {
+  color: #C283F3;
+}
+
+.gallery__text {
+  color: var(--white);
+  font-size: 16px;
+  margin-left: 24px;
+}
+
+.gallery__item {
+  list-style: none;
+}
+
+.gallery__item:not(:last-child) {
+  margin-bottom: 13px;
+}
+
+.gallery-century {
+  margin-top: 184px;
+  margin-bottom: 0px;
+}
+
+.gallery-two {
+  height: 411px;
+  width: 1151px;
+  margin-top: 107px;
+  margin-left: 48px;
+}
+
+.gallery-text__check {
+  color: #C283F3;
+}
+
+.test-section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.content-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.test-left-elem {
+  display: flex;
+  flex-direction: column;
+  width: calc(400 / 1600 * 100%);
+}
+
+.test-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.test-select {
+  min-height: 50px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  background-color: lightgray;
+}
+
+.left-bottom {
+  margin-top: auto;
+}
+
+.gallery-swiper__container {
+  overflow: hidden;
+  margin-left: 2px;
+}
+
+.gallery-navigation {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.gallery-pagination {
+  margin-right: 20px;
+  text-align: center;
+  color: var(--white);
+}
+
+.nav-btn {
+  position: relative;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  background-color: #666666;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background-color: var(--violet-light);
+}
+
+.nav-btn:focus {
+  border: 2px solid var(--black);
+}
+
+.nav-btn:active {
+  background-color: var(--violet);
+  border: 2px solid var(--black);
+}
+
+.nav-btn::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 7px / 2);
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+.nav-btn.swiper-button-disabled {
+  cursor: auto;
+  opacity: 0.5;
+}
+
+.test-prev {
+  margin-right: 19px;
+}
+
+.test-next::before {
+  left: calc(50% - 11px / 2);
+  border-top: 1px solid #fff;
+  border-right: 1px solid #fff;
+  cursor: pointer;
+}
+
+.test-prev::before {
+  left: calc(50% - 4px / 2);
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  cursor: pointer;
+}
+
+.gallery-slide {
+  position: relative;
+  overflow: hidden;
+  background-color: #926B88;
+  height: 350px;
+  max-width: 350px;
+  min-height: 0;
+}
+
+.gallery-slide::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  display: block;
+  opacity: 0;
+  top: 25px;
+  bottom: 25px;
+  right: 25px;
+  left: 25px;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  background-image: url(../img/gallery/Group12.svg);
+  background-position: center;
+  background-repeat: no-repeat; 
+  transition: opacity 0.4s ease-in-out;
+}
+
+.gallery-slide:hover::before {
+  opacity: 1;  
+}
+
+.gallery-slide::after {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  display: block;
+  opacity: 0;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;  
+  z-index: 2;
+  transition: opacity 0.4s ease-in-out;
+  background: linear-gradient(0deg, rgba(194, 131, 243, 0.4), rgba(194, 131, 243, 0.4));
+}
+
+.gallery-slide:active::after {
+  opacity: 1;
+}
+
+.gallery-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+@media (max-width: 1919px) {
+  .gallery {
+    min-height: 561px;
+    max-width: 1919px;
+  }
+
+  .gallery-slide {
+    max-width: 280px;
+    height: 315px;
+  }
+
+  .gallery-one {
+    width: 281px;
+  }
+
+  .gallery-two {
+    width: 594px;
+    margin-left: 47px;
+    margin-right: auto;
+  }
+
+  .gallery-slide::before {
+    width: 235px;
+    height: 268px;
+  }
+
+  .gallery-swiper__container {
+    margin-left: 1px;
+    max-width: 1919px;
+  }
+
+  .gallery-navigation {
+    margin-left: 0;
+  }
+
+  .gallery-century {
+    margin-top: 116px
+  }
+
+  .gallery__list {
+    margin-left: 0px;
+  }
+
+  .gallery__item:not(:last-child) {
+    margin-bottom: 14px;
+  }
+
+  .gallery-choice {
+    margin-left: 0;
+  }
+
+  .gallery__h2 {
+    font-size: 45px;
+  }
+
+  .gallery__h3 {
+    margin-top: 26px;
+    margin-bottom: 19px;
+  }
+
+  #check:checked + span:before ,
+  #check_2:checked + span:before ,
+    #check_3:checked + span:before {
+  left: 1px;
+  }
+}
+
+@media (max-width: 1023px) {
+  
+  .gallery-century {
+    margin-top: 49px;
+  }
+  
+  .gallery-century-open {
+    margin-top: 120px;
+    margin-bottom: 20px;
+  }
+
+  .gallery-slide {
+    max-width: 315px;
+    height: 330px;
+  }
+
+  .gallery-century-open {
+    margin-top: 120px;
+    margin-bottom: 20px;
+  }
+
+  .gallery {
+    min-height: 890px;
+    max-width: 1023px;
+  }
+
+  .gallery-slide::before {
+    width: 265px;
+    height: 280px;
+  }
+
+  .gallery-container {
+    flex-direction: column;
+  }
+
+  .gallery-navigation {
+    margin-bottom: 29px;
+  }
+
+  .gallery__h3 {
+    margin-bottom: 17px;
+  }
+
+  .gallery-two {
+    margin-left: 0;
+    margin-top: 23px;
+    width: 668px;
+  }
+
+  .gallery-one {
+    min-height: 310px;
+  }
+
+  .gallery-swiper__container {
+    max-width: 1023px;
+  }
+
+  .gallery-choice {
+    margin-left: 0;
+  }
+
+  #check + span ,
+    #check_2 + span ,
+      #check_3 + span {
+      top: 3px;
+    }
+
+  .gallery__item:not(:last-child) {
+    margin-bottom: 13px;
+  }
+}
+
+@media (max-width: 767px) {
+  .test-left-elem,
+  .gallery-swiper {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+  
+  .test-left-elem {
+    margin-bottom: 50px;
+  }
+  
+  .test-select {
+    max-width: 300px;
+  }
+
+  .gallery-swiper {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .gallery-navigation {
+    align-self: center;
+    margin-top: 20px;
+  }
+  
+  .gallery-slide::before {
+    width: 241px;
+  }
+
+  .gallery-one {
+    margin-top: 54px;
+    max-width: 290px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 255px;
+  }
+
+  .gallery-two {
+    max-width: 290px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 452px;
+  }
+
+  .gallery-swiper__container {
+    display: flex;
+    flex-direction: column-reverse;
+    max-width: 767px;
+  }
+
+  .gallery__h2 {
+    font-size: 27px;
+  }
+
+  .gallery__h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .gallery-century {
+    margin-top: 39px;
+  }
+
+  .gallery-slide {
+    height: 367px;
+  }
+
+  .gallery {
+    min-height: 799px;
+    margin-bottom: 53px;
+    max-width: 767px;
+  }
+  
+  #check:checked + span:before ,
+  #check_2:checked + span:before ,
+    #check_3:checked + span:before {
+    left: 0px;
+  }
+
+}
+

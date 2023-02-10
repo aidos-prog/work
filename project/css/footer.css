@@ -1,0 +1,221 @@
+.footer {
+  min-height: 140px;
+  background-color: var(--black);
+  position: relative;
+}
+
+.footer__logo {
+  background-image: url(../img/footer/logo-footer-768.svg);
+  background-repeat: no-repeat;
+  background-position: top left;
+  width: 174px;
+  height: 39px;  
+  margin-top: 50px;
+  margin-left: 0;
+}
+
+.footer-item:not(:last-child) {
+  margin-right: 21px;
+}
+
+.footer-social {
+  width: 175px;
+  height: 45px;
+  margin-right: 0;
+  margin-left: auto;
+  margin-top: 45px;
+}
+.footer-list {
+  display: flex;
+}
+
+.footer__vk {
+  background-image: url(../img/footer/VK.svg);
+  width: 45px;
+  height: 45px;
+  display: block;
+  background-repeat: no-repeat;
+}
+
+.footer__vk:hover {
+  background-image: url(../img/footer/VK-focus.svg);
+}
+
+.footer__vk:focus {
+  background-image: url(../img/footer/VK-focus.svg);
+}
+
+.footer__vk:active {
+  background-image: url(../img/footer/VKactive.svg);
+}
+
+
+.footer__instagramm {
+  background-image: url(../img/footer/instagram.svg);
+  width: 45px;
+  height: 45px;
+  display: block;
+  background-repeat: no-repeat;
+}
+
+.footer__instagramm:hover {
+  background-image: url(../img/footer/instagram-focus.svg);
+}
+
+.footer__instagramm:focus {
+  background-image: url(../img/footer/instagram-focus.svg);
+}
+
+.footer__instagramm:active {
+  background-image: url(../img/footer/instagram-active.svg);
+}
+
+.footer__facebook {
+  background-image: url(../img/footer/fb.svg);
+  display: block;
+  width: 45px;
+  height: 45px;
+  background-repeat: no-repeat;
+}
+
+.footer__facebook:hover {
+  background-image: url(../img/footer/fb-focus.svg);
+}
+
+.footer__facebook:focus {
+  background-image: url(../img/footer/fb-focus.svg);
+}
+
+
+.footer__facebook:active {
+  background-image: url(../img/footer/fb-active.svg);
+}
+
+
+.footer-container {
+  display: flex;
+}
+
+@media (max-width: 1919px) {
+  .footer {
+    max-width: 1919px;
+  }
+
+  .footer-social {
+    width: 240px;
+    height: 60px;
+    margin-top: 40px;
+  }
+
+  .footer__facebook {
+    background-image: url(../img/footer/facebook-1024.svg);
+    width: 60px;
+    height: 60px;
+  }
+
+  .footer__instagramm {
+    background-image: url(../img/footer/instagram-1024.svg);
+    width: 60px;
+    height: 60px;
+  }
+
+  .footer__vk {
+    background-image: url(../img/footer/vk-1024.svg);
+    width: 60px;
+    height: 60px;
+  }
+
+  .footer__vk:hover {
+    background-image: url(../img/footer/vk-1024-focus.svg);
+  }
+  
+  .footer__vk:focus {
+    background-image: url(../img/footer/vk-1024-focus.svg);
+  }
+  
+  .footer__vk:active {
+    background-image: url(../img/footer/vk-1024-active.svg);
+  }
+
+  .footer__instagramm:hover {
+    background-image: url(../img/footer/instagram-1024-focus.svg);
+  }
+  
+  .footer__instagramm:focus {
+    background-image: url(../img/footer/instagram-1024-focus.svg);
+  }
+  
+  .footer__instagramm:active {
+    background-image: url(../img/footer/instagram-1024-active.svg);
+  }
+
+  .footer__facebook:hover {
+    background-image: url(../img/footer/facebook-1024-focus.svg);
+  }
+  
+  .footer__facebook:focus {
+    background-image: url(../img/footer/facebook-1024-focus.svg);
+  }
+  
+  .footer__facebook:active {
+    background-image: url(../img/footer/facebook-1024-active.svg);
+  }
+
+  .footer-item:not(:last-child) {
+    margin-right: 30px;
+  }
+
+  .footer__logo {
+    margin-top: 51px;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .footer__logo {
+    background-image: url(../img/footer/Лого-768.svg);
+    width: 97px;
+    height: 22px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+
+  .footer {
+    min-height: 132px;
+    max-width: 767px;
+  }
+
+  .footer-container {
+    flex-direction: column-reverse;
+  }
+
+  .footer-social {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    width: 209px;
+  }
+
+  .footer__vk {
+    width: 50px;
+    height: 50px;
+    background-image: url(../img/footer/VK-768.svg);
+  }
+
+  .footer__instagramm {
+    width: 50px;
+    height: 50px;
+    background-image: url(../img/footer/instagram-768.svg);
+  }
+
+  .footer__facebook {
+    width: 50px;
+    height: 50px;
+    background-image: url(../img/footer/fb-768.svg);
+  }
+
+  .footer__logo {
+    margin-top: 9px;
+  }
+}

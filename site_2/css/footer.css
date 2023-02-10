@@ -1,0 +1,47 @@
+.contacts {
+  min-height: 98px;
+}
+
+.contacts-one {
+  min-height: 80px;
+  background: #2E2B44;
+}
+
+.contacts-ul {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.contacts-li:not(:last-child) {
+  margin-right: 30px;
+}
+
+.contacts-one-ul {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 188px;
+  padding-top: 28px;
+}
+
+.contacts-one-div {
+  min-height: 80px;
+}
+
+.logo {
+  min-height: 18px;
+}
+
+.container-logo {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 180px;
+}
+
+.logo-p {
+  max-width: 135px;
+  margin: 0;
+  padding-top: 3px;
+  margin-left: 37px;
+  font-size: 13px;
+}

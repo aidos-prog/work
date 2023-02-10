@@ -1,0 +1,72 @@
+/*advantages*/
+
+.advantages-list {
+  display: flex;
+  flex-wrap: wrap;
+  height: 600px;
+}
+.advantages {
+  width: 1170px;
+  height: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.advantages-paragraph {
+  height: 279px;
+  width: 275px;
+  background-color: var(--white-color);
+  border-radius: 7px;
+  margin-bottom: 12px;
+}
+.advantages-paragraph-part {
+  height: 279px;
+  width: 275px;
+  background-color: var(--white-color);
+  border-radius: 7px;
+}
+.advantages-paragraph:not(:nth-child(4)) {
+  margin-right: 23px;
+}
+.advantages-paragraph-part:not(:last-child) {
+  margin-right: 23px;
+}
+.advantages-paragraph-one {
+  background-repeat: no-repeat;
+  height: 60px;
+  width: 66px;
+  margin-left: 42px;
+  margin-top: 44px;
+}
+.advantages-one {
+  background-image: url('../img/bathtub.svg');
+}
+.advantages-two {
+  background-image: url('../img/hanger.svg');
+}
+.advantages-three {
+  background-image: url('../img/heating.svg');
+}
+.advantages-foor {
+  background-image: url('../img/hotel-key.svg');
+}
+.advantages-five {
+  background-image: url('../img/parking.svg');
+}
+.advantages-six {
+  background-image: url('../img/reception.svg');
+}
+.advantages-seven {
+  background-image: url('../img/security-box.svg');
+}
+.advantages-eight {
+  background-image: url('../img/swimming-pool.svg');
+}
+.advantages-paragraph-text {
+  margin: 10px 44px 44px 44px;
+  line-height: 2;
+  color: #858585;
+  font-weight: 500;
+}
+.advantages-paragraph-li {
+  margin-left: auto;
+}

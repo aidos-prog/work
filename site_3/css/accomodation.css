@@ -1,0 +1,143 @@
+
+.accommodation {
+  margin-top: 70px;
+  width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.accommodation-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.accommodation-item {
+  height: 441px;
+  width: 373px;
+  margin-bottom: 25px;
+  background-color: var(--white-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-end;
+}
+.accommodation-item-last {
+  height: 441px;
+  width: 373px;
+  margin-bottom: 25px;
+  background-color: var(--white-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px 35px;
+  position: relative;
+}
+
+.accommodation-item-link {
+  background-image: url('../img/Прямоугольник2копия16.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  padding-right: 20px;
+  color: #e9e5e1;
+  font-size: 20px;
+  font-weight: 500;
+  transition-property: color;
+  transition-duration: 0.7s;
+  transition-timing-function: ease;
+  box-shadow: 0px 0px 30px #c49c4d;
+}
+
+.accommodation-item-link:hover {
+  color: var(--orange-color);
+  box-shadow: 0px 0px 20px #ffffff;
+}
+
+.accommodation-item-background {
+  height: 441px;
+  width: 373px;
+  background-image: url('../img/editorconfig.png');
+}
+
+.accommodation-item-link::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: block;
+}
+
+.accommodation-item-part {
+  height: 441px;
+  width: 373px;
+  margin-bottom: 25px;
+  background-color: var(--white-color);
+  border-radius: 10px;
+  margin-right: 25px;
+}
+
+.hotel-card-description {
+  margin-top: 36px;
+  margin-bottom: 0;
+  margin-right: 0;
+}
+
+.hotel-card-caption {
+  margin-left: 45px;
+}
+
+.hotel-card-description-text-gray {
+  margin-left: 45px;
+  color: var(--grey-color);
+}
+
+.hotel-card {
+  height: 441px;
+  width: 373px;
+}
+
+.hotel-card-description-text-weight {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.hotel-card-description-text-weight-color {
+  color: #4e4e4e;
+  font-weight: 500;
+}
+
+.star {
+  float: right;
+  transform: translateY(-17px);
+  margin-right: 5px;
+}
+
+.star-two {
+  margin-right: 47px;
+}
+
+.hotel-card-caption {
+  color: #4e4e4e;
+}
+
+.hotel-card-rooms-btn {
+  color:var(--orange-color);
+  background-color: var(--white-color);
+  border-radius: 10px;
+  padding-left: 17px;
+  padding-right: 17px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-color: var(--orange-color);
+  font-weight: 600;
+  transition-property: color;
+  transition-duration: 0.7s;
+  transition-timing-function: linear;
+  margin-left: 45px;
+  border-style: solid;
+  cursor: pointer;
+}
+
+.hotel-card-rooms-btn:hover {
+  border-color: var(--orange-color);
+  color: var(--white-color);
+  background-color: var(--orange-color);
+}

@@ -1,0 +1,109 @@
+/*footer*/
+.section-footer {
+  min-height: 337px;
+  padding-top: 44px;
+  padding-left: 53px;
+  padding-bottom: 44px;
+  padding-right: 53px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  background-color: #333333;
+  border-radius: 10px;
+  margin-top: 22px;
+  margin-bottom: 50px;
+  color: #ffffff;
+  background-image: url('../img/Слой27копия.png');
+  background-repeat: no-repeat;
+  background-position: bottom right 200px;
+}
+.section-footer-one {
+  margin-right: 135px;
+}
+.section-footer-one-list:not(:last-child) {
+  margin-bottom: 50px;
+}
+.section-footer-one-list-item {
+  width: 285px;
+  line-height: 2;
+  margin: 0;
+}
+.section-footer-one-list-item-text {
+  color: #cc9933;
+  transition-property: color;
+  transition-duration: 0.7s;
+  transition-timing-function: linear;
+}
+.section-footer-one-list-item-text:hover {
+  color: #ffffff;
+}
+.section-footer-two {
+  margin-right: auto;
+}
+.section-footer-two-list {
+  width: 160px;
+  float: left;
+  line-height: 1.5;
+  color: #cc9933;
+  transition-property: color;
+  transition-duration: 0.7s;
+  transition-timing-function: linear;
+}
+.section-footer-two-list:hover {
+  color: #ffffff;
+}
+.section-footer-two-list-number {
+  width: 160px;
+  float: left;
+  line-height: 1.5;
+  color: #cc9933;
+  margin-top: 40px;
+  transition-property: color;
+  transition-duration: 0.7s;
+  transition-timing-function: linear;
+}
+.section-footer-two-list-number:hover {
+  color: #ffffff;
+}
+.section-footer-two-list-item {
+  width: 155px;
+}
+.section-footer-two-list-item-first {
+  width: 362px;
+  margin: 5px 0px 0px 0px;
+}
+.section-footer-two-list-item-one {
+  width: 362px;
+}
+.section-footer-two-list-img {
+  float: right;
+}
+.section-footer-three-list {
+  margin-bottom: 21px;
+}
+.social-link {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: transparent center/cover no-repeat;
+  opacity: 0.6;
+  transition: transform .5s linear, opacity .5s linear;
+}
+.social-link:hover {
+  opacity: 0.2;
+}
+.section-footer-tripadvisor {
+  background-image: url(../img/tripadvisor.svg);
+}
+.section-footer-twitter {
+  background-image: url(../img/twitter.svg);
+}
+.section-footer-facebook {
+  background-image: url(../img/facebook.svg);
+}
+.section-footer-vkontakte {
+  background-image: url(../img/social.svg);
+}
+.section-footer-google {
+  background-image: url(../img/google-plus-social-logotype.svg);
+}

@@ -1,0 +1,48 @@
+.section-two-container {
+  height: 625px;
+  width: 595px;
+}
+.section-two-card {
+  background-image: url('../img/22.png');
+  width: 595px;
+  height: 540px;
+}
+.section-h3-card {
+  color: var(--white-color);
+  font-size: 62px;
+  margin-left: 42px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 260px;
+  max-width: 340px;
+}
+.section-p-card {
+  color: #898583;
+  font-size: 32px;
+  font-weight: normal;
+  margin-top: 0px;
+  margin-left: 42px;
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 325px;
+  font-weight: 500;
+}
+.section-p {
+  color: #f0bf5f;
+  background-image: url('../img/стрелочка.png');
+  background-repeat: no-repeat;
+  width: 150px;
+  font-size: 14px;
+  background-position: right;
+  margin-left: 50px;
+  padding-right: 15px;
+  margin-top: auto;
+  margin-bottom: auto;
+  transition-property: color;
+  transition-duration: 0.7s;
+  transition-timing-function: linear;
+}
+
+.section-p:hover {
+  color: var(--white-color);
+}

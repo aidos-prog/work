@@ -1,0 +1,88 @@
+
+@font-face {
+  font-family: "Montserrat";
+  src: url('../fonts/montserrat-medium-webfont.woff2') format('woff2'),
+       url('../fonts/montserrat-medium-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url('../fonts/montserrat-light-webfont.woff2') format('woff2'),
+       url('../fonts/montserrat-light-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url('../fonts/montserrat-bold-webfont.woff2') format('woff2'),
+       url('../fonts/montserrat-bold-webfont.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url('../fonts/montserrat-regular-webfont.woff2') format('woff2'),
+       url('../fonts/montserrat-regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  background-color: var(--white-color);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 75px;
+  max-width: 1920px;
+}
+
+:root {
+  --white-color: #ffffff;
+  --orange-color: #FF9900;
+  --more-orange-color: #E1670E;
+  --gray-color: #CACACA;
+}
+
+@media (max-width: 1145px) {
+  .container {
+    max-width: 1145px;
+    padding: 0 50px;
+  }
+}
+@media (max-width: 1023px) {
+  .container {
+    max-width: 1023px;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    max-width: 767px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+

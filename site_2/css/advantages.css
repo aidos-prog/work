@@ -1,0 +1,252 @@
+.row {
+  max-width: 1110px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+.row-div-one {
+  padding: 0;
+}
+
+.advantages {
+  min-height: 456px;
+}
+
+.advantages-div {
+  padding-top: 80px;
+  margin-bottom: 80px;
+}
+
+.advantages-row {
+  min-height: 296px;
+  max-width: 1110px;
+}
+
+.advantages-img {
+  padding: 0;
+  background-image: url(../img/Vectary.png);
+  background-repeat: no-repeat;
+  width: 160px;
+  height: 142px;
+}
+
+.advantages-h2 {
+  font-size: 40px;
+  line-height: 40px;
+  max-width: 380px;
+  margin: 0;
+}
+
+.advantages-p {
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 585px;
+  margin-top: 18px;
+  margin-bottom: 0;
+}
+
+.advantages-one {
+  max-width: 350px;
+  min-height: 80px;
+  padding: 0;
+  position: relative;
+  display: flex;
+}
+
+.advantages-two {
+  max-width: 350px;
+  min-height: 80px;
+  padding: 0;
+  position: relative;
+  display: flex;
+}
+
+.advantages-three {
+  max-width: 350px;
+  min-height: 80px;
+  padding: 0;
+  position: relative;
+  display: flex;
+}
+
+.advantages-one-img {
+  width: 80px;
+  height: 80px;
+}
+
+.advantages-two-img {
+  width: 80px;
+  height: 80px;
+}
+
+.advantages-three-img {
+  width: 80px;
+  height: 80px;
+}
+
+.advantages-col-p {
+  max-width: 240px;
+  color: #666666;
+  line-height: 19.2px;
+  font-size: 16px;
+  margin-left: auto;
+  margin-top: 10px;
+}
+
+.row-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.advantages-row-div {
+  margin-bottom: 23px;
+}
+
+.row-div-one {
+  margin-top: 24px;
+}
+
+.row-div-two {
+  padding-left: 6px;
+}
+
+@media (max-width: 1439px) {
+  .advantages {
+    padding-left: 39px;
+    padding-right: 39px;
+  }
+  .advantages-col-p {
+    margin-left: 0;
+    max-width: 210px;
+    margin-top: 7px;
+  }
+  .advantages-one {
+    flex-direction: column;
+    max-width: 215px;
+    padding-left: 15px;
+  }
+  .advantages-two {
+    flex-direction: column;
+    max-width: 215px;
+    padding-left: 15px;
+  }
+  .advantages-three {
+    flex-direction: column;
+    max-width: 211px;
+    padding-left: 13px;
+  }
+  .advantages-img {
+    background-image: url(../img/Vectary2.png);
+    width: 211px;
+    height: 187px;
+    margin-left: 15px;
+    margin-top: 3px;
+  }
+  .row-div-two {
+    padding-left: 24px;
+    max-width: 460px;
+    padding-right: 11px;
+    margin-left: 50px;
+  }
+  .advantages-h2 {
+    margin-top: 3px;
+  }
+  .advantages-div {
+    margin-bottom: 57px;
+  }
+}
+@media (max-width: 1200px) {
+  .row-div-two {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .advantages {
+    padding-left: 33px;
+    padding-right: 33px;
+  }
+  .advantages-col-p {
+    margin-left: 0;
+  }
+  .advantages-h2 {
+    margin-top: 0;
+    max-width: 330px;
+  }
+  .advantages-one {
+    flex-direction: column;
+    max-width: 150px;
+    padding-left: 0;
+  }
+  .advantages-two {
+    flex-direction: column;
+    max-width: 150px;
+    padding-left: 0;
+  }
+  .advantages-three {
+    flex-direction: column;
+    max-width: 150px;
+    padding-left: 0;
+  }
+  .advantages-img {
+    background-image: url(../img/Vectary3.png);
+    width: 150px;
+    height: 134px;
+    margin: 0;
+  }
+  .advantages-div {
+    padding-top: 79px;
+    margin-bottom: 40px;
+  }
+  .row-div-one {
+    margin-top: 0;
+  }
+  .row-div-two {
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .advantages {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .advantages-col-p {
+    margin-left: 30px;
+    max-width: 179px;
+    margin-top: 2px;
+    margin-bottom: 31px;
+  }
+  .advantages-one {
+    max-width: 510px;
+    flex-direction: row;
+  }
+  .advantages-two {
+    max-width: 510px;
+    flex-direction: row;
+  }
+  .advantages-three {
+    max-width: 510px;
+    flex-direction: row;
+  }
+  .row-div-one {
+    display: none;
+  }
+  .row-div-two {
+    padding: 0;
+  }
+  .advantages-h2 {
+    font-size: 20px;
+    line-height: 26px;
+    max-width: 250px;
+  }
+  .advantages-div {
+    padding-top: 50px;
+    margin-bottom: 21px;
+  }
+  .advantages-p {
+    margin-top: 2px;
+  }
+}
+

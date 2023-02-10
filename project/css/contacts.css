@@ -1,0 +1,441 @@
+
+.contacts {
+  margin-bottom: 5px;
+  border-top: 1px solid #CACACA;
+  border-bottom: 1px solid #CACACA;
+}
+
+.contacts-container {
+  display: flex;
+  height: 150px;
+}
+
+.contacts-one {
+  display: flex;
+  margin-right: 79px;
+}
+
+.contacts-form {
+  margin-top: 2px;
+}
+
+.contacts-two {
+  align-items: center;
+  display: flex;
+}
+
+.contacts-three {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-top: 39px;
+  margin-bottom: auto;
+}
+
+.contacts-three__h3 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.contacts-one__container {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.contacts-one__h3 {
+  margin-bottom: 3px;
+  font-size: 24px;
+  margin-top: 13px;
+}
+
+.contacts-one__p {
+  margin-top: 8px;
+}
+
+.contacts-name {
+  border-radius: 32px;
+  width: 270px;
+  height: 50px;
+  margin-right: 20px;
+  padding-left: 24px;
+}
+
+.contacts-name:hover {
+  background-color: #EAEAEA;
+}
+
+.contacts-name:focus {
+  background-color: #EAEAEA;
+}
+
+.contacts-name:active {
+  background-color: #EAEAEA;
+}
+
+.contacts-tel {
+  border-radius: 32px;
+  width: 270px;
+  height: 50px;
+  padding-left: 24px;
+  margin-right: 20px;
+  box-shadow: none;
+}
+
+.contacts-tel:hover {
+  background-color: #EAEAEA;
+}
+
+.contacts-tel:focus {
+  background-color: #EAEAEA;
+}
+
+.contacts-tel:active {
+  background-color: #EAEAEA;
+}
+
+.contacts-button {
+  border-radius: 32px;
+  margin-top: 0px;
+  width: 329px;
+  height: 50px;
+  color: var(--violet-light);
+  background-color: var(--white);
+  border: 2px solid var(--violet-light);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.contacts-three__h3 {
+  font-size: 23px;
+}
+
+.contacts-list {
+  display: flex;
+  margin-top: 9px;
+}
+
+.contacts-btn-span {
+  display: none;
+}
+
+.contacts__whatssapp {
+  background-image: url(../img/contacts/Whatsapp-Icon.svg);
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  display: block;
+  outline: 0;
+  border-radius: 30px;
+}
+
+.contacts__whatssapp:hover {
+  opacity: 0.5;
+}
+
+.contacts__whatssapp:focus {
+  opacity: 0.5;
+}
+
+.contacts__whatssapp:active {
+  border: 1px solid #9643A4;
+}
+
+.contacts__telegram {
+  background-image: url(../img/contacts/Telegram_2019_Logo.svg);
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  display: block;
+  border-radius: 30px;
+}
+
+.contacts__telegram:hover {
+  opacity: 0.5;
+}
+
+.contacts__telegram:focus {
+  opacity: 0.5;
+}
+
+.contacts__telegram:active {
+  border: 1px solid #9643A4;
+}
+
+.contacts-item:first-child {
+  margin-right: 20px;
+}
+
+#map {
+  height: 700px;
+  width: 100%;
+}
+
+.contacts-form {
+  display: flex;
+}
+
+.contacts-mobile {
+  display: none;
+}
+
+.just-validate-error-label {
+  color: #D11616!important;
+  padding-left: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  position: absolute;
+  transform: translateY(-63px);
+  margin-bottom: 2px;
+}
+
+.just-validate-error-field {
+  border: 1px solid #D11616;
+}
+
+@media (max-width: 1919px) {
+  .contacts-container {
+    flex-direction: column;
+    min-height: 339px;
+  }
+
+  .contacts {
+    margin-bottom: 0px;
+    max-width: 1919px;
+  }
+
+  .contacts-three {
+    margin-left: 0;
+    margin-top: 34px;
+    margin-bottom: 43px;
+  }
+
+  .contacts-one {
+    margin-bottom: 20px;
+  }
+
+  .contacts-one__h3 {
+    margin-top: 44px;
+    font-size: 23px;
+  }
+
+  .input-one {
+    width: 270px;
+    margin-right: 20px;
+  }
+
+  .input-two {
+    width: 270px;
+    margin-right: 20px;
+  }
+
+  .contacts-button {
+    width: 343px;
+  }
+
+  .contacts-map {
+    width: 100%;
+  }
+
+  .ac__h3 {
+    font-size: 24px;
+  }
+
+  .ac-div__right-text {
+    font-size: 16px;
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .contacts-two {
+    flex-direction: column;
+  }
+
+  .contacts {
+    max-width: 1023px;
+  }
+
+  .contacts-one {
+    margin-bottom: 20px;
+  }
+
+  .input-one {
+    width: 324px;
+  }
+
+  .input-two {
+    width: 317px;
+    margin-right: 0;
+  }
+
+  .contacts-button {
+    width: 317px;
+    margin-right: auto;
+    margin-top: 12px;
+  }
+
+  .contacts-name {
+    width: 317px;
+  }
+
+  .contacts-tel {
+    width: 324px;
+  }
+
+  .contacts-form {
+    max-width: 669px;
+    max-width: 925px;
+    margin-right: auto;
+    flex-wrap: wrap;
+  }
+
+  .contacts-container {
+    min-height: 401px;
+  }
+
+  .contacts-one__h3 {
+    margin-top: 46px;
+  }
+
+  .contacts-three {
+    margin-top: 33px;
+  }
+
+  .contacts-name {
+    width: 324px;
+  }
+
+  .contacts-button {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 767px) {
+  .just-validate-error-label {
+    margin-top: 8px;
+  }
+
+  .contacts {
+    max-width: 767px;
+    border-top: 0;
+  }
+
+  .contacts-btn-check {
+    display: none;
+  }
+
+  .contacts-btn-span {
+    display: block;
+    font-size: 13px;
+    padding-top: 2px;
+  }
+
+  .input-one {
+    width: 290px;
+    height: 40px;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .input-two {
+    width: 290px;
+    height: 40px;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .contacts-form {
+    max-width: 290px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3px;
+  }
+
+  .contacts-button__desktop {
+    display: none;
+  }
+
+  .contacts-button {
+    width: 128px;
+    height: 40px; 
+    margin-right: auto;
+    margin-top: 0px;
+  }
+
+  .contacts-mobile {
+    width: 114px;
+    height: 40px; 
+    margin-right: auto;
+    margin-top: 0px;
+    display: block;
+    font-size: 12px;
+    padding-top: 11px;
+    padding-left: 2px;
+  }
+
+  .contacts-name {
+    width: 290px;
+    height: 40px;
+    padding-left: 23px;
+    padding-top: 3px;
+  }
+
+  .contacts-tel {
+    width: 290px;
+    height: 40px;
+    padding-left: 22px;
+    padding-top: 3px;
+  }
+
+  .contacts-container {
+    min-height: 393px;
+  }
+
+  .contacts__telegram {
+    background-image: url(../img/contacts/Telegram_2019_Logo-768.svg);
+    width: 50px;
+    height: 50px;
+  }
+
+  .contacts__whatssapp {
+    background-image: url(../img/contacts/Whatsapp-Icon-3-768.svg);
+    width: 50px;
+    height: 50px;
+  }
+
+  .contacts-one__h3 {
+    font-size: 18px;
+    margin-top: 53px;
+    margin-bottom: 2px;
+  }
+
+  .contacts-one__p {
+    margin-top: 0;
+    font-size: 14px;
+  }
+
+  .contacts-one {
+    width: 100%;
+    margin-bottom: 0;
+    margin-right: 0;
+  }
+
+  .contacts-three {
+    margin-top: 28px;
+  }
+
+  .contacts-three__h3 {
+    font-size: 17px;
+  }
+  
+  .contacts-list {
+    margin-top: 12px;
+  }
+
+  #map {
+    height: 320px;
+  }
+
+}

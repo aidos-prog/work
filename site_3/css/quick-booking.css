@@ -1,0 +1,68 @@
+.container-section-quick-booking {
+  display: flex;
+  width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.section-h2 {
+  font-size: 30px;
+  margin-left: 33px;
+  color: #333333;
+  font-weight: 500;
+}
+.section-one-container {
+  height: 625px;
+  width: 518px;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.section-search {
+  border-radius: 7px;
+  border: 0;
+  width: 518px;
+  height: 72px;
+  padding-left: 20px;
+  color: #c2c2c2;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.section-ul-item {
+  margin-bottom: 24px;
+  height: 70px;
+  width: 518px;
+}
+.btn-quick-booling {
+  background-color: var(--orange-color);
+  color: var(--white-color);
+  height: 60px;
+  width: 132px;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 500;
+  transition-property: color, background-color;
+  transition-duration: 0.7s;
+  transition-timing-function: ease;
+  cursor: pointer;
+}
+.btn-quick-booling:hover {
+  background-color: var(--black-color);
+  color: var(--orange-color);
+}
+.section-text-one {
+  color: var(--orange-color);
+  margin-left: 29px;
+  font-size: 16px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+.section-text-two {
+  color: #a5a5a5;
+  margin-top: 20px;
+  font-weight: 500;
+  margin-left: 5px;
+}
+.quick-form {
+  height: 625px;
+  width: 518px;
+}

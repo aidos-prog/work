@@ -1,0 +1,291 @@
+.hero-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 0;
+  min-height: 788px;
+}
+
+.hero-swiper {
+  max-width: 1920px;
+  min-height: 788px;
+  width: 100%;
+}
+
+.hero-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-swiper__slide {
+  max-width: 1920px;
+  min-height: 788px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide-one {
+  background-image: url(../img/hero/birmingham-1.jpg);
+  background-repeat: no-repeat;
+}
+
+.slide-two {
+  background-image: url(../img/hero/birmingham-2.jpg);
+  background-repeat: no-repeat;
+}
+
+.slide-three {
+  background-image: url(../img/hero/birmingham-3.jpg);
+  background-repeat: no-repeat;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  max-width: 597px;
+}
+
+.hero__h1 {
+  font-size: 72px;
+  color: var(--white);
+  max-width: 597px;
+  margin-top: 59px;
+  margin-bottom: 0;
+}
+
+.hero__p {
+  color: var(--white);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 30px;
+  margin-top: 19px;
+  max-width: 579px;
+}
+
+.hero__button {
+  width: 314px;
+  height: 70px;
+  border-radius: 100px;
+  background: var(--violet-light);
+  border: 3px solid var(--violet-light);
+  font-size: 19px;
+  color:var(--white);
+  margin-top: 74px;
+}
+
+.hero__button:hover {
+  border: 3px solid var(--purple);
+  border-radius: 100px;
+}
+
+.hero__button:focus {
+  outline: 2px solid #C283F3;
+  outline-offset: 5px;
+}
+
+.hero__button:active {
+  border: 3px solid var(--purple);
+  background: var(--violet);
+  outline: 0;
+}
+
+.hero {
+  min-height: 558px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  margin-bottom: 92px;
+}
+
+.hero-container-one {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 160px;
+  padding-right: 160px;
+  z-index: 2; 
+  min-height: 70px;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.hero-ul {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.hero-item {
+  padding: 0;
+}
+
+.hero-item:not(:last-child) {
+  margin-right: 96px;
+}
+
+@media (max-width: 1919px) {
+  .slide-one {
+    background-image: url(../img/hero/birmingham-museums-1-1024.jpg);
+  }
+  
+  .slide-two {
+    background-image: url(../img/hero/birmingham-museums-3-1024.jpg);
+  }
+  
+  .slide-three {
+    background-image: url(../img/hero/birmingham-museums-3-1024.jpg);
+  }
+
+  .hero {
+    min-height: 552px;
+    max-width: 1919px;
+    margin-bottom: 81px;
+  }
+
+  .hero-slider {
+    min-height: 768px;
+    max-width: 1919px;
+  }
+
+  .hero-swiper__slide {
+    min-height: 768px;
+  }
+
+  .hero-swiper {
+    min-height: 768px;
+    max-width: 1919px;
+  }
+
+  .hero-content {
+    max-width: 661px;
+    margin-top: 115px;
+  }
+
+  .hero__h1 {
+    margin-top: 0;
+  }
+
+  .hero__p {
+    margin-top: 9px;
+    max-width: 657px;
+  }
+
+  .hero__button {
+    margin-top: 114px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 553px;
+    max-width: 1023px;
+    margin-bottom: 82px;
+  }
+
+  .hero-content {
+    margin-top: 113px;
+  }
+
+  .hero-slider {
+    max-width: 1023px;
+  }
+
+  .slide-one {
+    background-image: url(../img/hero/birmingham-museums-1-768.jpg);
+  }
+  
+  .slide-two {
+    background-image: url(../img/hero/birmingham-museums-2-768.jpg);
+  }
+  
+  .slide-three {
+    background-image: url(../img/hero/birmingham-museums-3-768.jpg);
+  }
+
+  .hero-swiper {
+    max-width: 1023px;
+  }
+
+  .hero__button {
+    margin-top: 117px;
+  } 
+}
+
+@media (max-width: 767px) {
+  .hero {
+    max-width: 767px;
+    min-height: 305px;
+    margin-bottom: 50px;
+  }
+
+  .slide-one {
+    background-image: url(../img/hero/birmingham-museums1-320.jpg);
+  }
+  
+  .slide-two {
+    background-image: url(../img/hero/birmingham-museums-2-320.jpg);
+  }
+  
+  .slide-three {
+    background-image: url(../img/hero/birmingham-museums-3-320.jpg);
+  }
+
+  .hero__h1 {
+    font-size: 32px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 0;
+    max-width: 255px;
+  }
+
+  .hero__p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    margin-top: 12px;
+    margin-bottom: 0;
+    max-width: 256px;
+  }
+
+  .hero__button {
+    width: 200px;
+    height: 40px;
+    font-size: 13px;
+    position: relative;
+    margin-top: 40px;
+  }
+
+  .hero-content {
+    min-height: 233px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+  }
+
+  .hero-slider {
+    min-height: 355px;
+    max-width: 767px;
+  }
+
+  .hero-swiper {
+    min-height: 355px;
+    height: 0;
+    max-width: 767px;
+  }
+
+  .hero-swiper__slide {
+    min-height: 355px;
+  }
+
+}
