@@ -1,4 +1,4 @@
-new Swiper('.hero-swiper', {
+new Swiper('.top-swiper', {
   loop: true,
   spaceBetween: 30,
   autoplay: {

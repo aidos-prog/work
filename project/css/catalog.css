@@ -1,24 +1,25 @@
 .catalog {
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 86px;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 .catalog__h2 {
   font-size: 48px;
   margin-bottom: 21px;
+  margin-top: 0px;
 }
 
 .catalog__p {
   font-size: 16px;
-  min-height: 117px;
   max-width: 1080px;
   line-height: 32px;
+  margin-top: 0px;
 }
 
 .catalog-container {
   display: flex;
-  margin-top: 38px;
 }
 
 .catalog-container__one {

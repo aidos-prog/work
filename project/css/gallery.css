@@ -3,10 +3,10 @@
   z-index: 0;
   width: 100%;
   height: 100%;
-  min-height: 596px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 86px;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 .gallery-container {
@@ -16,7 +16,7 @@
 }
 
 .gallery-one {
-  margin-top: 88px;
+  margin-top: 0px;
   min-height: 350px;
   width: 430px;
   margin-right: auto;
@@ -40,6 +40,10 @@
 .check {
   position: relative;
   cursor: pointer;
+}
+
+.check:focus {
+  color: #C283F3;
 }
 
 #check,
@@ -98,6 +102,10 @@
   color: #C283F3;
 }
 
+.gallery__text:focus {
+  color: #C283F3;
+}
+
 .gallery__text {
   color: var(--white);
   font-size: 16px;
@@ -120,7 +128,7 @@
 .gallery-two {
   height: 411px;
   width: 1151px;
-  margin-top: 107px;
+  margin-top: 0px;
   margin-left: 48px;
 }
 
@@ -416,10 +424,6 @@
 
   .gallery-swiper__container {
     max-width: 1023px;
-  }
-
-  .gallery-choice {
-    margin-left: 0;
   }
 
   #check + span ,

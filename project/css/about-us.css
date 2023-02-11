@@ -1,7 +1,10 @@
 .about-us {
-  min-height: 373px;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 92px;
+  padding-bottom: 80px;
+  position: relative;
 }
 
 .about-us__content {

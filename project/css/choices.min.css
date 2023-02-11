@@ -44,8 +44,8 @@
 
 .choices[data-type*=select-one]::after {
   content: "";
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-right: 1px solid #FFFFFF;
   border-bottom: 1px solid #FFFFFF;
   position: absolute;
@@ -58,7 +58,8 @@
 }
 
 .choices[data-type*=select-one].is-open::after {
-  transform: rotate(225deg) translateY(-2px);
+  transform: rotate(225deg) translateY(0px);
+  top: 60%;
 }
 
 .choices[data-type*=select-one][dir=rtl]::after {
@@ -75,6 +76,16 @@
   border-radius: 6px;
   overflow: hidden;
   color: #FFFFFF;
+}
+
+.choices:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.choices:focus {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .is-open .choices__inner {
