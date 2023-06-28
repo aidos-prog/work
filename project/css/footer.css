@@ -1,5 +1,4 @@
 .footer {
-  min-height: 140px;
   background-color: var(--black);
   position: relative;
 }
@@ -10,8 +9,8 @@
   background-position: top left;
   width: 174px;
   height: 39px;  
-  margin-top: 50px;
   margin-left: 0;
+  margin-top: 4px;
 }
 
 .footer-item:not(:last-child) {
@@ -23,8 +22,8 @@
   height: 45px;
   margin-right: 0;
   margin-left: auto;
-  margin-top: 45px;
 }
+
 .footer-list {
   display: flex;
 }
@@ -35,6 +34,7 @@
   height: 45px;
   display: block;
   background-repeat: no-repeat;
+  transition: background-image 0.4s ease-in-out;
 }
 
 .footer__vk:hover {
@@ -56,6 +56,7 @@
   height: 45px;
   display: block;
   background-repeat: no-repeat;
+  transition: background-image 0.4s ease-in-out;
 }
 
 .footer__instagramm:hover {
@@ -76,6 +77,7 @@
   width: 45px;
   height: 45px;
   background-repeat: no-repeat;
+  transition: background-image 0.4s ease-in-out;
 }
 
 .footer__facebook:hover {
@@ -91,20 +93,20 @@
   background-image: url(../img/footer/fb-active.svg);
 }
 
-
 .footer-container {
   display: flex;
+  padding-top: 46px;
+  padding-bottom: 50px;
 }
 
-@media (max-width: 1919px) {
+@media (max-width: 1280px) {
   .footer {
-    max-width: 1919px;
+    max-width: 1280px;
   }
 
   .footer-social {
     width: 240px;
     height: 60px;
-    margin-top: 40px;
   }
 
   .footer__facebook {
@@ -165,9 +167,15 @@
     margin-right: 30px;
   }
 
-  .footer__logo {
-    margin-top: 51px;
+  .footer-container {
+    padding-top: 41px;
   }
+
+  .footer__logo {
+    margin-left: 1px;
+    margin-top: 9px;
+  }
+  
 }
 
 @media (max-width: 767px) {
@@ -188,12 +196,14 @@
 
   .footer-container {
     flex-direction: column-reverse;
+    padding-top: 0px;
+    padding-bottom: 18px;
   }
 
   .footer-social {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 25px;
+    margin-top: 23px;
     width: 209px;
   }
 
@@ -213,6 +223,45 @@
     width: 50px;
     height: 50px;
     background-image: url(../img/footer/fb-768.svg);
+  }
+
+  .footer__vk:hover {
+    background-image: url(../img/footer/VK-focus-768.svg);
+    background-size: cover;
+  }
+  
+  .footer__vk:focus {
+    background-image: url(../img/footer/VK-focus-768.svg);
+    background-size: cover;
+  }
+  
+  .footer__vk:active {
+    background-image: url(../img/footer/VKactive-768.svg);
+    background-size: cover;
+  }
+
+  .footer__instagramm:hover {
+    background-image: url(../img/footer/instagram-focus-768.svg);
+  }
+  
+  .footer__instagramm:focus {
+    background-image: url(../img/footer/instagram-focus-768.svg);
+  }
+  
+  .footer__instagramm:active {
+    background-image: url(../img/footer/instagram-active-768.svg);
+  }
+
+  .footer__facebook:hover {
+    background-image: url(../img/footer/fb-focus-768.svg);
+  }
+  
+  .footer__facebook:focus {
+    background-image: url(../img/footer/fb-focus-768.svg);
+  }
+  
+  .footer__facebook:active {
+    background-image: url(../img/footer/fb-active-768.svg);
   }
 
   .footer__logo {

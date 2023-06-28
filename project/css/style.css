@@ -110,10 +110,15 @@
 body {
   font-family: 'Open-Sans', sans-serif;
   font-size: 16px;
+  min-width: 320px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
 }
 
 a {
@@ -140,6 +145,10 @@ header {
   padding: 0;
 }
 
+h2 {
+  font-weight: 400;
+}
+
 .container {
   max-width: 1700px;
   margin-left: auto;
@@ -156,11 +165,11 @@ header {
   --black: #000000;
   --purple: #D1A9F0;
   --light-gray: #CACACA;
+  --white-gray: #ECECEC;
 }
 
-@media (max-width: 1919px) {
+@media (max-width: 1280px) {
   .container {
-    padding: 0 50px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -177,7 +186,8 @@ header {
 @media (max-width: 767px) {
   .container {
     max-width: 767px;
-    padding: 0 15px;
+    padding-left: 15px;
+    padding-right: 15px;
     margin-left: auto;
     margin-right: auto;
   }

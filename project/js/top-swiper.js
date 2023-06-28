@@ -1,7 +1,7 @@
 new Swiper('.top-swiper', {
   loop: true,
-  spaceBetween: 30,
+  spaceBetween: 0,
   autoplay: {
-    delay: 2000
+    delay: 5000
   },
 })

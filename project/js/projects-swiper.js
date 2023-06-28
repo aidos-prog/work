@@ -1,12 +1,18 @@
 new Swiper('.projects-swiper', {
-  direction: 'horizontal',
-  loop: true,
-
+  
   navigation: {
     nextEl: '.projects__next',
     prevEl: '.projects__prev',
   },
   breakpoints: {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 21
+    },
+    520: {
+      slidesPerView: 2,
+      spaceBetween: 21
+    },
     768: {
       slidesPerView: 2,
       spaceBetween: 34

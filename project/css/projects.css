@@ -1,5 +1,5 @@
 .projects {
-  padding-top: 20px;
+  padding-top: 85px;
   padding-bottom: 80px;
 }
 
@@ -11,13 +11,13 @@
 }
 
 .projects__h2 {
-  font-size: 45px;
+  font-size: 48px;
   margin-bottom: 22px;
   margin-top: 0;
 }
 
 .projects__one {
-  margin-bottom: 24px;
+  margin-bottom: 21px;
   position: relative;
   max-width: 1080px;
 }
@@ -40,16 +40,79 @@
   outline: 0;
   box-sizing: border-box;
   overflow: hidden;
-  transition: border, 0.5s;
+  transition: border 0.5s;
+}
+
+.projects__link-text {
+  position: relative;
+  z-index: 3;
 }
 
 .projects__link {
   color: var(--violet-light);
+  outline: 0;
+  position: relative;
+  transition: color 0.5s ease-in-out;
+}
+
+.projects__link::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  left: 4px;
+  width: 190px;
+  height: 1px;
+  background: var(--violet-light);
+  z-index: 3;
+  outline: 0;
+  transform: scaleX(0);
+  transition: transform 0.5s ease-in-out;
+}
+
+.projects__link:not(:focus):hover::before {
+  transform: scaleX(1);
+}
+
+.projects__link:active::before {
+  transform: scaleX(1);
+  background-color: var(--violet);
+}
+
+.projects__link:focus {
+  color: white;
+  z-index: 3;
+}
+
+.projects__link:active {
+  color: var(--violet);
+  z-index: 3;
+}
+
+.projects__link::after {
+  content: "";
+  position: absolute;
+  width: 194px;
+  height: 28px;
+  top: -1px;
+  bottom: -11px;
+  left: 1px;
+  right: -2px;
+  border: 0;
+  outline: 0;
+  background-color: var(--violet-light);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+.projects__link:focus:not(:active)::after {
+  transform: scaleX(1);
 }
 
 .projects__h3 {
-  font-size: 23px;
+  font-size: 24px;
   margin-top: 0;
+  font-weight: 600;
   margin-bottom: 26px;
 }
 
@@ -61,6 +124,7 @@
   border: 1px solid #ECECEC;
   top: 55%;
   border-radius: 20px;
+  transition: background-color 0.5s ease-in-out, border 0.5s ease-in-out;
 }
 
 .projects__next {
@@ -73,14 +137,16 @@
   top: 55%;
   border: 1px solid #ECECEC;
   border-radius: 20px;
+  transition: background-color 0.5s ease-in-out, border 0.5s ease-in-out;
 }
 
 .projects__next:hover {
-  background: var(--purple);  
+  background: var(--purple);
+  border: 1px solid var(--purple);  
 }
 
 .projects__next:focus {
-  background: #ECECEC;
+  background: var(--white-gray);
   border: 1px solid var(--violet-light);
   width: 30px;
   height: 30px;
@@ -105,15 +171,16 @@
   border-right: 1px solid var(--black);
   cursor: pointer;
   right: 12px;
-  top: 11px;
+  top: 10px;
 }
 
 .projects__prev:hover {
-  background: var(--purple);  
+  background: var(--purple);
+  border: 1px solid var(--purple);  
 }
 
 .projects__prev:focus {
-  background: #ECECEC;
+  background: var(--white-gray);
   border: 1px solid var(--violet-light);
   width: 30px;
   height: 30px;
@@ -175,19 +242,49 @@
 }
 
 .tippy-box[data-theme~='light'] {
-  background-color: #000000;
+  background-color: var(--violet-light);
   color: #FFFFFF;
-  border-radius: 5px;
+  border-radius: 0px;
 }
 
 .js-tooltip {
   background-image: url(../img/projects/Frame26.svg);
   background-repeat: no-repeat;
+  background-color: transparent;
   width: 16px;
   height: 16px;
   cursor: pointer;
   position: relative;
   border: 0px;
+  outline: 0;
+  transition: background-image, 0.5s ease-in-out;
+}
+
+.js-tooltip:hover {
+  background-image: url(../img/projects/Frame23.svg);
+}
+
+.js-tooltip:focus {
+  background-image: url(../img/projects/Frame23.svg);
+}
+
+.js-tooltip:active {
+  background-image: url(../img/projects/Frame25.svg);
+}
+
+.swiper-button-next.projects__next.swiper-button-disabled, .swiper-button-prev.projects__prev.swiper-button-disabled {
+  opacity: 0.5; 
+  background-color: #ECECEC;
+}
+
+.swiper-button-prev.projects__prev.swiper-button-disabled::before {
+  border-bottom: 1px solid var(--light-gray);
+  border-left: 1px solid var(--light-gray);
+}
+
+.swiper-button-next.projects__next.swiper-button-disabled::before {
+  border-top: 1px solid var(--light-gray);
+  border-right: 1px solid var(--light-gray);
 }
 
 .projects-pre {
@@ -206,12 +303,16 @@
   display: none;
 }
 
-@media (max-width: 1919px) {
+@media (max-width: 1280px) {
 
-.projects-swiper {
-  width: calc(818 / 924 * 100%);
-  min-height: 128px;
-}
+  .projects-swiper {
+    width: calc(818 / 924 * 100%);
+    min-height: 128px;
+  }
+
+  .projects__h2 {
+    margin-bottom: 21px;
+  }
 
   .projects__prev {
     left: 0;
@@ -219,6 +320,10 @@
 
   .projects__next {
     right: 0;
+  }
+
+  .projects__h3 {
+    margin-bottom: 24px;
   }
 
   .projects__one {
@@ -236,13 +341,14 @@
 
   .projects-slide {
     height: 128px;
-    padding: 27px 50px;
+    padding: 36px 50px;
   }
 
   .projects {
-    margin-top: 28px; 
+    margin-top: 0px; 
     max-width: 1919px;
-    margin-bottom: 81px;
+    margin-bottom: 0px;
+    padding-top: 78px;
   }
 
   .projects__next::before {
@@ -251,7 +357,7 @@
   }
 
   .swiper-button-prev {
-    top: 53%;
+    top: 56%;
   }
 }
 
@@ -263,7 +369,7 @@
   }
 
   .projects-swiper {
-    width: calc(562 / 658 * 100%);
+    width: calc(554 / 658 * 100%);
     min-height: 106px;
   }
 
@@ -275,13 +381,21 @@
     max-width: 925px;
   }
 
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 4px;
+  }
+
+  .projects__one {
+    margin-bottom: 29px;
+  }
+
   .projects__h3 {
     margin-bottom: 31px;
   }
 
   .projects {
-    margin-bottom: 80px;
-    margin-top: 28px;
+    margin-bottom: 0px;
+    margin-top: 0px;
     max-width: 1023px;
   }
 
@@ -297,13 +411,15 @@
 @media (max-width: 767px) {
 
   .projects {
-    margin-bottom: 0;
-    margin-top: 37px;
+    margin-bottom: 0px;
+    margin-top: 0px;
     max-width: 767px;
+    padding-top: 36px;
+    padding-bottom: 0px;
   }
 
   .projects-swiper {
-    width: calc(195 / 291 * 100%);
+    width: calc(196 / 291 * 100%);
     min-height: 65px;
   }
 
@@ -313,16 +429,17 @@
 
   .projects-slide {
     height: 65px;
-    padding: 13px 24px;
+    padding: 18px 24px;
   }
 
   .projects__h2 {
     font-size: 28px;
-    margin-bottom: 13px;
+    margin-bottom: 15px;
   }
 
   .projects__text {
     font-size: 16px;
+    margin-top: 0px;
   }
 
   .projects__link {
@@ -338,7 +455,7 @@
 
   .projects__one {
     min-height: 100%;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 
   .projects__two {
@@ -347,14 +464,14 @@
 
   .projects__h3 {
     font-size: 18px;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
   }
 
   .swiper-button-prev {
-    top: 58%;
+    top: 61%;
   }
 
   .swiper-button-next {
-    top: 56%;
+    top: 60%;
   }
 }

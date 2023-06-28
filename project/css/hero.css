@@ -33,7 +33,7 @@
   color: var(--white);
   max-width: 597px;
   margin-top: 0;
-  margin-bottom: 1px;
+  margin-bottom: 19px;
 }
 
 .hero__p {
@@ -48,7 +48,6 @@
 }
 
 .hero__button {
-  width: 314px;
   border-radius: 100px;
   background: var(--violet-light);
   border: 3px solid var(--violet-light);
@@ -59,7 +58,7 @@
   padding-left: 35px;
   padding-bottom: 22px;
   padding-right: 35px;
-  transition: color, 0.4s ease-in-out;
+  transition: color 0.4s ease-in-out, border 0.4s ease-in-out, background-color 0.4s ease-in-out;
 }
 
 .hero__button:hover {
@@ -81,7 +80,7 @@
 .hero {
   margin-left: auto;
   margin-right: auto;
-  padding-top: 51px;
+  padding-top: 60px;
   padding-bottom: 122px;
   position: relative;
 }
@@ -100,7 +99,7 @@
   margin-right: 96px;
 }
 
-@media (max-width: 1919px) {
+@media (max-width: 1280px) {
   .slide-one {
     background-image: url(../img/hero/birmingham-museums-1-1024.jpg);
   }
@@ -114,39 +113,29 @@
   }
 
   .hero {
-    min-height: 552px;
-    max-width: 1919px;
-    margin-bottom: 81px;
+    max-width: 1280px;
+    padding-top: 112px;
+    padding-bottom: 115px;
   }
 
   .hero-content {
     max-width: 661px;
-    margin-top: 115px;
   }
 
   .hero__h1 {
     margin-top: 0;
+    margin-bottom: 12px;
   }
 
   .hero__p {
-    margin-top: 9px;
     max-width: 657px;
-  }
-
-  .hero__button {
-    margin-top: 114px;
+    margin-bottom: 133px;
   }
 }
 
 @media (max-width: 1023px) {
   .hero {
-    min-height: 553px;
     max-width: 1023px;
-    margin-bottom: 82px;
-  }
-
-  .hero-content {
-    margin-top: 113px;
   }
 
   .slide-one {
@@ -160,17 +149,23 @@
   .slide-three {
     background-image: url(../img/hero/birmingham-museums-3-768.jpg);
   }
-
-  .hero__button {
-    margin-top: 117px;
-  } 
 }
 
 @media (max-width: 767px) {
   .hero {
     max-width: 767px;
-    min-height: 305px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
+    padding-top: 34px;
+    padding-bottom: 45px;
+  }
+
+  .hero__button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 13px;
+    position: relative;
   }
 
   .slide-one {
@@ -188,8 +183,7 @@
   .hero__h1 {
     font-size: 32px;
     text-align: center;
-    margin-top: 30px;
-    margin-bottom: 0;
+    margin-bottom: 11px;
     max-width: 255px;
   }
 
@@ -198,25 +192,14 @@
     font-size: 12px;
     line-height: 16px;
     text-align: center;
-    margin-top: 12px;
-    margin-bottom: 0;
-    max-width: 256px;
-  }
-
-  .hero__button {
-    width: 200px;
-    height: 40px;
-    font-size: 13px;
-    position: relative;
-    margin-top: 40px;
+    margin-bottom: 42px;
+    max-width: 262px;
   }
 
   .hero-content {
-    min-height: 233px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5px;
   }
 
 }

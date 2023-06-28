@@ -1,6 +1,5 @@
 .events-swiper {
   max-width: 1600px;
-  height: 781px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -11,18 +10,22 @@
   margin-top: 0px;
 }
 
+.events {
+  padding-top: 5px;
+}
+
 .events-pictures {
   background-size: cover;
 }
 
 .events-description__text-one {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 12px;
   line-height: 16px;
 }
 
 .events-description__text-two {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   color: #999999;
@@ -31,43 +34,60 @@
 .events-description {
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
-  margin-top: 13px;
   color: #999999;
+  max-width: 173px;
+  margin-right: 0;
+  margin-top: 0;
 }
 
 .events__h3 {
-  margin-left: 50px;
-  margin-top: 13px;
+  margin-top: 0px;
   font-size: 24px;
   max-width: 380px;
   line-height: 33px;
   margin-bottom: 3px;
+  font-weight: 600;
+}
+
+.events__h3.open-discuntion {
+  margin-bottom: 10px;
 }
 
 .events__paragraph {
-  margin-left: 50px;
   margin-right: auto;
-  max-width: 364px;
+  max-width: 399px;
   font-size: 16px;
   line-height: 32px;
   margin-top: 0px;
-  margin-bottom: auto;
 }
 
 .events-link {
-  width: 94px;
-  position: absolute;
-  bottom: 48px;
-  left: 53px;
+  position: relative;
+  display: block;
+  outline: 0;
   color: var(--violet-light);
 }
 
-.events-card__box {
-  border: 1px solid #999999;
+.events-link:not(:focus):hover {
+  color: var(--violet);
+}
+
+.events-link:focus {
+  color: var(--white);
+}
+
+.events-card__container {
+  border: 1px solid var(--light-gray);
   border-top: 0;
-  min-height: 400px;
   max-width: 500px;
+  min-height: 400px;
+  padding-top: 13px;
+  padding-left: 50px;
+  padding-right: 30px;
+  padding-bottom: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .events-one::before {
@@ -75,7 +95,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 300px;
-  width: 100%;
+  max-width: 500px;
   display: block;
   content: "";
   position: relative;
@@ -84,7 +104,8 @@
 .events-two::before {
   background-image: url(../img/events/Rectangle-101-1.jpg);
   background-repeat: no-repeat;
-  width: 100%;
+  background-size: cover;
+  max-width: 500px;
   height: 300px;
   content: "";
   position: relative;
@@ -93,7 +114,8 @@
 .events-three::before {
   background-image: url(../img/events/Rectangle-101-2.jpg);
   background-repeat: no-repeat;
-  width: 100%;
+  background-size: cover;
+  max-width: 500px;
   height: 300px;
   content: "";
   position: relative;
@@ -102,7 +124,8 @@
 .events-four::before {
   background-image: url(../img/events/Rectangle-101-3.jpg);
   background-repeat: no-repeat;
-  width: 100%;
+  background-size: cover;
+  max-width: 500px;
   height: 300px;
   content: "";
   position: relative;
@@ -111,7 +134,8 @@
 .events-five::before {
   background-image: url(../img/events/Rectangle-101-4.jpg);
   background-repeat: no-repeat;
-  width: 100%;
+  background-size: cover;
+  max-width: 500px;
   height: 300px;
   content: "";
   position: relative;
@@ -126,17 +150,22 @@
   background: var(--violet-light);
   z-index: 3;
   outline: 0;
+  transition: background 0.4s ease-in-out;
 }
 
 .events-link:hover::before {
   background: var(--violet);
 }
 
+.events-link:active {
+  color: #333333;
+}
+
 .events-link:active::before {
   background: #333333;
 }
 
-.events-link:focus {
+.events-link:not(:hover):focus {
   outline: 0;
   color: var(--white);
 }
@@ -144,12 +173,13 @@
 .events-link:focus:not(:active)::before {
   background: white;
   outline: 0;
-  transform: translateX(3px);
+  transform: translateX(1px);
 }
 
 .events-link::after {
   content: "";
   position: absolute;
+  width: 100px;
   top: -6px;
   bottom: -11px;
   left: -6px;
@@ -172,10 +202,6 @@
   z-index: 3;
 } 
 
-.events-link__text:hover {
-  color: var(--violet);
-}
-
 .events-a:active> .events-link__text {
   color: #333333;
 }
@@ -185,16 +211,31 @@
 }
 
 .events-card {
-  height: 700px;
   display: flex;
   flex-direction: column;
   border-top: 0;
-  width: 500px;
+  max-width: 500px;
+}
+
+.events-card__box-card {
+  position: relative;
+  display: block;
+  width: 110px;
+  height: 30px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.events-card__box {
+  position: relative;
+  margin-bottom: auto;
 }
 
 .events-description {
-  max-width: 173px;
+  max-width: 204px;
   margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 14px;
 }
 
 .events__next {
@@ -202,14 +243,16 @@
   height: 50px;
   display: block;
   z-index: 3;
-  right: -25px;
-  top: 44%;
+  right: -27px;
+  top: 50%;
   border-radius: 30px;
   border: 2px solid #ECECEC;
+  transition: background 0.4s ease-in-out;
 }
 
 .events__next:hover {
-  background: var(--purple);  
+  background: var(--purple);
+  border: 2px solid var(--purple);  
 }
 
 .events__next:focus {
@@ -245,8 +288,12 @@
   display: none;
 }
 
+.swiper-button-next.events__next.swiper-button-disabled, .swiper-button-prev.events__prev.swiper-button-disabled {
+  opacity: 0;
+}
+
 .events__prev {
-  top: 44%;
+  top: 50%;
   width: 50px;
   height: 50px;
   background: #ECECEC;
@@ -255,6 +302,7 @@
   left: -25px;
   border-radius: 30px;
   border: 2px solid #ECECEC;
+  transition: background 0.4s ease-in-out;
 }
 
 .swiper-button-prev::after {
@@ -304,7 +352,7 @@ display: none;
   display: none;
 }
 
-@media (max-width: 1919px) {
+@media (max-width: 1280px) {
   .events {
     max-width: 1919px;
   }
@@ -321,11 +369,18 @@ display: none;
     max-width: 924px;
     margin-left: auto;
     margin-right: auto;
+    min-height: 730px;
   }
 
   .events-pagination {
     display: block;
-    bottom: 53px!important;
+    bottom: 0px;
+  }
+
+  .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: 4px;
+    left: 0;
+    width: 100%;
   }
   
   .events__prev {
@@ -366,39 +421,41 @@ display: none;
     height: 200px;
   }
 
-  .events-card__box {
+  .events-card__container {
     min-height: 483px;
+    padding-left: 34px;
+    padding-top: 14px;
+    padding-right: 34px;
+    padding-bottom: 44px;
   }
 
   .events__h3 {
-    margin-top: 3px;
-    margin-left: 33px;
+    margin-top: 0px;
+    margin-left: 0px;
     max-width: 228px;
-    font-size: 23px;
+    font-size: 24px;
+    margin-bottom: 8px;
   }
 
   .events__h2 {
     margin-left: 0;
-    margin-bottom: 23px;
-    margin-top: 22px;
-    font-size: 46px;
+    margin-bottom: 21px;
+    margin-top: 0px;
+    font-size: 48px;
   }
 
   .events__paragraph {
-    margin-left: 33px;
-    margin-top: 7px;
+    margin-left: 0px;
+    margin-top: 0px;
     max-width: 223px;
-  }
-
-  .events-link {
-    bottom: 74px;
-    left: 34px;
   }
 
   .events-description {
     align-items: flex-end;
-    margin-left: 82px;
-    margin-top: 15px;
+    margin-right: 0px;
+    margin-left: auto;
+    margin-top: 0px;
+    margin-bottom: 4px;
   }
 
   .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
@@ -408,11 +465,16 @@ display: none;
     margin-right: 7px;
   }
 
+  .events__h3.open-discuntion {
+    margin-bottom: 5px;
+  } 
+
 }
 
 @media (max-width: 1023px) {
   .events {
     max-width: 1023px;
+    padding-top: 3px;
   }
   
   .events-container {
@@ -421,20 +483,25 @@ display: none;
 
   .events-swiper {
     max-width: 669px;
+    min-height: 730px;
   }
 
   .events__h3 {
     max-width: 257px;
-    margin-top: 3px;
-    font-size: 23px;
-    margin-left: 35px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 5px;
   }
 
   .events__paragraph {
-    margin-top: 5px;
+    margin-top: 0px;
     max-width: 245px;
-    margin-left: 35px;
+    margin-left: 0px;
     font-size: 16px;
+  }
+
+  .events-card__container {
+    padding-left: 37px;
   }
 
   .events-one::before {
@@ -462,23 +529,26 @@ display: none;
     width: 317px;
   }
 
-  .events-card__box {
+  .events-card__container {
     min-height: 483px;
     max-width: 317px;
+    padding-right: 17px
   }
 
   .events-description {
-    margin-left: 124px;
-  }
-
-  .events-link {
-    left: 38px;
+    margin-left: 116px;
+    margin-top: 0px;
   }
 }
 
 @media (max-width: 767px) {
   .events {
     max-width: 767px;
+    padding-top: 29px;
+  }
+
+  .events__h3.open-discuntion {
+    margin-bottom: 4px;
   }
 
   .events-container {
@@ -487,12 +557,12 @@ display: none;
 
   .events-swiper {
     max-width: 290px;
-    height: 730px;
+    min-height: 730px;
   }
 
   .events-description {
-    margin-left: 99px;
-    margin-top: 17px;
+    margin-left: 93px;
+    margin-top: 3px;
   }
 
   .events-pictures {
@@ -502,65 +572,76 @@ display: none;
   .events-one::before {
     background-image: url(../img/events/Rectangle101-1024.jpg);
     width: 290px;
+    min-height: 200px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
   }
 
   .events-two::before {
     background-image: url(../img/events/Rectangle1011-1024.jpg);
     width: 290px;
+    min-height: 200px;
   }
 
   .events-three::before {
     background-image: url(../img/events/Rectangle1012-1024.jpg);
     width: 290px;
+    min-height: 200px;
   }
 
   .events-four::before {
     background-image: url(../img/events/Rectangle1004-1024.jpg);
     width: 290px;
+    min-height: 200px;
   }
 
   .events-five::before {
     background-image: url(../img/events/Rectangle104-1024-1.jpg);
     width: 290px;
+    min-height: 200px;
   }
 
-  .events-card__box {
+  .events-card__container {
     min-height: 483px;
+    padding-left: 22px;
+    padding-bottom: 45px;
   }
 
   .events__h2 {
-    font-size: 27px;
-    margin-bottom: 16px;
+    font-size: 28px;
+    margin-bottom: 14px;
+    max-width: 150px;
   }
 
   .events__h3 {
     margin-top: 10px;
-    margin-left: 23px;
+    margin-left: 0px;
   }
 
   .events__paragraph {
     font-size: 16px;
     max-width: 231px;
-    margin-left: 22px;
+    margin-left: 0px;
   }
 
   .events-link::before {
     top: 21px;
+    width: 86px;
+    left: 2px;
   }
 
-  .events-link {
-    left: 30px;
-    bottom: 72px;
+  .events-card__box-card {
+    padding-left: 6px;
+    padding-top: 2px;
   }
 
   .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
-    width: 11px;
-    height: 11px;
-    margin-left: 7px;
+    width: 10px;
+    height: 10px;
+    margin-left: 8px;
     margin-right: 7px;
   }
 
   .events-pagination {
-    bottom: 12px!important;
+    bottom: 13px!important;
   }
 }
