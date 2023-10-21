@@ -1,0 +1,40 @@
+.footer-button {
+  width: 216px;
+  height: 44px;
+  
+  padding: 8.5px;
+  position: relative;
+  color: #9873FF;
+  border: 1px solid #9873FF;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.footer-button::before {
+  content: "";
+  width: 22px;
+  height: 16px;
+  background-image: url(../img/customers/Vector.svg);
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: left;
+  transform: translate(-5px, 2px);
+}
+
+.footer {
+  padding-top: 40px;
+}
+
+
+.footer-main {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 218px;
+}
+
+.footer-button__text {
+  padding-left: 6px;
+  font-size: 14px;
+  text-align: center;
+  line-height: normal;
+}

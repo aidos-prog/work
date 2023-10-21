@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<link rel="stylesheet" href="/css/choices.min.css">
+<script src="/js/choices.min.js" defer></script>
+<body>
+    <article class="form">
+      <div class="form-container">
+        <div class="form-main">
+          <div class="row-one">
+            <h2 class="form-h2">Изменить данные</h2>
+            <div class="form-id">
+              <span class="form-idtext">ID:</span>
+            </div>
+          </div>
+          <div class="row-two">
+            <span class="form-surname form-color">Фамилия*</span>
+            <input class="form-surname__input" type="text">
+          </div>
+          <div class="row-three">
+            <span class="form-name form-color">Имя*</span>
+            <input class="form-name__input" type="text">
+          </div>
+          <div class="row-four">
+            <span class="form-middlename form-color">Отчество*</span>
+            <input class="form-middlename__input" type="text">
+          </div>
+        </div>
+      </div>
+      <section class="row-five">
+        <div class="row-five__container">
+          <div class="five-line">
+            <div class="choice">
+              <select name="select" id="selectTel">          
+                <option value="Телефон">Телефон</option>
+                <option value="Email">Email</option>
+                <option value="Facebook">Facebook</option>
+                <option value="VK">VK</option>
+              </select>
+            </div>
+            <input class="five-line__input" id="line-input" placeholder="Введите данные контакта" type="text">
+            <button class="five-button" id="line-button"></button>
+          </div>
+            <button class="form-button">
+              <span class="form-button__text">Добавить контакт</span>
+            </button>
+        </div>
+      </section>
+          <div class="row-six">
+            <button class="form__button-save">Сохранить</button>
+            <button href="#" class="form__link-cancel">Удалить клиента</button>
+          </div>
+    </article>
+    
+</body>
+</html>

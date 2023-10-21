@@ -46,7 +46,7 @@
       return list;
     }
 
-    function createTodoItem(name, done) {
+    function createTodoItem({ name, done }) {
       let item = document.createElement('li');
       let buttonGroup = document.createElement('div');
       let buttonDone = document.createElement('button');
@@ -66,6 +66,17 @@
       buttonDelete.classList.add('btn', 'btn-danger')
       buttonDelete.textContent = 'Удалить';
 
+      buttonDone.addEventListener('click', function() {
+        todoItemElement.item.classList.toggle('list-group-item-success')
+      });
+      buttonDelete.addEventListener('click', function() {
+        if (confirm('Вы уверены')) {
+          
+          item.remove();
+        }
+      })
+
+
       buttonGroup.append(buttonDone);
       buttonGroup.append(buttonDelete);
       item.append(buttonGroup);
@@ -77,7 +88,7 @@
       }
     }
 
-    function createTodoApp(container, title, todoArray = []) {
+    async function createTodoApp(container, title, todoArray = []) {
      
       let todoAppTitle = createAppTitle(title);
       let todoItemForm = createTodoItemForm();
@@ -87,66 +98,75 @@
       for (let i = 0; i < todoArray.length; i++) {
         
         let init = todoArray[i]
-        console.log(init)
         let doneName = init.name
         let doneDone = init.done
         let todoItem = createTodoItem(doneName, doneDone)
         todoList.append(todoItem.item)
 
-          todoItem.buttonDone.addEventListener('click', function() {
-            todoItem.item.classList.toggle('list-group-item-success')
-          });
-          todoItem.buttonDelete.addEventListener('click', function() {
-            if (confirm('Вы уверены')) { 
-              
-              todoItem.item.remove();
-               
-              console.log(todoArray)
-            }
-          })
-          
-           
       }
       container.append(todoAppTitle);
       container.append(todoItemForm.form);
       container.append(todoList);
-      
 
-      todoItemForm.form.addEventListener('submit', function(e) {
+      const response = await fetch('http://localhost:3000/api/todos');
+      const todoItemList = await response.json()
+
+      todoItemList.forEach(todoItem => {
+        const todoItemElement = createTodoItem(todoItem)
+        todoList.append(todoItemElement)
+        
+      });
+
+      todoItemForm.form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         if (!todoItemForm.input.value) {
           return;
         }
-        
-        let todoItem = createTodoItem(todoItemForm.input.value)
 
-        todoItem.buttonDone.addEventListener('click', function() {
-          todoItem.item.classList.toggle('list-group-item-success')
+        const response = await fetch('http://localhost:3000/api/todos', {
+          method: 'POST',
+          body: JSON.stringify({
+            name: todoItemForm.input.value.trim(),
+            owner: 'Dmitry',
+          }),
+          headers: {
+            'Content-type': 'aplication/json'
+          }
         });
-        todoItem.buttonDelete.addEventListener('click', function() {
+
+        const todoitem = await response.json();
+        
+        
+        let todoItemElement = createTodoItem(todoitem)
+
+        todoItemElement.buttonDone.addEventListener('click', function() {
+          todoItemElement.item.classList.toggle('list-group-item-success')
+        });
+        todoItemElement.buttonDelete.addEventListener('click', function() {
           if (confirm('Вы уверены')) {
             
-            todoItem.item.remove();
+            todoItemElement.item.remove();
           }
         })
 
         
         todoArray.push({ name: todoItemForm.input.value, done: false })
         todoItemForm.input.value = '';
-        todoList.append(todoItem.item);
+        todoList.append(todoItemElement.item);
+        console.log(todoArray)
 
-        localStorage.setItem('addObject', JSON.stringify(todoArray));
+        // localStorage.setItem('addObject', JSON.stringify(todoArray));
   
       })  
     }
 
   document.addEventListener('DOMContentLoaded', function() {
 
-    let downloadList = JSON.parse(localStorage.getItem('addObject') || '[]')
+    // let downloadList = JSON.parse(localStorage.getItem('addObject') || '[]')
     
 
-    createTodoApp(document.getElementById('todo-app'), 'Список дел', downloadList)
+    createTodoApp(document.getElementById('todo-app'), 'Список дел')
 
   })
     

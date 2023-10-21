@@ -1,0 +1,49 @@
+body {
+  box-sizing: content-box;
+}
+
+.origin {
+  max-width: 1100px;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.origin__form {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+
+.fio {
+  margin-right: 10px;
+}
+
+.td {
+  width: 100%;
+}
+
+.h1 {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1100px;
+  font-size: 46px;
+}
+
+.add__student {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  position: relative;
+  display: block;
+}
+
+.col__button {
+  position: relative;
+}
+
+.just-validate-error-label {
+  max-width: 300px;
+  margin-left: 0;
+  margin-right: 0;
+}

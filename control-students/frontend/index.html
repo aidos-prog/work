@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
+  <script src="js/bootstrap-min.js" defer></script>
+  <script src="js/index.js" defer></script>
+</head>
+<body>
+  <div>
+  <form id="form">
+    <input id="surname" type="text" placeholder="Фамилия" />
+    <input id="name" type="text" placeholder="Имя" />
+    <input id="middlename" type="text" placeholder="Отчество" />
+    <input id="birthday" type="date" min="1900-01-01" placeholder="дд.мм.гггг" required/>
+    <input id="oneyear" type="number" min="2000" placeholder="год начала обучения" />
+    <input id="faculty" type="text" placeholder="Факультет" />
+    <button id="button-addstudent" type="submit" class="add__student">Добавить студента</button>
+  </form>
+</div>
+  <div class="origin table table-light table-hover table-striped table-bordered">
+    <form id="form-filter">
+        <input id="fil-surname" type="text" placeholder="Фамилия">
+        <input id="fil-name" type="text" placeholder="Имя">
+        <input id="fil-middlename" type="text" placeholder="Отчество">
+        <input id="fil-faculty" type="text" placeholder="Факультет">
+        <input id="fil-startstudy" type="number" placeholder="год начала обучения">
+        <input id="fil-endstudy" type="number" placeholder="год окончания обучения"> 
+         <button type="submit" class="add__student">Применить фильтр</button>     
+    </form>  
+  </div>
+  <table class="origin table table-light table-hover table-striped table-bordered">
+    <thead> 
+      <tr>
+        <th id="tFio">фио</th>
+        <th id="tFaculty">ФАКУЛЬТЕТ</th>
+        <th id="tBirthday">дата рождения и возраст</th>
+        <th id="tStudyYears">годы обучения</th>
+      </tr>
+    </thead>
+    <tbody id="list">
+    </tbody>
+  </table>
+</body>
+</html>

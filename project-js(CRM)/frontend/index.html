@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM-system</title>
+  <!-- <link rel="preload" href="/fonts/OpenSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-BoldItalic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-ExtraBoldItalic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-Italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-Light.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-LightItalic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-MediumItalic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/OpenSans-SemiBoldItalic.woff2" as="font" type="font/woff2" crossorigin> -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap-min.css">
+  <link rel="stylesheet" href="css/choices.min.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/customers.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/form.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/choices.min.js" defer></script>
+  <script src="js/bootstrap.min.js" defer></script>
+  <script src="js/choices.js" defer></script>
+  <script src="js/index.js" defer></script>
+</head>
+<body>
+  <div class="block"></div>
+  <header class="header">
+    <section class="header-section">
+      <div class="container">
+        <div class="header-main">
+          <div class="header-left">
+            <a href="#" class="header-logo">
+              <picture>
+                <source media="(min-width: 1024px)" srcset="img/header/Group112.svg">
+                <img src="img/header/Group112.svg" alt="Логотип" class="header-logo__img">
+            </picture>
+            </a>
+          </div>
+          <div class="header-right">
+            <input type="text" placeholder="Введите запрос" class="header-right__input">
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+  <main>
+    
+    <section class="customers">
+      <div class="container">
+        <div class="customers-main">
+          <div class="block-add">
+            <article class="form">
+              <div class="form-container">
+                <div class="form-main">
+                  <div class="row-one">
+                    <h2 class="form-h2">Новый клиент</h2>
+                    <div class="form-id">
+                      <span class="form-idtext">ID:</span>
+                    </div>
+                  </div>
+                  <div class="row-two">
+                    <span class="form-surname form-color">Фамилия*</span>
+                    <input class="form-surname__input" type="text" id="surname-input">
+                  </div>
+                  <div class="row-three">
+                    <span class="form-name form-color">Имя*</span>
+                    <input class="form-name__input" type="text" id="name-input">
+                  </div>
+                  <div class="row-four">
+                    <span class="form-middlename form-color">Отчество*</span>
+                    <input class="form-middlename__input" type="text" id="middlename-input">
+                  </div>
+                  <button id="form-delete" class="form-delete"></button>
+                </div>
+              </div>
+              <section class="row-five">
+                <div class="row-five__container" id="contact-container">
+                  <div class="five-line" id="lineOne">
+                    <div class="choice">
+                      <select name="select" id="selectOne">        
+                        <option value="Телефон">Телефон</option>
+                        <option value="Email">Email</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="VK">VK</option>
+                      </select>
+                    </div>
+                    <input class="five-line__input" id="line-inputOne" placeholder="Введите данные контакта" type="text">
+                    <button class="five-button" id="line-buttonOne"></button>
+                  </div>
+                  <div class="five-line" id="lineTwo">
+                    <div class="choice">
+                      <select name="select" id="selectTwo">          
+                        <option value="Телефон">Телефон</option>
+                        <option value="Email">Email</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="VK">VK</option>
+                      </select>
+                    </div>
+                    <input class="five-line__input" id="line-inputTwo" placeholder="Введите данные контакта" type="text">
+                    <button class="five-button" id="line-buttonTwo"></button>
+                  </div>
+                  <div class="five-line" id="lineTree">
+                    <div class="choice">
+                      <select name="select" id="selectTree">          
+                        <option value="Телефон">Телефон</option>
+                        <option value="Email">Email</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="VK">VK</option>
+                      </select>
+                    </div>
+                    <input class="five-line__input" id="line-inputTree" placeholder="Введите данные контакта" type="text">
+                    <button class="five-button" id="line-buttonTree"></button>
+                  </div>
+                  <div class="five-line" id="lineFour">
+                    <div class="choice">
+                      <select name="select" id="selectFour">          
+                        <option value="Телефон">Телефон</option>
+                        <option value="Email">Email</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="VK">VK</option>
+                      </select>
+                    </div>
+                    <input class="five-line__input" id="line-inputFour" placeholder="Введите данные контакта" type="text">
+                    <button class="five-button" id="line-buttonFour"></button>
+                  </div>
+                    <button class="form-button" id="add-contact">
+                      <span class="form-button__text">Добавить контакт</span>
+                    </button>
+                </div>
+              </section>
+                  <div class="row-six">
+                    <form id="form-send" action="">
+                      <button type="submit" id="button-save" class="form__button-save">Сохранить</button>
+                    <button href="#" class="form__link-cancel">Отмена</button>
+                    </form>
+                    
+                  </div>
+            </article>
+          </div>
+        </div>
+          <div class="customers-top">
+            <h2 class="customers-top__h2">Клиенты</h2>
+          </div>
+          <div class="customers-table">
+              <div class="row first-row">
+                <div class="col col-lg-1 ms-lg-1 ps-lg-2 customers-col__id customers-col__up align-self-center text-center"><span class="customers-header__text customers-header__id-text">ID</span></div>
+                <div class="col col-lg-3 ms-lg-2 ps-lg-3 customers-col__fio customers-col__up align-self-center"><span class="customers-header__text customers-header__fio-text">Фамилия Имя Отчество</span><span class="customers-header__text">А-Я</span></div>
+                <div class="col col-lg-2 ms-lg-2 ps-lg-2 customers-col__data customers-col__up-data align-self-center"><span class="customers-header__text customers-header__data-text">Дата и время создания</span></div>
+                <div class="col col-lg-2 ms-lg-3 ps-lg-2 customers-col__last-change customers-col__up-data align-self-center"><span class="customers-header__text customers-header__change-text">Последние изменения</span></div>
+                <div class="col col-lg-2 ms-lg-1 ps-lg-2 customers-col__contacts customers-col__up align-self-center"><span class="customers-header__text">Контакты</span></div>
+                <div class="col col-lg-2 ms-lg-3 ps-lg-2 customers-col__actions customers-col__up align-self-center"><span class="customers-header__text">Действия</span></div>
+              </div>
+              <div id="customer-table" class="customers-table__body">
+                <div class="row customers-row">
+                  <div class="col col-lg-1 ms-lg-1 ps-lg-2 customers-col__id text-center align-self-center"><span class="customers-col__text customers-col__text-id">123456</span></div>
+                  <div class="col col-lg-3 ms-lg-2 ps-lg-3 customers-col__fio align-self-center"><span class="customers-col__text">Скворцов Денис Юрьевич</span></div>
+                  <div class="col col-lg-2 ms-lg-2 ps-lg-2 customers-col__data align-self-center"><span class="customers-col__text">21.02.2021</span><span class="customers-col__text-time">12:41</span></div>
+                  <div class="col col-lg-2 ms-lg-3 ps-lg-2 customers-col__last-change align-self-center"><span class="customers-col__text">21.02.2021</span><span class="customers-col__text-time">14:50</span></div>
+                  <div class="col col-lg-2 ms-lg-1 ps-lg-2 customers-col__contacts align-self-center">
+                    <ul class="social-list">
+                      <li class="social-item"><a href="#" class="social-vk"></a></li>
+                      <li class="social-item"><a href="#" class="social-fb"></a></li>
+                      <li class="social-item"><a href="#" class="social-phone"></a></li>
+                      <li class="social-item"><a href="#" class="social-mail"></a></li>
+                    </ul>
+                </div>
+                  <div class="col col-lg-2 ms-lg-3 ps-lg-2 customers-col__actions">
+                    <button class="customers-col__button button-change">Изменить</button>
+                    <button class="customers-col__button button-cancel">Удалить</button>
+                  </div>
+                </div>
+              </div>         
+            </div>
+          </div> 
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main">
+        <button class="footer-button" id="add-customer"><span class="footer-button__text">Добавить клиента</span></button>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
