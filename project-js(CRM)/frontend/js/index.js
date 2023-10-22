@@ -57,12 +57,30 @@
     let middlename = document.getElementById('middlename-input')
     let button = document.getElementById('button-save')
     let form = document.getElementById('form-send')
+    let oneInput = document.getElementById('line-inputOne')
+    let twoInput = document.getElementById('line-inputTwo')
+    let treeInput = document.getElementById('line-inputTree')
+    let fourInput = document.getElementById('line-inputFour')
+    let oneSelect = document.getElementById('selectOne')
+    let twoSelect = document.getElementById('selectTwo')
+    let treeSelect = document.getElementById('selectTree')
+    let fourSelect = document.getElementById('selectFour')
+
+  
 
     return {
       surname,
       name,
       middlename,
       button,
+      oneInput,
+      twoInput,
+      treeInput,
+      fourInput,
+      oneSelect,
+      twoSelect,
+      treeSelect,
+      fourSelect,
       form
     }
   }
@@ -84,7 +102,7 @@
     let textId = document.createElement('span')
     let textFio = document.createElement('span')
     let textData = document.createElement('span')
-    let textLastchange = document.createElement('span')
+    let textDataLastchange = document.createElement('span')
     let textTime = document.createElement('span')
     let textTimeLastchange = document.createElement('span')
 
@@ -109,7 +127,7 @@
     textId.classList.add('customers-col__text', 'customers-col__text-id')
     textFio.classList.add('customers-col__text')
     textData.classList.add('customers-col__text')
-    textLastchange.classList.add('customers-col__text', 'customers-col__text-id')
+    textDataLastchange.classList.add('customers-col__text')
     textTime.classList.add('customers-col__text-time')
     textTimeLastchange.classList.add('customers-col__text-time')
 
@@ -130,28 +148,48 @@
 
     let contactsObj = customerObj.contacts
 
-    telefonLink.setAttribute('phone', contactsObj[0].phone)
-    vkLink.setAttribute('href', contactsObj[0].vk)
-    emailLink.setAttribute('href', contactsObj[0].email)
-    facebookLink.setAttribute('href', contactsObj[0].facebook)
+    for (let i = 0; i < contactsObj.length; i++) {
+
+      switch(contactsObj[i].type) {
+        case 'Телефон':
+          telefonLink.setAttribute('href', contactsObj[i].value)
+
+          case 'Email':
+            emailLink.setAttribute('href', contactsObj[i].value)
+          
+            case 'Facebook':
+              facebookLink.setAttribute('href', contactsObj[i].value)
+      }
+       
+    }
+
 
     buttonLastchange.setAttribute('id', 'change-customer')
 
+    let idCustomer = customerObj.id.substr(7, 6)
+    let createDataCustomer = customerObj.createdAt.substr(8, 2) + '.' + customerObj.createdAt.substr(5, 2) + '.' + customerObj.createdAt.substr(0, 4) 
+    let createTimeCustomer = customerObj.createdAt.substr(12, 4)
 
-    textId.append(customerObj.id)
+    let changeDataCustomer = customerObj.updatedAt.substr(8, 2) + '.' + customerObj.updatedAt.substr(5, 2) + '.' + customerObj.updatedAt.substr(0, 4) 
+    let changeTimeCustomer = customerObj.updatedAt.substr(12, 4)
+
+    textId.append(idCustomer)
     textFio.append(customerObj.surname + " ")
     textFio.append(customerObj.name + " ")
     textFio.append(customerObj.lastName)
 
 
-    textData.append(customerObj.createdAt)
-    textLastchange.append(customerObj.updatedAt)
+    textData.append(createDataCustomer)
+    textTime.append(createTimeCustomer)
+
+    textDataLastchange.append(changeDataCustomer)
+    textTimeLastchange.append(changeTimeCustomer)
 
     boxId.append(textId)
     boxFio.append(textFio)
     boxDataTime.append(textData)
     boxDataTime.append(textTime)
-    boxLastCharge.append(textLastchange)
+    boxLastCharge.append(textDataLastchange)
     boxLastCharge.append(textTimeLastchange)
 
     telefon.append(telefonLink)
@@ -159,10 +197,11 @@
     email.append(emailLink)
     facebook.append(facebookLink)
 
-    list.append(telefon)
     list.append(vk)
-    list.append(email)
     list.append(facebook)
+    list.append(telefon)
+    list.append(email)
+    
 
     boxContact.append(list)
     boxButton.append(buttonLastchange)
@@ -222,7 +261,28 @@
       let name = customers.name.value.trim()
       let middlename = customers.middlename.value.trim()
 
-        async function createCustomerServer() {
+      let oneInput = customers.oneInput
+      let twoInput = customers.twoInput
+      let treeInput = customers.treeInput
+      let fourInput = customers.fourInput
+
+      let oneSelect = customers.oneSelect
+      let twoSelect = customers.twoSelect
+      let treeSelect = customers.treeSelect
+      let fourSelect = customers.fourSelect
+
+      let contacts = {}
+
+      switch (oneSelect[0].getAttribute('value')) {
+        case 'Телефон': 
+        contacts.add(oneInput)
+       // добавить объект с контактами в функцию на отправку на сервер
+      }
+     
+
+
+
+        async function createCustomerServer(contactOne, contactTwo, contactTree) {
             const response = await fetch('http://localhost:3000/api/clients', {
               method: 'POST',
               
@@ -235,15 +295,15 @@
                 contacts: [
                   {
                     type: 'Телефон',
-                    value: '+79629856456'
+                    value: contactOne.value
                   },
                   {
                     type: 'Email',
-                    value: 'qwerty@gmail.com'
+                    value: contactTwo.value
                   },
                   {
                     type: 'Facebook',
-                    value: 'https://facebook.com/'
+                    value: contactTree.value
                   }
                 ]
               })
@@ -253,7 +313,9 @@
             console.log(abc)
           }
 
-      createCustomerServer()
+
+
+      
 
     })
     
@@ -269,7 +331,6 @@
       createTable(data)
     }
     getCustomersList()
-
     
     addCustomer()
     toSendInfo()
