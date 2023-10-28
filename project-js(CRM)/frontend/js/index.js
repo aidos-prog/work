@@ -223,7 +223,7 @@
     }
   }
 
-  function addCustomer() {
+  function addCustomerBtn() {
     let addButton = document.getElementById('add-customer')
     let deleteForm = document.getElementById('form-delete')
     let block = document.querySelector('.block')
@@ -250,13 +250,10 @@
 
   }
 
-  function toSendInfo() {
-    let customers = infoItems()
-    let button = document.getElementById('button-save')
+  function saveButton() {
 
-    button.addEventListener('click', function(event) {
-      event.preventDefault()
-
+      let customers = infoItems()
+      
       let surname = customers.surname.value.trim()
       let name = customers.name.value.trim()
       let middlename = customers.middlename.value.trim()
@@ -271,18 +268,166 @@
       let treeSelect = customers.treeSelect
       let fourSelect = customers.fourSelect
 
-      let contacts = {}
+      let contacts = []
 
-      switch (oneSelect[0].getAttribute('value')) {
-        case 'Телефон': 
-        contacts.add(oneInput)
-       // добавить объект с контактами в функцию на отправку на сервер
-      }
-     
+          switch (oneSelect[0].getAttribute('value')) {
+              case 'Телефон': 
+
+              if (oneInput.value.trim() === '') {
+                break
+              }
+
+              if (oneInput.value.trim() !== '') {
+                let contactTel = {}
+
+                contactTel.type = 'Телефон'
+                contactTel.value = oneInput.value.trim()
+                contacts.push(contactTel)
+
+                break
+              }
+
+                case 'Email':
+                  if (oneInput.value.trim() === '') {
+                    break
+                  }
+
+                  if (oneInput.value.trim() !== '') {
+                    
+                    let concactEmail = {}
+
+                    concactEmail.type = 'Email'
+                    concactEmail.value = oneInput.value.trim()
+                    contacts.push(concactEmail)
+                    break
+                  }
+
+                  case 'Facebook':
+                    if (oneInput.value.trim() === '') {
+                      break
+                    }
+
+                    if (oneInput.value.trim() !== '') {
+                      let contactFacebook = {}
+
+                      contactFacebook.type = 'Facebook'
+                      contactFacebook.value = oneInput.value.trim()
+                      contacts.push(contactFacebook)
+                      break
+                    }
+            }
+
+              switch (twoSelect[0].getAttribute('value')) {
+                
+                case 'Телефон': 
+
+                    if (twoInput.value.trim() === '') {
+                      break
+                    }
+                    
+                    let contactTel = {}
+      
+                    if (twoInput.value.trim() !== '') {
+                      contactTel.type = 'Телефон'
+                      contactTel.value = twoInput.value.trim()
+                      contacts.push(contactTel)
+      
+                      break
+                    }
+
+                        case 'Email':
+
+                        if (twoInput.value.trim() === '') {
+                          break
+                        }
+
+                        if (twoInput.value.trim() !== '') {
+
+                          let concactEmail = {}
+
+                        concactEmail.type = 'Email'
+                        concactEmail.value = twoInput.value.trim()
+                        contacts.push(concactEmail)
+                          break
+                        }
 
 
+                        case 'Facebook':
 
-        async function createCustomerServer(contactOne, contactTwo, contactTree) {
+                        if (twoInput.value.trim() === '') {
+                          break
+                        }
+
+                        if (twoInput.value.trim() !== '') {
+                           let contactFacebook = {}
+
+                          contactFacebook.type = 'Facebook'
+                          contactFacebook.value = twoInput.value.trim()
+                          contacts.push(contactFacebook)
+
+                          break
+                        }
+
+                    }
+
+                    switch (treeSelect[0].getAttribute('value')) {
+                      case 'Телефон': 
+
+                      if (treeInput.value.trim() === '') {
+                        break
+                      }
+
+                      if (treeInput.value.trim() !== '') {
+                        
+                      let contactTel = {}
+
+                      contactTel.type = 'Телефон'
+                      contactTel.value = treeInput.value.trim()
+                      contacts.push(contactTel)
+
+                        break
+                      }
+
+                      
+                        case 'Email':
+
+                        if (treeInput.value.trim() === '') {
+                          break
+                        }
+
+                        if (treeInput.value.trim() !== '') {
+                         let concactEmail = {}
+
+                        concactEmail.type = 'Email'
+                        concactEmail.value = treeInput.value.trim()
+                        contacts.push(concactEmail)
+
+                        break
+                        }
+                            
+                        
+
+                          case 'Facebook':
+
+                          if (treeInput.value.trim() === '') {
+                            break
+                          }
+
+                          if (treeInput.value.trim() !== '') {
+                            let contactFacebook = {}
+
+                          contactFacebook.type = 'Facebook'
+                          contactFacebook.value = treeInput.value.trim()
+                          contacts.push(contactFacebook)
+
+                          break
+                          }
+                    }
+
+
+          async function createCustomerServer(contacts) {
+            console.log(contacts)
+
             const response = await fetch('http://localhost:3000/api/clients', {
               method: 'POST',
               
@@ -292,47 +437,47 @@
                 name: name,
                 surname: surname,
                 lastName: middlename,
-                contacts: [
-                  {
-                    type: 'Телефон',
-                    value: contactOne.value
-                  },
-                  {
-                    type: 'Email',
-                    value: contactTwo.value
-                  },
-                  {
-                    type: 'Facebook',
-                    value: contactTree.value
-                  }
-                ]
+                contacts: contacts
               })
               
             })
             const abc = await response.json()
-            console.log(abc)
+            createCustomer(abc)
           }
 
+          createCustomerServer(contacts)
+        
 
 
-      
+  }
 
-    })
+  function toSendInfo() {
+    
+    let button = document.getElementById('button-save')
+
+    button.addEventListener('click', function(event) {
+      event.preventDefault()
+      saveButton()
+    }) 
     
   }
+
+  function pictureList() {
+    async function getCustomersListServer() {
+      const response = await fetch ('http://localhost:3000/api/clients')
+      let data = await response.json()
+      createTable(data)
+    }
+    getCustomersListServer()
+  }
+
 
 
   document.addEventListener('DOMContentLoaded', function() {
 
-    async function getCustomersList() {
-      const response = await fetch ('http://localhost:3000/api/clients')
-      let data = await response.json()
-      console.log(data)
-      createTable(data)
-    }
-    getCustomersList()
+    pictureList()
     
-    addCustomer()
+    addCustomerBtn()
     toSendInfo()
 
   })
