@@ -56,7 +56,6 @@
     let name = document.getElementById('name-input')
     let middlename = document.getElementById('middlename-input')
     let button = document.getElementById('button-save')
-    let form = document.getElementById('form-send')
     let oneInput = document.getElementById('line-inputOne')
     let twoInput = document.getElementById('line-inputTwo')
     let treeInput = document.getElementById('line-inputTree')
@@ -81,8 +80,47 @@
       twoSelect,
       treeSelect,
       fourSelect,
-      form
     }
+  }
+  
+  function changeCustomerBtn(customerObj) {
+
+    let block = document.querySelector('.block')
+    let header = document.querySelector('.header')
+    let form = document.querySelector('.form')
+    let hCustomer = document.querySelector('.form-h2__newcustomer')
+    let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
+    let formid = document.querySelector('.form-id')
+    let items = infoItems()
+    let docsurname = document.getElementById('surname-input')
+    let docname = document.getElementById('name-input')
+    let docmiddlename = document.getElementById('middlename-input')
+
+
+    let id = customerObj.id
+      let name = customerObj.name
+      let surname = customerObj.surname
+      let lastName = customerObj.lastName
+
+      docsurname.setAttribute('value', 'erere')
+      // толкнуть данные в input
+
+      console.log()
+      
+      docname.innerHTML = name
+      docmiddlename.append(lastName)
+
+
+      
+      form.classList.add('show')
+      block.classList.add('block-on')
+      header.classList.add('header-on')
+      hCustomer.classList.add('close')
+      hChangeCustomer.classList.remove('close')
+      formid.classList.remove('close')
+
+      
+
   }
 
   function createCustomer(customerObj) {
@@ -92,7 +130,7 @@
     let boxDataTime = document.createElement('div')
     let boxLastCharge = document.createElement('div')
     let boxContact = document.createElement('div')
-    let boxButton = document.createElement('div')
+    let boxButton = document.createElement('form')
     let buttonLastchange = document.createElement('button')
     let buttonCancel = document.createElement('button')
 
@@ -163,8 +201,16 @@
        
     }
 
+    
 
+    boxButton.setAttribute('id', 'form-change')
     buttonLastchange.setAttribute('id', 'change-customer')
+    buttonLastchange.setAttribute('type', 'submit')
+
+    boxButton.addEventListener('submit', function(event) {
+      event.preventDefault()
+      changeCustomerBtn(customerObj)
+    })
 
     let idCustomer = customerObj.id.substr(7, 6)
     let createDataCustomer = customerObj.createdAt.substr(8, 2) + '.' + customerObj.createdAt.substr(5, 2) + '.' + customerObj.createdAt.substr(0, 4) 
@@ -220,6 +266,7 @@
   function createTable(list) {
     for (let i = 0; i < list.length; i++) {
       createCustomer(list[i])
+      
     }
   }
 
@@ -454,10 +501,18 @@
   function toSendInfo() {
     
     let button = document.getElementById('button-save')
+    let block = document.querySelector('.block')
+    let header = document.querySelector('.header')
+    let form = document.querySelector('.form')
 
     button.addEventListener('click', function(event) {
       event.preventDefault()
       saveButton()
+      
+      form.classList.remove('show')
+      block.classList.remove('block-on')
+      header.classList.remove('header-on')
+
     }) 
     
   }
