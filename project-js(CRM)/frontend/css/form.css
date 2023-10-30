@@ -29,7 +29,16 @@
 }
 
 
-.form-h2 {
+.form-h2__newcustomer {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  min-width: 174px;
+  margin: 0;
+}
+
+.form-h2__changecustomer {
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -119,7 +128,7 @@
   align-items: center;
 }
 
-.form-id {
+.form-id__case {
   width: 60px;
   height: 18px;
 }
@@ -205,4 +214,8 @@
 
 .open-line {
   display: flex;
+}
+
+.close {
+  display: none;
 }

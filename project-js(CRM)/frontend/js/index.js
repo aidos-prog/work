@@ -52,6 +52,7 @@
   // ]
 
   function infoItems() {
+    let id = document.getElementById('form-id')
     let surname = document.getElementById('surname-input')
     let name = document.getElementById('name-input')
     let middlename = document.getElementById('middlename-input')
@@ -68,6 +69,7 @@
   
 
     return {
+      id,
       surname,
       name,
       middlename,
@@ -90,27 +92,39 @@
     let form = document.querySelector('.form')
     let hCustomer = document.querySelector('.form-h2__newcustomer')
     let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
-    let formid = document.querySelector('.form-id')
+    let formid = document.querySelector('.form-id__case')
+    
     let items = infoItems()
-    let docsurname = document.getElementById('surname-input')
-    let docname = document.getElementById('name-input')
-    let docmiddlename = document.getElementById('middlename-input')
+    let docsurname = items.surname
+    let docname = items.name
+    let docmiddlename = items.middlename
+    let docformIdText = items.id
+    let doconeInput = items.oneInput
+    let doctwoInput = items.twoInput
+    let doctreeInput = items.treeInput
+    let docfourInput = items.fourInput
+    let doconeSelect = items.oneSelect
+    let doctwoSelect = items.twoSelect
+    let doctreeSelect = items.treeSelect
+    let docfourSelect = items.fourSelect
 
-
-    let id = customerObj.id
+    
       let name = customerObj.name
       let surname = customerObj.surname
       let lastName = customerObj.lastName
+      let id = customerObj.id
+      let contacts = customerObj.contacts
 
-      docsurname.setAttribute('value', 'erere')
-      // толкнуть данные в input
-
-      console.log()
+      docsurname.setAttribute('value', surname)
+      docname.setAttribute('value', name)
+      docmiddlename.setAttribute('value', lastName)
+      docformIdText.append(id)
       
-      docname.innerHTML = name
-      docmiddlename.append(lastName)
 
+      // нужно сделать контакты в форме
+    
 
+      console.log(contacts)
       
       form.classList.add('show')
       block.classList.add('block-on')
@@ -130,7 +144,7 @@
     let boxDataTime = document.createElement('div')
     let boxLastCharge = document.createElement('div')
     let boxContact = document.createElement('div')
-    let boxButton = document.createElement('form')
+    let boxButton = document.createElement('div')
     let buttonLastchange = document.createElement('button')
     let buttonCancel = document.createElement('button')
 
@@ -203,12 +217,9 @@
 
     
 
-    boxButton.setAttribute('id', 'form-change')
     buttonLastchange.setAttribute('id', 'change-customer')
-    buttonLastchange.setAttribute('type', 'submit')
 
-    boxButton.addEventListener('submit', function(event) {
-      event.preventDefault()
+    buttonLastchange.addEventListener('click', function() {
       changeCustomerBtn(customerObj)
     })
 
@@ -275,8 +286,19 @@
     let deleteForm = document.getElementById('form-delete')
     let block = document.querySelector('.block')
     let header = document.querySelector('.header')
+    let docId = document.getElementById('form-id')
+
+    let hCustomer = document.querySelector('.form-h2__newcustomer')
+    let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
+    let formid = document.querySelector('.form-id__case')
+
+    let inputCustomers = infoItems()
 
     addButton.addEventListener('click', function() {
+
+      hCustomer.classList.remove('close')
+      hChangeCustomer.classList.add('close')
+      formid.classList.add('close')
       
       let form = document.querySelector('.form')
       form.classList.add('show')
@@ -293,14 +315,21 @@
       form.classList.remove('show')
       block.classList.remove('block-on')
       header.classList.remove('header-on')
+      docId.innerHTML = ''
+      inputCustomers.surname.removeAttribute('value')
+      inputCustomers.name.removeAttribute('value')
+      inputCustomers.middlename.removeAttribute('value')
+      console.log()
+
     })
 
   }
 
-  function saveButton() {
+  function saveInfo() {
 
       let customers = infoItems()
-      
+
+      let docId = document.getElementById('form-id')
       let surname = customers.surname.value.trim()
       let name = customers.name.value.trim()
       let middlename = customers.middlename.value.trim()
@@ -493,28 +522,25 @@
           }
 
           createCustomerServer(contacts)
-        
 
-
+          docId.innerHTML = ''
   }
 
-  function toSendInfo() {
+  function saveBtn() {
     
     let button = document.getElementById('button-save')
     let block = document.querySelector('.block')
     let header = document.querySelector('.header')
-    let form = document.querySelector('.form')
+    let form = document.querySelector('.form') 
 
     button.addEventListener('click', function(event) {
       event.preventDefault()
-      saveButton()
-      
+      saveInfo()
+
       form.classList.remove('show')
       block.classList.remove('block-on')
       header.classList.remove('header-on')
-
-    }) 
-    
+    })  
   }
 
   function pictureList() {
@@ -533,7 +559,7 @@
     pictureList()
     
     addCustomerBtn()
-    toSendInfo()
+    saveBtn()
 
   })
 
