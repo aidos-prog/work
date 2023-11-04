@@ -103,10 +103,18 @@
     let doctwoInput = items.twoInput
     let doctreeInput = items.treeInput
     let docfourInput = items.fourInput
-    let doconeSelect = items.oneSelect
-    let doctwoSelect = items.twoSelect
-    let doctreeSelect = items.treeSelect
+    let doconeSelect = document.querySelectorAll('.choices__item--selectable')
+    let doctwoSelect = document.querySelector('.lineTwo > .choices__item--selectable')
+    let doctreeSelect = document.querySelector('.lineTree > .choices__item--selectable')
     let docfourSelect = items.fourSelect
+
+    let mussiv = document.querySelectorAll('.lineOne')
+
+    let element = mussiv[0].getElementsByClassName('choices__item choices__item--selectable')
+
+console.log(element[0])
+
+// победа! я нашел как добавить это в селект
 
     
       let name = customerObj.name
@@ -122,9 +130,32 @@
       
 
       // нужно сделать контакты в форме
-    
+    for (let i = 0; i < contacts.length; i++) {
 
-      console.log(contacts)
+      
+
+      // switch (contacts[i].type) {
+        
+      //     case 'Телефон':
+      //       doconeInput.setAttribute('value', contacts[i].value)
+      //       doconeSelect.setAttribute('data-value', 'Телефон')
+      //       doconeSelect.innerHTML = 'Телефон'
+      //       console.log(doconeSelect)
+            
+      //       case 'Email':
+      //         doctwoInput.setAttribute('value', contacts[i].value)
+      //         doctwoSelect.setAttribute('data-value', 'Email')
+      //         doctwoSelect.innerHTML = 'Email'
+
+      //         case 'Facebook':
+      //           doctreeInput.setAttribute('value', contacts[i].value)
+      //           doctreeSelect.setAttribute('data-value', 'Facebook')
+      //           doctreeSelect.innerHTML = 'Facebook'
+      // } 
+      
+    }
+
+      
       
       form.classList.add('show')
       block.classList.add('block-on')
