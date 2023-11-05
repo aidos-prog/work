@@ -48,6 +48,7 @@
   //       }
   //     ]
 
+
   //   },
   // ]
 
@@ -103,20 +104,17 @@
     let doctwoInput = items.twoInput
     let doctreeInput = items.treeInput
     let docfourInput = items.fourInput
-    let doconeSelect = document.querySelectorAll('.choices__item--selectable')
-    let doctwoSelect = document.querySelector('.lineTwo > .choices__item--selectable')
-    let doctreeSelect = document.querySelector('.lineTree > .choices__item--selectable')
-    let docfourSelect = items.fourSelect
 
-    let mussiv = document.querySelectorAll('.lineOne')
+    let doconeSelect = document.querySelectorAll('.lineOne')
+    let doctwoSelect = document.querySelectorAll('.lineTwo')
+    let doctreeSelect = document.querySelectorAll('.lineTree')
+    let docfourSelect = document.querySelectorAll('.lineFour')
 
-    let element = mussiv[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementone = doconeSelect[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementtwo = doctwoSelect[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementtree = doctreeSelect[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementfour = docfourSelect[0].getElementsByClassName('choices__item choices__item--selectable')
 
-console.log(element[0])
-
-// победа! я нашел как добавить это в селект
-
-    
       let name = customerObj.name
       let surname = customerObj.surname
       let lastName = customerObj.lastName
@@ -127,36 +125,30 @@ console.log(element[0])
       docname.setAttribute('value', name)
       docmiddlename.setAttribute('value', lastName)
       docformIdText.append(id)
-      
 
-      // нужно сделать контакты в форме
+      elementone[0].setAttribute('data-value', 'Телефон')
+      elementone[0].innerHTML = 'Телефон'
+      elementtwo[0].setAttribute('data-value', 'Email')
+      elementtwo[0].innerHTML = 'Email'
+      elementtree[0].setAttribute('data-value', 'Facebook')
+      elementtree[0].innerHTML = 'Facebook'
+
+
     for (let i = 0; i < contacts.length; i++) {
 
-      
+      switch (contacts[i].type) {
 
-      // switch (contacts[i].type) {
-        
-      //     case 'Телефон':
-      //       doconeInput.setAttribute('value', contacts[i].value)
-      //       doconeSelect.setAttribute('data-value', 'Телефон')
-      //       doconeSelect.innerHTML = 'Телефон'
-      //       console.log(doconeSelect)
-            
-      //       case 'Email':
-      //         doctwoInput.setAttribute('value', contacts[i].value)
-      //         doctwoSelect.setAttribute('data-value', 'Email')
-      //         doctwoSelect.innerHTML = 'Email'
-
-      //         case 'Facebook':
-      //           doctreeInput.setAttribute('value', contacts[i].value)
-      //           doctreeSelect.setAttribute('data-value', 'Facebook')
-      //           doctreeSelect.innerHTML = 'Facebook'
-      // } 
+        case 'Телефон':
+          doconeInput.setAttribute('value', contacts[i].value)
       
+          case 'Email':
+            doctwoInput.setAttribute('value', contacts[i].value)
+
+            case 'Facebook':
+              doctreeInput.setAttribute('value', contacts[i].value)
+      } 
     }
 
-      
-      
       form.classList.add('show')
       block.classList.add('block-on')
       header.classList.add('header-on')
@@ -325,6 +317,10 @@ console.log(element[0])
 
     let inputCustomers = infoItems()
 
+    let doconeInput = inputCustomers.oneInput
+    let doctwoInput = inputCustomers.twoInput
+    let doctreeInput = inputCustomers.treeInput
+
     addButton.addEventListener('click', function() {
 
       hCustomer.classList.remove('close')
@@ -333,11 +329,8 @@ console.log(element[0])
       
       let form = document.querySelector('.form')
       form.classList.add('show')
-
       block.classList.add('block-on')
       header.classList.add('header-on')
-
-      
     })
 
     deleteForm.addEventListener('click', function() {
@@ -350,7 +343,11 @@ console.log(element[0])
       inputCustomers.surname.removeAttribute('value')
       inputCustomers.name.removeAttribute('value')
       inputCustomers.middlename.removeAttribute('value')
-      console.log()
+
+      doconeInput = ''
+      doctwoInput = ''
+      doctreeInput = ''
+      console.log(doconeInput)
 
     })
 
@@ -621,7 +618,4 @@ console.log(element[0])
 //       line.append(input)
 //       line.append(delButton)
 //       container.append(line)
-
-
-
 
