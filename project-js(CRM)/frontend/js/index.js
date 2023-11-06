@@ -3,55 +3,6 @@
   const table = document.getElementById('customer-table')
   table.classList.add('customers-table__body')
 
-  // const customerList = [
-  //   { 
-  //     id: '123456',
-  //     fio: 'Скворцов Денис Юрьевич',
-  //     dataTime: '02-02-2021 20:25',
-  //     dataChange: '02-05-2022 15:56',
-  //     contacts: [
-  //       {
-  //         phone: '79166448925',
-  //         email: 'fghj@gmail.com',
-  //         facebook: 'facebook.gr.com',
-  //         vk: 'vk.rty.ru'
-  //       }
-  //     ]
-
-  //   },
-  //   { 
-  //     id: '123786',
-  //     fio: 'Куприянов Арсений Валерьевич',
-  //     dataTime: '12-12-2021 00:45',
-  //     dataChange: '05-10-2022 11:36',
-  //     contacts: [
-  //       {
-  //         phone: '79166448925',
-  //         email: 'fghj@gmail.com',
-  //         facebook: 'facebook.gr.com',
-  //         vk: 'vk.rty.ru'
-  //       }
-  //     ]
-
-  //   },
-  //   { 
-  //     id: '1986456',
-  //     fio: 'Константинопольская Людмила Александровна',
-  //     dataTime: '16-08-2022 20:25',
-  //     dataChange: '02-05-2023 15:56',
-  //     contacts: [
-  //       {
-  //         phone: '79166448925',
-  //         email: 'fghj@gmail.com',
-  //         facebook: 'facebook.gr.com',
-  //         vk: 'vk.rty.ru'
-  //       }
-  //     ]
-
-
-  //   },
-  // ]
-
   function infoItems() {
     let id = document.getElementById('form-id')
     let surname = document.getElementById('surname-input')
@@ -105,15 +56,22 @@
     let doctreeInput = items.treeInput
     let docfourInput = items.fourInput
 
-    let doconeSelect = document.querySelectorAll('.lineOne')
-    let doctwoSelect = document.querySelectorAll('.lineTwo')
-    let doctreeSelect = document.querySelectorAll('.lineTree')
-    let docfourSelect = document.querySelectorAll('.lineFour')
+    let docLineOne = document.querySelectorAll('.lineOne')
+    let docLineTwo = document.querySelectorAll('.lineTwo')
+    let docLineTree = document.querySelectorAll('.lineTree')
+    let docLineFour = document.querySelectorAll('.lineFour')
 
-    let elementone = doconeSelect[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementtwo = doctwoSelect[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementtree = doctreeSelect[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementfour = docfourSelect[0].getElementsByClassName('choices__item choices__item--selectable')
+    let oneLine = document.getElementById('lineOne')
+    let twoLine = document.getElementById('lineTwo')
+    let treeLine = document.getElementById('lineTree')
+    let fourLine = document.getElementById('lineFour')
+
+    let elementone = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementtwo = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
+
+    // не правильно отрисовывает из json контакты
 
       let name = customerObj.name
       let surname = customerObj.surname
@@ -140,12 +98,15 @@
 
         case 'Телефон':
           doconeInput.setAttribute('value', contacts[i].value)
+          oneLine.classList.add('open-line')
       
           case 'Email':
             doctwoInput.setAttribute('value', contacts[i].value)
+            twoLine.classList.add('open-line')
 
             case 'Facebook':
               doctreeInput.setAttribute('value', contacts[i].value)
+              treeLine.classList.add('open-line')
       } 
     }
 
@@ -156,7 +117,7 @@
       hChangeCustomer.classList.remove('close')
       formid.classList.remove('close')
 
-      
+
 
   }
 
@@ -224,21 +185,15 @@
     let contactsObj = customerObj.contacts
 
     for (let i = 0; i < contactsObj.length; i++) {
-
       switch(contactsObj[i].type) {
         case 'Телефон':
           telefonLink.setAttribute('href', contactsObj[i].value)
-
           case 'Email':
             emailLink.setAttribute('href', contactsObj[i].value)
-          
             case 'Facebook':
               facebookLink.setAttribute('href', contactsObj[i].value)
       }
-       
     }
-
-    
 
     buttonLastchange.setAttribute('id', 'change-customer')
 
@@ -257,7 +212,6 @@
     textFio.append(customerObj.surname + " ")
     textFio.append(customerObj.name + " ")
     textFio.append(customerObj.lastName)
-
 
     textData.append(createDataCustomer)
     textTime.append(createTimeCustomer)
@@ -281,7 +235,6 @@
     list.append(facebook)
     list.append(telefon)
     list.append(email)
-    
 
     boxContact.append(list)
     boxButton.append(buttonLastchange)
@@ -300,7 +253,6 @@
   function createTable(list) {
     for (let i = 0; i < list.length; i++) {
       createCustomer(list[i])
-      
     }
   }
 
@@ -317,9 +269,19 @@
 
     let inputCustomers = infoItems()
 
+    let docname = inputCustomers.name
+    let docsurname = inputCustomers.surname
+    let doclastname = inputCustomers.middlename
     let doconeInput = inputCustomers.oneInput
     let doctwoInput = inputCustomers.twoInput
     let doctreeInput = inputCustomers.treeInput
+    let docfourInput = inputCustomers.fourInput
+
+    let oneLine = document.getElementById('lineOne')
+    let twoLine = document.getElementById('lineTwo')
+    let treeLine = document.getElementById('lineTree')
+    let fourLine = document.getElementById('lineFour')
+
 
     addButton.addEventListener('click', function() {
 
@@ -331,6 +293,16 @@
       form.classList.add('show')
       block.classList.add('block-on')
       header.classList.add('header-on')
+
+      docId.innerHTML = ''
+
+      docname.removeAttribute('value')
+      docsurname.removeAttribute('value')
+      doclastname.removeAttribute('value')
+      doconeInput.removeAttribute('value')
+      doctwoInput.removeAttribute('value')
+      doctreeInput.removeAttribute('value')
+      docfourInput.removeAttribute('value')
     })
 
     deleteForm.addEventListener('click', function() {
@@ -340,19 +312,75 @@
       block.classList.remove('block-on')
       header.classList.remove('header-on')
       docId.innerHTML = ''
-      inputCustomers.surname.removeAttribute('value')
-      inputCustomers.name.removeAttribute('value')
-      inputCustomers.middlename.removeAttribute('value')
 
-      doconeInput = ''
-      doctwoInput = ''
-      doctreeInput = ''
-      console.log(doconeInput)
+      docname.removeAttribute('value')
+      docsurname.removeAttribute('value')
+      doclastname.removeAttribute('value')
+      doconeInput.removeAttribute('value')
+      doctwoInput.removeAttribute('value')
+      doctreeInput.removeAttribute('value')
+      docfourInput.removeAttribute('value')
+
+      oneLine.classList.remove("open-line")
+      twoLine.classList.remove("open-line")
+      treeLine.classList.remove("open-line")
+      fourLine.classList.remove("open-line")
 
     })
 
   }
 
+  function saveBtn() {
+    
+    let button = document.getElementById('button-save')
+    let block = document.querySelector('.block')
+    let header = document.querySelector('.header')
+    let form = document.querySelector('.form') 
+    let docId = document.getElementById('form-id')
+    let inputCustomers = infoItems()
+
+    let oneLine = document.getElementById('lineOne')
+    let twoLine = document.getElementById('lineTwo')
+    let treeLine = document.getElementById('lineTree')
+    let fourLine = document.getElementById('lineFour')
+
+    let docname = inputCustomers.name
+    let docsurname = inputCustomers.surname
+    let doclastname = inputCustomers.middlename
+    let doconeInput = inputCustomers.oneInput
+    let doctwoInput = inputCustomers.twoInput
+    let doctreeInput = inputCustomers.treeInput
+    let docfourInput = inputCustomers.fourInput
+
+
+    button.addEventListener('click', function(event) {
+      event.preventDefault()
+      saveInfo()
+
+      form.classList.remove('show')
+      block.classList.remove('block-on')
+      header.classList.remove('header-on')
+
+      docId.innerHTML = ''
+
+      docname.removeAttribute('value')
+      docsurname.removeAttribute('value')
+      doclastname.removeAttribute('value')
+      doconeInput.removeAttribute('value')
+      doctwoInput.removeAttribute('value')
+      doctreeInput.removeAttribute('value')
+      docfourInput.removeAttribute('value')
+
+      console.log(doconeInput)
+
+        oneLine.classList.remove("open-line")
+        twoLine.classList.remove("open-line")
+        treeLine.classList.remove("open-line")
+        fourLine.classList.remove("open-line")
+    
+    })  
+  }
+  
   function saveInfo() {
 
       let customers = infoItems()
@@ -492,7 +520,6 @@
                         break
                       }
 
-                      
                         case 'Email':
 
                         if (treeInput.value.trim() === '') {
@@ -552,23 +579,6 @@
           createCustomerServer(contacts)
 
           docId.innerHTML = ''
-  }
-
-  function saveBtn() {
-    
-    let button = document.getElementById('button-save')
-    let block = document.querySelector('.block')
-    let header = document.querySelector('.header')
-    let form = document.querySelector('.form') 
-
-    button.addEventListener('click', function(event) {
-      event.preventDefault()
-      saveInfo()
-
-      form.classList.remove('show')
-      block.classList.remove('block-on')
-      header.classList.remove('header-on')
-    })  
   }
 
   function pictureList() {
