@@ -38,6 +38,8 @@
   }
   
   function changeCustomerBtn(customerObj) {
+    
+    let id = customerObj.id
 
     let block = document.querySelector('.block')
     let header = document.querySelector('.header')
@@ -71,18 +73,21 @@
     let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
     let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
 
-    // не правильно отрисовывает из json контакты
+    async function getListCustomer(id) {
+      const response = await fetch('http://localhost:3000/api/clients/' + id)
+      const list = await response.json()
 
-      let name = customerObj.name
-      let surname = customerObj.surname
-      let lastName = customerObj.lastName
-      let id = customerObj.id
-      let contacts = customerObj.contacts
+      let surname = list.surname
+      //будем писать тут всю функцию
+      
+      // docsurname.setAttribute('value', surname)
+      // docname.setAttribute('value', name)
+      // docmiddlename.setAttribute('value', lastName)
+      // docformIdText.append(id)
 
-      docsurname.setAttribute('value', surname)
-      docname.setAttribute('value', name)
-      docmiddlename.setAttribute('value', lastName)
-      docformIdText.append(id)
+      console.log(surname)
+    }
+      getListCustomer(id)
 
       elementone[0].setAttribute('data-value', 'Телефон')
       elementone[0].innerHTML = 'Телефон'
@@ -99,14 +104,17 @@
         case 'Телефон':
           doconeInput.setAttribute('value', contacts[i].value)
           oneLine.classList.add('open-line')
+          break
       
           case 'Email':
             doctwoInput.setAttribute('value', contacts[i].value)
             twoLine.classList.add('open-line')
+            break
 
             case 'Facebook':
               doctreeInput.setAttribute('value', contacts[i].value)
               treeLine.classList.add('open-line')
+              break
       } 
     }
 
@@ -117,7 +125,19 @@
       hChangeCustomer.classList.remove('close')
       formid.classList.remove('close')
 
+      
 
+      // async function changedCustomerToServer(id) {
+      //   const response = await fetch('http://localhost:3000/api/clients/' + id, {
+      //     method: 'PATCH',
+      //     headers: { 'Content-type': 'aplication/json' },
+      //     body: JSON.stringify({done: true})
+      //   })
+      //   let list = await response.json()
+      //   console.log(list)
+      // }
+
+      // changedCustomerToServer(id)
 
   }
 
@@ -557,10 +577,9 @@
 
 
           async function createCustomerServer(contacts) {
-            console.log(contacts)
-
+            
             const response = await fetch('http://localhost:3000/api/clients', {
-              method: 'POST',
+              method: 'POST',  
               
               body: JSON.stringify({
                 createdAt: '2021-02-03T13:07:29.554Z',
@@ -570,9 +589,8 @@
                 lastName: middlename,
                 contacts: contacts
               })
-              
             })
-            const abc = await response.json()
+            let abc = await response.json()
             createCustomer(abc)
           }
 
@@ -588,6 +606,16 @@
       createTable(data)
     }
     getCustomersListServer()
+  }
+
+  function deleteList() {
+    
+    let listTr = document.querySelectorAll('.customers-row')
+    
+    console.log(listTr)
+    for (let i = 0; i < listTr.length; i ++) {
+      listTr[i].remove()
+    }
   }
 
 
