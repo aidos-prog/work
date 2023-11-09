@@ -41,6 +41,10 @@
     
     let id = customerObj.id
 
+    async function getListCustomer(id) {
+      const response = await fetch('http://localhost:3000/api/clients/' + id)
+      const list = await response.json()
+
     let block = document.querySelector('.block')
     let header = document.querySelector('.header')
     let form = document.querySelector('.form')
@@ -73,21 +77,18 @@
     let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
     let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
 
-    async function getListCustomer(id) {
-      const response = await fetch('http://localhost:3000/api/clients/' + id)
-      const list = await response.json()
-
       let surname = list.surname
-      //будем писать тут всю функцию
+      let name = list.name
+      let lastName = list.lastName
+      let contacts = list.contacts
       
-      // docsurname.setAttribute('value', surname)
-      // docname.setAttribute('value', name)
-      // docmiddlename.setAttribute('value', lastName)
-      // docformIdText.append(id)
+      console.log(contacts)
 
-      console.log(surname)
-    }
-      getListCustomer(id)
+      docsurname.setAttribute('value', surname)
+      docname.setAttribute('value', name)
+      docmiddlename.setAttribute('value', lastName)
+      docformIdText.append(id)
+
 
       elementone[0].setAttribute('data-value', 'Телефон')
       elementone[0].innerHTML = 'Телефон'
@@ -126,19 +127,214 @@
       formid.classList.remove('close')
 
       
+    }
+      getListCustomer(id)
 
-      // async function changedCustomerToServer(id) {
-      //   const response = await fetch('http://localhost:3000/api/clients/' + id, {
-      //     method: 'PATCH',
-      //     headers: { 'Content-type': 'aplication/json' },
-      //     body: JSON.stringify({done: true})
-      //   })
-      //   let list = await response.json()
-      //   console.log(list)
-      // }
+      
+      
+  }
 
-      // changedCustomerToServer(id)
+  function chanchedInfoCustomer(customerObj) {
+    
+      let id = customerObj.id
+      let customers = infoItems()
 
+      let docId = document.getElementById('form-id')
+      let surname = customers.surname
+      let name = customers.name
+      let middlename = customers.middlename
+
+      let oneInput = customers.oneInput.value
+      let twoInput = customers.twoInput
+      let treeInput = customers.treeInput
+      let fourInput = customers.fourInput
+      // писать юудем тут переделанное на сервер
+
+      // let oneSelect = customerObj.oneSelect
+      // let twoSelect = customerObj.twoSelect
+      // let treeSelect = customerObj.treeSelect
+      // let fourSelect = customerObj.fourSelect
+
+      console.log(oneInput)
+
+      let contacts = []
+
+          switch (oneSelect[0].getAttribute('value')) {
+              case 'Телефон': 
+
+              if (oneInput.value.trim() === '') {
+                break
+              }
+
+              if (oneInput.value.trim() !== '') {
+                let contactTel = {}
+
+                contactTel.type = 'Телефон'
+                contactTel.value = oneInput.value.trim()
+                contacts.push(contactTel)
+
+                break
+              }
+
+                case 'Email':
+                  if (oneInput.value.trim() === '') {
+                    break
+                  }
+
+                  if (oneInput.value.trim() !== '') {
+                    
+                    let concactEmail = {}
+
+                    concactEmail.type = 'Email'
+                    concactEmail.value = oneInput.value.trim()
+                    contacts.push(concactEmail)
+                    break
+                  }
+
+                  case 'Facebook':
+                    if (oneInput.value.trim() === '') {
+                      break
+                    }
+
+                    if (oneInput.value.trim() !== '') {
+                      let contactFacebook = {}
+
+                      contactFacebook.type = 'Facebook'
+                      contactFacebook.value = oneInput.value.trim()
+                      contacts.push(contactFacebook)
+                      break
+                    }
+            }
+
+              switch (twoSelect[0].getAttribute('value')) {
+                
+                case 'Телефон': 
+
+                    if (twoInput.value.trim() === '') {
+                      break
+                    }
+                    
+                    let contactTel = {}
+      
+                    if (twoInput.value.trim() !== '') {
+                      contactTel.type = 'Телефон'
+                      contactTel.value = twoInput.value.trim()
+                      contacts.push(contactTel)
+      
+                      break
+                    }
+
+                        case 'Email':
+
+                        if (twoInput.value.trim() === '') {
+                          break
+                        }
+
+                        if (twoInput.value.trim() !== '') {
+
+                          let concactEmail = {}
+
+                        concactEmail.type = 'Email'
+                        concactEmail.value = twoInput.value.trim()
+                        contacts.push(concactEmail)
+                          break
+                        }
+
+
+                        case 'Facebook':
+
+                        if (twoInput.value.trim() === '') {
+                          break
+                        }
+
+                        if (twoInput.value.trim() !== '') {
+                           let contactFacebook = {}
+
+                          contactFacebook.type = 'Facebook'
+                          contactFacebook.value = twoInput.value.trim()
+                          contacts.push(contactFacebook)
+
+                          break
+                        }
+
+                    }
+
+                    switch (treeSelect[0].getAttribute('value')) {
+                      case 'Телефон': 
+
+                      if (treeInput.value.trim() === '') {
+                        break
+                      }
+
+                      if (treeInput.value.trim() !== '') {
+                        
+                      let contactTel = {}
+
+                      contactTel.type = 'Телефон'
+                      contactTel.value = treeInput.value.trim()
+                      contacts.push(contactTel)
+
+                        break
+                      }
+
+                        case 'Email':
+
+                        if (treeInput.value.trim() === '') {
+                          break
+                        }
+
+                        if (treeInput.value.trim() !== '') {
+                         let concactEmail = {}
+
+                        concactEmail.type = 'Email'
+                        concactEmail.value = treeInput.value.trim()
+                        contacts.push(concactEmail)
+
+                        break
+                        }
+                            
+                        
+
+                          case 'Facebook':
+
+                          if (treeInput.value.trim() === '') {
+                            break
+                          }
+
+                          if (treeInput.value.trim() !== '') {
+                            let contactFacebook = {}
+
+                          contactFacebook.type = 'Facebook'
+                          contactFacebook.value = treeInput.value.trim()
+                          contacts.push(contactFacebook)
+
+                          break
+                          }
+                    }
+
+
+          async function createCustomerServer(contacts,id) {
+            
+            const response = await fetch('http://localhost:3000/api/clients/' + id, {
+              method: 'PATCH',  
+              
+              body: JSON.stringify({
+                createdAt: '2021-02-03T13:07:29.554Z',
+                updatedAt: '2021-02-03T13:07:29.554Z',
+                name: name,
+                surname: surname,
+                lastName: middlename,
+                contacts: contacts
+              })
+            })
+            let abc = await response.json()
+            console.log(abc)
+          }
+
+          createCustomerServer(contacts,id)
+
+          docId.innerHTML = ''
+  
   }
 
   function createCustomer(customerObj) {
@@ -218,7 +414,13 @@
     buttonLastchange.setAttribute('id', 'change-customer')
 
     buttonLastchange.addEventListener('click', function() {
+
       changeCustomerBtn(customerObj)
+  
+      chanchedInfoCustomer(customerObj)
+  
+    
+      
     })
 
     let idCustomer = customerObj.id.substr(7, 6)
