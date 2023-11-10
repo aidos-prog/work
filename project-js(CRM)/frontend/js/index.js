@@ -125,196 +125,199 @@
       hCustomer.classList.add('close')
       hChangeCustomer.classList.remove('close')
       formid.classList.remove('close')
-
       
     }
       getListCustomer(id)
 
-      
-      
   }
 
-  function chanchedInfoCustomer(customerObj) {
-    
-      let id = customerObj.id
-      let customers = infoItems()
+  function chanchedInfoCustomer() {
+          async function createCustomerServer() {
 
-      let docId = document.getElementById('form-id')
-      let surname = customers.surname
-      let name = customers.name
-      let middlename = customers.middlename
+              let id = document.getElementById('form-id').innerHTML
+              let items = infoItems()
+              let surname = items.surname.getAttribute('value')
+              let name = items.name.getAttribute('value')
+              let lastName = items.middlename.getAttribute('value')
 
-      let oneInput = customers.oneInput.value
-      let twoInput = customers.twoInput
-      let treeInput = customers.treeInput
-      let fourInput = customers.fourInput
-      // писать юудем тут переделанное на сервер
+              let docLineOne = document.querySelectorAll('.lineOne')
+              let docLineTwo = document.querySelectorAll('.lineTwo')
+              let docLineTree = document.querySelectorAll('.lineTree')
+              let docLineFour = document.querySelectorAll('.lineFour')
 
-      // let oneSelect = customerObj.oneSelect
-      // let twoSelect = customerObj.twoSelect
-      // let treeSelect = customerObj.treeSelect
-      // let fourSelect = customerObj.fourSelect
+              let elementone = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
+              let elementtwo = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
+              let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
+              let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
 
-      console.log(oneInput)
+              let valueOneSelect = elementone[0].getAttribute('data-value')
+              let selectOne = elementone[0].innerHTML
+              let valueTwoSelect = elementtwo[0].getAttribute('data-value')
+              let selectTwo = elementtwo[0].innerHTML
+              let valueTreeSelect = elementtree[0].getAttribute('data-value')
+              let selectTree = elementtree[0].innerHTML
 
-      let contacts = []
+              let oneInput = document.getElementById('line-inputOne')
+              let twoInput = document.getElementById('line-inputTwo')
+              let treeInput = document.getElementById('line-inputTree')
+              let fourInput = document.getElementById('line-inputFour')
 
-          switch (oneSelect[0].getAttribute('value')) {
-              case 'Телефон': 
 
-              if (oneInput.value.trim() === '') {
-                break
-              }
+                let contacts = []
 
-              if (oneInput.value.trim() !== '') {
-                let contactTel = {}
+              switch (valueOneSelect) {
+                  case 'Телефон': 
 
-                contactTel.type = 'Телефон'
-                contactTel.value = oneInput.value.trim()
-                contacts.push(contactTel)
-
-                break
-              }
-
-                case 'Email':
                   if (oneInput.value.trim() === '') {
                     break
                   }
 
                   if (oneInput.value.trim() !== '') {
-                    
-                    let concactEmail = {}
+                    let contactTel = {}
 
-                    concactEmail.type = 'Email'
-                    concactEmail.value = oneInput.value.trim()
-                    contacts.push(concactEmail)
+                    contactTel.type = 'Телефон'
+                    contactTel.value = oneInput.value.trim()
+                    contacts.push(contactTel)
+
                     break
                   }
 
-                  case 'Facebook':
-                    if (oneInput.value.trim() === '') {
-                      break
-                    }
+                    case 'Email':
+                      if (oneInput.value.trim() === '') {
+                        break
+                      }
 
-                    if (oneInput.value.trim() !== '') {
-                      let contactFacebook = {}
-
-                      contactFacebook.type = 'Facebook'
-                      contactFacebook.value = oneInput.value.trim()
-                      contacts.push(contactFacebook)
-                      break
-                    }
-            }
-
-              switch (twoSelect[0].getAttribute('value')) {
-                
-                case 'Телефон': 
-
-                    if (twoInput.value.trim() === '') {
-                      break
-                    }
-                    
-                    let contactTel = {}
-      
-                    if (twoInput.value.trim() !== '') {
-                      contactTel.type = 'Телефон'
-                      contactTel.value = twoInput.value.trim()
-                      contacts.push(contactTel)
-      
-                      break
-                    }
-
-                        case 'Email':
-
-                        if (twoInput.value.trim() === '') {
-                          break
-                        }
-
-                        if (twoInput.value.trim() !== '') {
-
-                          let concactEmail = {}
+                      if (oneInput.value.trim() !== '') {
+                        
+                        let concactEmail = {}
 
                         concactEmail.type = 'Email'
-                        concactEmail.value = twoInput.value.trim()
+                        concactEmail.value = oneInput.value.trim()
                         contacts.push(concactEmail)
+                        break
+                      }
+
+                      case 'Facebook':
+                        if (oneInput.value.trim() === '') {
                           break
                         }
 
-
-                        case 'Facebook':
-
-                        if (twoInput.value.trim() === '') {
-                          break
-                        }
-
-                        if (twoInput.value.trim() !== '') {
-                           let contactFacebook = {}
+                        if (oneInput.value.trim() !== '') {
+                          let contactFacebook = {}
 
                           contactFacebook.type = 'Facebook'
-                          contactFacebook.value = twoInput.value.trim()
+                          contactFacebook.value = oneInput.value.trim()
                           contacts.push(contactFacebook)
+                          break
+                        }
+                }
 
+                  switch (valueTwoSelect) {
+                    
+                    case 'Телефон': 
+
+                        if (twoInput.value.trim() === '') {
+                          break
+                        }
+                        
+                        let contactTel = {}
+          
+                        if (twoInput.value.trim() !== '') {
+                          contactTel.type = 'Телефон'
+                          contactTel.value = twoInput.value.trim()
+                          contacts.push(contactTel)
+          
                           break
                         }
 
-                    }
+                            case 'Email':
 
-                    switch (treeSelect[0].getAttribute('value')) {
-                      case 'Телефон': 
+                            if (twoInput.value.trim() === '') {
+                              break
+                            }
 
-                      if (treeInput.value.trim() === '') {
-                        break
-                      }
+                            if (twoInput.value.trim() !== '') {
 
-                      if (treeInput.value.trim() !== '') {
-                        
-                      let contactTel = {}
+                              let concactEmail = {}
 
-                      contactTel.type = 'Телефон'
-                      contactTel.value = treeInput.value.trim()
-                      contacts.push(contactTel)
+                            concactEmail.type = 'Email'
+                            concactEmail.value = twoInput.value.trim()
+                            contacts.push(concactEmail)
+                              break
+                            }
 
-                        break
-                      }
 
-                        case 'Email':
+                            case 'Facebook':
 
-                        if (treeInput.value.trim() === '') {
-                          break
+                            if (twoInput.value.trim() === '') {
+                              break
+                            }
+
+                            if (twoInput.value.trim() !== '') {
+                              let contactFacebook = {}
+
+                              contactFacebook.type = 'Facebook'
+                              contactFacebook.value = twoInput.value.trim()
+                              contacts.push(contactFacebook)
+
+                              break
+                            }
+
                         }
 
-                        if (treeInput.value.trim() !== '') {
-                         let concactEmail = {}
-
-                        concactEmail.type = 'Email'
-                        concactEmail.value = treeInput.value.trim()
-                        contacts.push(concactEmail)
-
-                        break
-                        }
-                            
-                        
-
-                          case 'Facebook':
+                        switch (valueTreeSelect) {
+                          case 'Телефон': 
 
                           if (treeInput.value.trim() === '') {
                             break
                           }
 
                           if (treeInput.value.trim() !== '') {
-                            let contactFacebook = {}
+                            
+                          let contactTel = {}
 
-                          contactFacebook.type = 'Facebook'
-                          contactFacebook.value = treeInput.value.trim()
-                          contacts.push(contactFacebook)
+                          contactTel.type = 'Телефон'
+                          contactTel.value = treeInput.value.trim()
+                          contacts.push(contactTel)
 
-                          break
+                            break
                           }
-                    }
 
+                            case 'Email':
 
-          async function createCustomerServer(contacts,id) {
-            
+                            if (treeInput.value.trim() === '') {
+                              break
+                            }
+
+                            if (treeInput.value.trim() !== '') {
+                            let concactEmail = {}
+
+                            concactEmail.type = 'Email'
+                            concactEmail.value = treeInput.value.trim()
+                            contacts.push(concactEmail)
+
+                            break
+                            }
+                                
+                            
+
+                              case 'Facebook':
+
+                              if (treeInput.value.trim() === '') {
+                                break
+                              }
+
+                              if (treeInput.value.trim() !== '') {
+                                let contactFacebook = {}
+
+                              contactFacebook.type = 'Facebook'
+                              contactFacebook.value = treeInput.value.trim()
+                              contacts.push(contactFacebook)
+
+                              break
+                              }
+                        }
+
             const response = await fetch('http://localhost:3000/api/clients/' + id, {
               method: 'PATCH',  
               
@@ -323,17 +326,25 @@
                 updatedAt: '2021-02-03T13:07:29.554Z',
                 name: name,
                 surname: surname,
-                lastName: middlename,
+                lastName: lastName,
                 contacts: contacts
               })
             })
             let abc = await response.json()
             console.log(abc)
+
+            oneInput.value = ''
+            twoInput.value = ''
+            treeInput.value = ''
+            fourInput.value = ''
           }
 
-          createCustomerServer(contacts,id)
+         
+          
 
-          docId.innerHTML = ''
+          createCustomerServer()
+
+    
   
   }
 
@@ -416,10 +427,6 @@
     buttonLastchange.addEventListener('click', function() {
 
       changeCustomerBtn(customerObj)
-  
-      chanchedInfoCustomer(customerObj)
-  
-    
       
     })
 
@@ -561,6 +568,8 @@
     let docId = document.getElementById('form-id')
     let inputCustomers = infoItems()
 
+    let id = docId.innerHTML
+
     let oneLine = document.getElementById('lineOne')
     let twoLine = document.getElementById('lineTwo')
     let treeLine = document.getElementById('lineTree')
@@ -577,7 +586,7 @@
 
     button.addEventListener('click', function(event) {
       event.preventDefault()
-      saveInfo()
+      chanchedInfoCustomer()
 
       form.classList.remove('show')
       block.classList.remove('block-on')
@@ -592,8 +601,6 @@
       doctwoInput.removeAttribute('value')
       doctreeInput.removeAttribute('value')
       docfourInput.removeAttribute('value')
-
-      console.log(doconeInput)
 
         oneLine.classList.remove("open-line")
         twoLine.classList.remove("open-line")
