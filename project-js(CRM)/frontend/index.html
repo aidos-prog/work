@@ -84,7 +84,7 @@
               </div>
               <section class="row-five">
                 <div class="row-five__container" id="contact-container">
-                  <div class="five-line" id="lineOne">
+                  <div class="five-line lineOne" id="lineOne">
                     <div class="choice">
                       <select name="select" id="selectOne">        
                         <option value="Телефон">Телефон</option>
@@ -93,10 +93,10 @@
                         <option value="VK">VK</option>
                       </select>
                     </div>
-                    <input class="five-line__input" id="line-inputOne" placeholder="Введите данные контакта" type="text">
+                    <input class="five-line__input one" id="line-inputOne" placeholder="Введите данные контакта" type="text">
                     <button class="five-button" id="line-buttonOne"></button>
                   </div>
-                  <div class="five-line" id="lineTwo">
+                  <div class="five-line lineTwo" id="lineTwo">
                     <div class="choice">
                       <select name="select" id="selectTwo">          
                         <option value="Телефон">Телефон</option>
@@ -105,10 +105,10 @@
                         <option value="VK">VK</option>
                       </select>
                     </div>
-                    <input class="five-line__input" id="line-inputTwo" placeholder="Введите данные контакта" type="text">
+                    <input class="five-line__input two" id="line-inputTwo" placeholder="Введите данные контакта" type="text">
                     <button class="five-button" id="line-buttonTwo"></button>
                   </div>
-                  <div class="five-line" id="lineTree">
+                  <div class="five-line lineTree" id="lineTree">
                     <div class="choice">
                       <select name="select" id="selectTree">          
                         <option value="Телефон">Телефон</option>
@@ -117,10 +117,10 @@
                         <option value="VK">VK</option>
                       </select>
                     </div>
-                    <input class="five-line__input" id="line-inputTree" placeholder="Введите данные контакта" type="text">
+                    <input class="five-line__input tree" id="line-inputTree" placeholder="Введите данные контакта" type="text">
                     <button class="five-button" id="line-buttonTree"></button>
                   </div>
-                  <div class="five-line" id="lineFour">
+                  <div class="five-line lineFour" id="lineFour">
                     <div class="choice">
                       <select name="select" id="selectFour">          
                         <option value="Телефон">Телефон</option>
@@ -129,7 +129,7 @@
                         <option value="VK">VK</option>
                       </select>
                     </div>
-                    <input class="five-line__input" id="line-inputFour" placeholder="Введите данные контакта" type="text">
+                    <input class="five-line__input four" id="line-inputFour" placeholder="Введите данные контакта" type="text">
                     <button class="five-button" id="line-buttonFour"></button>
                   </div>
                     <button class="form-button" id="add-contact">
@@ -138,11 +138,13 @@
                 </div>
               </section>
                   <div class="row-six">
-                    <form action="">
+                    <form id="form-info" class="form-btn" action="">
                       <button type="submit" id="button-save" class="form__button-save">Сохранить</button>
-                    <button href="#" class="form__link-cancel">Отмена</button>
+                      <button type="submit" id="btn-save__change" class="form__btn-change close">Сохранить</button>
+                      <button type="submit" id="btn-cancel__change" class="form__btn-cancel close">Удалить клиента</button>
+                    <button href="#" id="btn-cancellation" class="form__link-cancel close">Отмена</button>
                     </form>
-                    
+  
                   </div>
             </article>
           </div>
@@ -160,24 +162,6 @@
                 <div class="col col-lg-2 ms-lg-3 ps-lg-2 customers-col__actions customers-col__up align-self-center"><span class="customers-header__text">Действия</span></div>
               </div>
               <div id="customer-table" class="customers-table__body">
-                <div class="row customers-row">
-                  <div class="col col-lg-1 ms-lg-1 ps-lg-2 customers-col__id text-center align-self-center"><span class="customers-col__text customers-col__text-id">123456</span></div>
-                  <div class="col col-lg-3 ms-lg-2 ps-lg-3 customers-col__fio align-self-center"><span class="customers-col__text">Скворцов Денис Юрьевич</span></div>
-                  <div class="col col-lg-2 ms-lg-2 ps-lg-2 customers-col__data align-self-center"><span class="customers-col__text">21.02.2021</span><span class="customers-col__text-time">12:41</span></div>
-                  <div class="col col-lg-2 ms-lg-3 ps-lg-2 customers-col__last-change align-self-center"><span class="customers-col__text">21.02.2021</span><span class="customers-col__text-time">14:50</span></div>
-                  <div class="col col-lg-2 ms-lg-1 ps-lg-2 customers-col__contacts align-self-center">
-                    <ul class="social-list">
-                      <li class="social-item"><a href="#" class="social-vk"></a></li>
-                      <li class="social-item"><a href="#" class="social-fb"></a></li>
-                      <li class="social-item"><a href="#" class="social-phone"></a></li>
-                      <li class="social-item"><a href="#" class="social-mail"></a></li>
-                    </ul>
-                </div>
-                  <div class="col col-lg-2 ms-lg-3 ps-lg-2 customers-col__actions">
-                    <button class="customers-col__button button-change">Изменить</button>
-                    <button class="customers-col__button button-cancel">Удалить</button>
-                  </div>
-                </div>
               </div>         
             </div>
           </div> 
