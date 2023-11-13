@@ -310,7 +310,8 @@
       fourLine.classList.remove("open-line")
 
     })
-
+      
+    saveBtn()
   }
 
   function saveBtn() {
@@ -579,7 +580,6 @@
     let docId = document.getElementById('form-id')
     let btnCancelCustomer = document.getElementById('btn-cancel__change')
     let btnCancellation = document.getElementById('btn-cancellation')
-
     
     let items = infoItems()
     let docsurname = items.surname
@@ -683,7 +683,7 @@
 
       docform.addEventListener('submit', function(event) {
         event.preventDefault()
-        chanchedInfoCustomer()
+        changedInfoCustomer()
         form.classList.remove('show')
         block.classList.remove('block-on')
         header.classList.remove('header-on')
@@ -712,7 +712,7 @@
       getListCustomer(id)
   }
 
-  function chanchedInfoCustomer() {
+  function changedInfoCustomer() {
           async function createCustomerServer() {
 
               let id = document.getElementById('form-id').innerHTML
@@ -955,7 +955,7 @@
 
     pictureList()
     addCustomer()
-    saveBtn()
+    
   })
 
 })();
