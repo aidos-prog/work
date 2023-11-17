@@ -13,7 +13,7 @@
 }
 
 .show {
-  display: flex;
+  display: flex!important;
   position: absolute;
   z-index: 5;
   align-items: center;
@@ -261,3 +261,55 @@
   font-weight: 600;
   font-size: 14px;
 }
+
+.form-text__cancel {
+  color: var(--black, #333);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.form-cancel {
+  width: 450px;
+  height: 215px;
+  background-color: var(--white);
+  display: none;
+}
+
+.form__btn-delete {
+  display: inline-flex;
+  height: 44px;
+  width: 147px;
+  padding: 17px 35px;
+  align-items: center;
+  background-color: #9873FF;
+  color: var(--white);
+  border: 0;
+  margin-bottom: 8px;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.form__btn-cancellation {
+  width: 121px;
+  height: 17px;
+  font-size: 12px;
+  color: var(--black);
+  border: 0;
+  background: none;
+  text-decoration-line: underline;
+}
+
+.form-delete__container {
+  width: 275px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-delete__title {
+  margin-bottom: 11px;
+}
+

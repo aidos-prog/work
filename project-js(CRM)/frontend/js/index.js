@@ -127,9 +127,43 @@
 
     buttonCancel.setAttribute('id', 'btn-cancel')
 
-    buttonCancel.addEventListener('click', function() {
-      deleteCustomer(customerObj)
-      row.remove()
+    buttonCancel.addEventListener('click', function(customerObj) {
+
+    let formCancel = document.querySelector('.form-cancel')
+    let block = document.querySelector('.block')
+    let header = document.querySelector('.header')
+    let btnCancel = document.querySelector('.form__btn-delete')
+    let btnCancellation = document.querySelector('.form__btn-cancellation')
+
+    formCancel.classList.add('show')
+    block.classList.add('block-on')
+    header.classList.add('header-on')
+
+    btnCancel.addEventListener('click', function() {
+      let id = customerObj.id
+
+        async function deleteCustomerServer(id) {
+          const response = await fetch('http://localhost:3000/api/clients/' + id, {
+            method: 'DELETE'
+          })
+          let abc = await response.json()
+        }
+        deleteCustomerServer(id)
+
+        formCancel.classList.remove('show')
+        block.classList.remove('block-on')
+        header.classList.remove('header-on')
+        row.remove()
+    })
+
+    btnCancellation.addEventListener('click', function() {
+        formCancel.classList.remove('show')
+        block.classList.remove('block-on')
+        header.classList.remove('header-on')
+    })
+
+
+      
 
     })
 
@@ -195,11 +229,13 @@
   function addCustomer() {
     let addButton = document.getElementById('add-customer')
     let deleteForm = document.getElementById('form-delete')
+    let deleteFormTwo = document.getElementById('form-delete__two')
     let block = document.querySelector('.block')
     let header = document.querySelector('.header')
     let docId = document.getElementById('form-id')
     let btnChange = document.getElementById('btn-save__change')
     let btnSave = document.getElementById('button-save')
+    let footer = document.querySelector('.footer')
 
     let hCustomer = document.querySelector('.form-h2__newcustomer')
     let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
@@ -309,6 +345,13 @@
       treeLine.classList.remove("open-line")
       fourLine.classList.remove("open-line")
 
+    })
+
+    deleteFormTwo.addEventListener('click', function() {
+      let formDelete = document.querySelector('.form-cancel')
+      formDelete.classList.remove('show')
+      block.classList.remove('block-on')
+      header.classList.remove('header-on')
     })
       
     saveBtn()
@@ -936,19 +979,6 @@
       createTable(data)
     }
     getCustomersListServer()
-  }
-
-  function deleteCustomer(customerObj) {
-    let id = customerObj.id
-
-    async function deleteCustomerServer(id) {
-      const response = await fetch('http://localhost:3000/api/clients/' + id, {
-        method: 'DELETE'
-      })
-      let abc = await response.json()
-    }
-    deleteCustomerServer(id)
-
   }
 
   document.addEventListener('DOMContentLoaded', function() {

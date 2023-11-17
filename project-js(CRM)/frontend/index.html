@@ -50,11 +50,17 @@
       </div>
     </section>
   </header>
-  <main>
-    
+  <main>  
     <section class="customers">
       <div class="container">
-        <div class="block-add">
+        
+        <div class="customers-main">
+          
+        </div>
+          <div class="customers-top">
+            <h2 class="customers-top__h2">Клиенты</h2>
+          </div>
+          <div class="block-add">
             <article class="form">
               <div class="form-container">
                 <div class="form-main">
@@ -143,15 +149,18 @@
                       <button type="submit" id="btn-cancel__change" class="form__btn-cancel close">Удалить клиента</button>
                     <button href="#" id="btn-cancellation" class="form__link-cancel close">Отмена</button>
                     </form>
-  
                   </div>
             </article>
-          </div>
-        <div class="customers-main">
-          
-        </div>
-          <div class="customers-top">
-            <h2 class="customers-top__h2">Клиенты</h2>
+            <article class="form-cancel">
+              <div class="form-delete__container">
+                <h2 class="form-h2__changecustomer form-delete__title">Удалить клиента</h2>
+                <p class="form-text__cancel">Вы действительно хотите удалить данного клиента?</p>
+                <button class="form__btn-delete">Удалить</button>
+                <button class="form__btn-cancellation">Отмена</button>
+                <button id="form-delete__two" class="form-delete"></button>
+              </div>   
+              
+            </article>
           </div>
           <div class="customers-table">
               <div class="row first-row">
