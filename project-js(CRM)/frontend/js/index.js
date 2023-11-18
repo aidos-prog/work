@@ -108,12 +108,15 @@
 
         case 'Телефон':
           telefonLink.setAttribute('href', contactsObj[i].value)
+          telefonLink.value = contactsObj[i].value
 
           case 'Email':
             emailLink.setAttribute('href', contactsObj[i].value)
+             emailLink.value = contactsObj[i].value
 
             case 'Facebook':
               facebookLink.setAttribute('href', contactsObj[i].value)
+                facebookLink.value = contactsObj[i].value
       }
     }
 
@@ -127,43 +130,33 @@
 
     buttonCancel.setAttribute('id', 'btn-cancel')
 
-    buttonCancel.addEventListener('click', function(customerObj) {
+    buttonCancel.addEventListener('click', function() {
+      let formCancel = document.querySelector('.form-cancel')
+      let block = document.querySelector('.block')
+      let header = document.querySelector('.header')
 
-    let formCancel = document.querySelector('.form-cancel')
-    let block = document.querySelector('.block')
-    let header = document.querySelector('.header')
-    let btnCancel = document.querySelector('.form__btn-delete')
-    let btnCancellation = document.querySelector('.form__btn-cancellation')
+      let btnCancel = document.querySelector('.form__btn-delete')
+      let btnCancellation = document.querySelector('.form__btn-cancellation')
 
-    formCancel.classList.add('show')
-    block.classList.add('block-on')
-    header.classList.add('header-on')
-
-    btnCancel.addEventListener('click', function() {
-      let id = customerObj.id
-
-        async function deleteCustomerServer(id) {
-          const response = await fetch('http://localhost:3000/api/clients/' + id, {
-            method: 'DELETE'
+      formCancel.classList.add('show')
+      block.classList.add('block-on')
+      header.classList.add('header-on')
+  
+          btnCancel.addEventListener('click', function() {
+            let customerNumber = customerObj.id
+           
+            deleteCustomerServer(customerNumber)
+            formCancel.classList.remove('show')
+            block.classList.remove('block-on')
+            header.classList.remove('header-on')
+            row.remove() 
           })
-          let abc = await response.json()
-        }
-        deleteCustomerServer(id)
 
-        formCancel.classList.remove('show')
-        block.classList.remove('block-on')
-        header.classList.remove('header-on')
-        row.remove()
-    })
-
-    btnCancellation.addEventListener('click', function() {
-        formCancel.classList.remove('show')
-        block.classList.remove('block-on')
-        header.classList.remove('header-on')
-    })
-
-
-      
+            btnCancellation.addEventListener('click', function() {
+                formCancel.classList.remove('show')
+                block.classList.remove('block-on')
+                header.classList.remove('header-on')
+            })
 
     })
 
@@ -218,6 +211,14 @@
     return {
       row
     }
+  }
+  
+  async function deleteCustomerServer(id) {
+          const response = await fetch('http://localhost:3000/api/clients/' + id, {
+          method: 'DELETE'
+        })
+         abc = await response.json()
+          console.log(abc)
   }
 
   function createTable(list) {
