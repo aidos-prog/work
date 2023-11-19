@@ -71,6 +71,8 @@
     let emailLink = document.createElement('a')
     let facebookLink = document.createElement('a')
 
+    let btnCancelCustomer = document.getElementById('btn-cancel__change')
+
     row.classList.add('row', 'customers-row')
     boxId.classList.add('col', 'col-lg-1', 'ms-lg-1', 'ps-lg-2', 'customers-col__id', 'text-center', 'align-self-center')
     boxFio.classList.add('col', 'col-lg-3', 'ms-lg-2', 'ps-lg-3', 'customers-col__fio', 'align-self-center')
@@ -158,6 +160,35 @@
                 header.classList.remove('header-on')
             })
 
+    })
+
+    btnCancelCustomer.addEventListener('click', function() {
+
+      console.log('Hello')
+      // let form = document.querySelector('.form')
+      // let formCancel = document.querySelector('.form-cancel')
+
+      // let btnCancel = document.querySelector('.form__btn-delete')
+      // let btnCancellation = document.querySelector('.form__btn-cancellation')
+
+      // form.classList.remove('show')
+      // formCancel.classList.add('show')
+  
+      //     btnCancel.addEventListener('click', function() {
+      //       let customerNumber = customerObj.id
+           
+      //       deleteCustomerServer(customerNumber)
+      //       formCancel.classList.remove('show')
+      //       block.classList.remove('block-on')
+      //       header.classList.remove('header-on')
+      //       row.remove() 
+      //     })
+
+      //       btnCancellation.addEventListener('click', function() {
+      //           formCancel.classList.remove('show')
+      //           block.classList.remove('block-on')
+      //           header.classList.remove('header-on')
+      //       })
     })
 
     let idCustomer = customerObj.id.substr(7, 6)
@@ -404,7 +435,36 @@
         treeLine.classList.remove("open-line")
         fourLine.classList.remove("open-line")
     
-    })  
+    })
+    
+    btnCancelCustomer.addEventListener('click', function() {
+      let formCancel = document.querySelector('.form-cancel')
+      let block = document.querySelector('.block')
+      let header = document.querySelector('.header')
+
+      let btnCancel = document.querySelector('.form__btn-delete')
+      let btnCancellation = document.querySelector('.form__btn-cancellation')
+
+      formCancel.classList.add('show')
+      block.classList.add('block-on')
+      header.classList.add('header-on')
+  
+          btnCancel.addEventListener('click', function() {
+            let customerNumber = customerObj.id
+           
+            deleteCustomerServer(customerNumber)
+            formCancel.classList.remove('show')
+            block.classList.remove('block-on')
+            header.classList.remove('header-on')
+            row.remove() 
+          })
+
+            btnCancellation.addEventListener('click', function() {
+                formCancel.classList.remove('show')
+                block.classList.remove('block-on')
+                header.classList.remove('header-on')
+            })
+    })
   }
   
   function saveInfo() {
@@ -636,6 +696,8 @@
     let docfourInput = items.fourInput
     let docform = items.form
 
+    // надо убрать форму у кнопок
+
     let oneLine = document.getElementById('lineOne')
     let twoLine = document.getElementById('lineTwo')
     let treeLine = document.getElementById('lineTree')
@@ -752,6 +814,7 @@
         doctreeInput.value = ''
         docfourInput.value = ''
       })
+
     }
       getListCustomer(id)
   }
