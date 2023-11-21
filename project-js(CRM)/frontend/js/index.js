@@ -136,7 +136,6 @@
       let formCancel = document.querySelector('.form-cancel')
       let block = document.querySelector('.block')
       let header = document.querySelector('.header')
-
       let btnCancel = document.querySelector('.form__btn-delete')
       let btnCancellation = document.querySelector('.form__btn-cancellation')
 
@@ -162,34 +161,8 @@
 
     })
 
-    btnCancelCustomer.addEventListener('click', function() {
+    
 
-      console.log('Hello')
-      // let form = document.querySelector('.form')
-      // let formCancel = document.querySelector('.form-cancel')
-
-      // let btnCancel = document.querySelector('.form__btn-delete')
-      // let btnCancellation = document.querySelector('.form__btn-cancellation')
-
-      // form.classList.remove('show')
-      // formCancel.classList.add('show')
-  
-      //     btnCancel.addEventListener('click', function() {
-      //       let customerNumber = customerObj.id
-           
-      //       deleteCustomerServer(customerNumber)
-      //       formCancel.classList.remove('show')
-      //       block.classList.remove('block-on')
-      //       header.classList.remove('header-on')
-      //       row.remove() 
-      //     })
-
-      //       btnCancellation.addEventListener('click', function() {
-      //           formCancel.classList.remove('show')
-      //           block.classList.remove('block-on')
-      //           header.classList.remove('header-on')
-      //       })
-    })
 
     let idCustomer = customerObj.id.substr(7, 6)
     let createDataCustomer = customerObj.createdAt.substr(8, 2) + '.' + customerObj.createdAt.substr(5, 2) + '.' + customerObj.createdAt.substr(0, 4) 
@@ -437,34 +410,6 @@
     
     })
     
-    btnCancelCustomer.addEventListener('click', function() {
-      let formCancel = document.querySelector('.form-cancel')
-      let block = document.querySelector('.block')
-      let header = document.querySelector('.header')
-
-      let btnCancel = document.querySelector('.form__btn-delete')
-      let btnCancellation = document.querySelector('.form__btn-cancellation')
-
-      formCancel.classList.add('show')
-      block.classList.add('block-on')
-      header.classList.add('header-on')
-  
-          btnCancel.addEventListener('click', function() {
-            let customerNumber = customerObj.id
-           
-            deleteCustomerServer(customerNumber)
-            formCancel.classList.remove('show')
-            block.classList.remove('block-on')
-            header.classList.remove('header-on')
-            row.remove() 
-          })
-
-            btnCancellation.addEventListener('click', function() {
-                formCancel.classList.remove('show')
-                block.classList.remove('block-on')
-                header.classList.remove('header-on')
-            })
-    })
   }
   
   function saveInfo() {
@@ -684,6 +629,7 @@
     let docId = document.getElementById('form-id')
     let btnCancelCustomer = document.getElementById('btn-cancel__change')
     let btnCancellation = document.getElementById('btn-cancellation')
+   
     
     let items = infoItems()
     let docsurname = items.surname
@@ -695,8 +641,6 @@
     let doctreeInput = items.treeInput
     let docfourInput = items.fourInput
     let docform = items.form
-
-    // надо убрать форму у кнопок
 
     let oneLine = document.getElementById('lineOne')
     let twoLine = document.getElementById('lineTwo')
@@ -787,7 +731,7 @@
       btnCancelCustomer.classList.remove('close')
       btnCancellation.classList.add('close')
 
-      docform.addEventListener('submit', function(event) {
+      btnSaveChange.addEventListener('click', function(event) {
         event.preventDefault()
         changedInfoCustomer()
         form.classList.remove('show')
@@ -813,6 +757,45 @@
         doctwoInput.value = ''
         doctreeInput.value = ''
         docfourInput.value = ''
+      })
+
+      btnCancelCustomer.addEventListener('click', function(event) {
+
+        event.preventDefault()
+       
+          let formCancel = document.querySelector('.form-cancel')
+          let block = document.querySelector('.block')
+          let header = document.querySelector('.header')
+          let btnCancel = document.querySelector('.form__btn-delete')
+          let btnCancellation = document.querySelector('.form__btn-cancellation')
+          let form = document.querySelector('.form')
+      
+              form.classList.remove('show')
+              formCancel.classList.add('show')
+              block.classList.add('block-on')
+              header.classList.add('header-on')
+      
+                  btnCancel.addEventListener('click', function(event) {
+                    event.preventDefault()
+                   console.log('Hello')
+                    deleteCustomerServer(id)
+                    
+                    pictureList()
+                    formCancel.classList.remove('show')
+                    block.classList.remove('block-on')
+                    header.classList.remove('header-on')
+                    
+                    
+                  })
+          
+                    btnCancellation.addEventListener('click', function() {
+                        formCancel.classList.remove('show')
+                        block.classList.remove('block-on')
+                        header.classList.remove('header-on')
+                    })
+
+                    // тут надо щамантть
+        
       })
 
     }
@@ -1044,6 +1027,14 @@
     }
     getCustomersListServer()
   }
+
+  function cleanerCustomers() {
+    let rows = document.querySelectorAll('.customers-row')
+    for (const item of rows) {
+      item.remove()
+    }
+  }
+
 
   document.addEventListener('DOMContentLoaded', function() {
 
