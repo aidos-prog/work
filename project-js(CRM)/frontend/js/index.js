@@ -161,9 +161,6 @@
 
     })
 
-    
-
-
     let idCustomer = customerObj.id.substr(7, 6)
     let createDataCustomer = customerObj.createdAt.substr(8, 2) + '.' + customerObj.createdAt.substr(5, 2) + '.' + customerObj.createdAt.substr(0, 4) 
     let createTimeCustomer = customerObj.createdAt.substr(12, 4)
@@ -213,7 +210,8 @@
     table.append(row)
 
     return {
-      row
+      row,
+      textId
     }
   }
   
@@ -766,37 +764,65 @@
           let formCancel = document.querySelector('.form-cancel')
           let block = document.querySelector('.block')
           let header = document.querySelector('.header')
-          let btnCancel = document.querySelector('.form__btn-delete')
-          let btnCancellation = document.querySelector('.form__btn-cancellation')
+          
           let form = document.querySelector('.form')
       
               form.classList.remove('show')
               formCancel.classList.add('show')
               block.classList.add('block-on')
               header.classList.add('header-on')
-      
-                  btnCancel.addEventListener('click', function(event) {
-                    event.preventDefault()
-                   console.log('Hello')
-                    deleteCustomerServer(id)
-                    
-                    pictureList()
-                    formCancel.classList.remove('show')
-                    block.classList.remove('block-on')
-                    header.classList.remove('header-on')
-                    
-                    
-                  })
-          
-                    btnCancellation.addEventListener('click', function() {
-                        formCancel.classList.remove('show')
-                        block.classList.remove('block-on')
-                        header.classList.remove('header-on')
-                    })
 
-                    // тут надо щамантть
-        
+              let idCustomer = id.substr(7, 6)
+
+let textIdDoc = document.querySelectorAll('.customers-col__text-id')
+  
+
+  // for (const item of textIdDoc) {
+  //   if (item.textContent.includes(idCustomer) === true) {
+  //     console.log(item)
+  //   } 
+  // }
+
+
+  let rows = document.querySelectorAll('.customers-row')
+
+  for (let i = 0; i < rows.length; i++) {
+    console.log(rows[i])
+
+    let listOne = []
+    listOne.push(rows[i])
+
+    console.log(listOne)
+
+
+    // нужно искать по айди в документе
+  }
+  
+                // let btnCancel = document.querySelector('.form__btn-delete')
+                // let btnCancellation = document.querySelector('.form__btn-cancellation')
+                
+                // btnCancel.addEventListener('click', function() {
+  
+                //               let id = customerObj.id
+                //                console.log('Hello')
+                //                 deleteCustomerServer(id)
+                //                 formCancel.classList.remove('show')
+                //                 block.classList.remove('block-on')
+                //                 header.classList.remove('header-on')
+                //                 row.remove()
+                                
+                //               })
+                      
+                //                 btnCancellation.addEventListener('click', function() {
+                //                     formCancel.classList.remove('show')
+                //                     block.classList.remove('block-on')
+                //                     header.classList.remove('header-on')
+                //                 })
+              
+              
+              
       })
+  
 
     }
       getListCustomer(id)
@@ -1032,6 +1058,7 @@
     let rows = document.querySelectorAll('.customers-row')
     for (const item of rows) {
       item.remove()
+      console.log(item)
     }
   }
 
