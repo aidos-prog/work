@@ -71,8 +71,6 @@
     let emailLink = document.createElement('a')
     let facebookLink = document.createElement('a')
 
-    let btnCancelCustomer = document.getElementById('btn-cancel__change')
-
     row.classList.add('row', 'customers-row')
     boxId.classList.add('col', 'col-lg-1', 'ms-lg-1', 'ps-lg-2', 'customers-col__id', 'text-center', 'align-self-center')
     boxFio.classList.add('col', 'col-lg-3', 'ms-lg-2', 'ps-lg-3', 'customers-col__fio', 'align-self-center')
@@ -111,14 +109,17 @@
         case 'Телефон':
           telefonLink.setAttribute('href', contactsObj[i].value)
           telefonLink.value = contactsObj[i].value
+          break
 
           case 'Email':
             emailLink.setAttribute('href', contactsObj[i].value)
              emailLink.value = contactsObj[i].value
+             break
 
             case 'Facebook':
               facebookLink.setAttribute('href', contactsObj[i].value)
                 facebookLink.value = contactsObj[i].value
+                break
       }
     }
 
@@ -419,19 +420,29 @@
       let name = customers.name.value.trim()
       let middlename = customers.middlename.value.trim()
 
+      let docLineOne = document.querySelectorAll('.lineOne')
+      let docLineTwo = document.querySelectorAll('.lineTwo')
+      let docLineTree = document.querySelectorAll('.lineTree')
+      let docLineFour = document.querySelectorAll('.lineFour')
+
+      let elementone = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
+      let elementtwo = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
+      let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
+      let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
+
       let oneInput = customers.oneInput
       let twoInput = customers.twoInput
       let treeInput = customers.treeInput
       let fourInput = customers.fourInput
 
-      let oneSelect = customers.oneSelect
-      let twoSelect = customers.twoSelect
-      let treeSelect = customers.treeSelect
-      let fourSelect = customers.fourSelect
+      let oneSelect = elementone
+      let twoSelect = elementtwo
+      let treeSelect = elementtree
+      let fourSelect = elementfour
 
       let contacts = []
 
-          switch (oneSelect[0].getAttribute('value')) {
+          switch (oneSelect[0].getAttribute('data-value')) {
               case 'Телефон': 
 
               if (oneInput.value.trim() === '') {
@@ -444,7 +455,6 @@
                 contactTel.type = 'Телефон'
                 contactTel.value = oneInput.value.trim()
                 contacts.push(contactTel)
-
                 break
               }
 
@@ -478,7 +488,7 @@
                     }
             }
 
-              switch (twoSelect[0].getAttribute('value')) {
+              switch (twoSelect[0].getAttribute('data-value')) {
                 
                 case 'Телефон': 
 
@@ -531,7 +541,7 @@
 
                     }
 
-                    switch (treeSelect[0].getAttribute('value')) {
+                    switch (treeSelect[0].getAttribute('data-value')) {
                       case 'Телефон': 
 
                       if (treeInput.value.trim() === '') {
@@ -564,8 +574,6 @@
 
                         break
                         }
-                            
-                        
 
                           case 'Facebook':
 
@@ -764,66 +772,40 @@
           let formCancel = document.querySelector('.form-cancel')
           let block = document.querySelector('.block')
           let header = document.querySelector('.header')
-          
           let form = document.querySelector('.form')
+          let rows = document.querySelectorAll('.customers-row')
+          let idCustomer = id.substr(7, 6)
       
               form.classList.remove('show')
               formCancel.classList.add('show')
               block.classList.add('block-on')
               header.classList.add('header-on')
 
-              let idCustomer = id.substr(7, 6)
+          let btnCancel = document.querySelector('.form__btn-delete')
+          let btnCancellation = document.querySelector('.form__btn-cancellation')
 
-let textIdDoc = document.querySelectorAll('.customers-col__text-id')
-  
+            btnCancel.addEventListener('click', function() {
 
-  // for (const item of textIdDoc) {
-  //   if (item.textContent.includes(idCustomer) === true) {
-  //     console.log(item)
-  //   } 
-  // }
+              for (let i = 0; i < rows.length; i++) {
 
+                let infoCustomer = rows[i].textContent
 
-  let rows = document.querySelectorAll('.customers-row')
+                    if (infoCustomer.includes(idCustomer) === true) {
+                     deleteCustomerServer(id)
+                      rows[i].remove()
 
-  for (let i = 0; i < rows.length; i++) {
-    console.log(rows[i])
+                      formCancel.classList.remove('show')
+                      block.classList.remove('block-on')
+                      header.classList.remove('header-on')
+                    }
+              }})
 
-    let listOne = []
-    listOne.push(rows[i])
-
-    console.log(listOne)
-
-
-    // нужно искать по айди в документе
-  }
-  
-                // let btnCancel = document.querySelector('.form__btn-delete')
-                // let btnCancellation = document.querySelector('.form__btn-cancellation')
-                
-                // btnCancel.addEventListener('click', function() {
-  
-                //               let id = customerObj.id
-                //                console.log('Hello')
-                //                 deleteCustomerServer(id)
-                //                 formCancel.classList.remove('show')
-                //                 block.classList.remove('block-on')
-                //                 header.classList.remove('header-on')
-                //                 row.remove()
-                                
-                //               })
-                      
-                //                 btnCancellation.addEventListener('click', function() {
-                //                     formCancel.classList.remove('show')
-                //                     block.classList.remove('block-on')
-                //                     header.classList.remove('header-on')
-                //                 })
-              
-              
-              
+              btnCancellation.addEventListener('click', function() {
+                formCancel.classList.remove('show')
+                block.classList.remove('block-on')
+                header.classList.remove('header-on')
+              })
       })
-  
-
     }
       getListCustomer(id)
   }
@@ -1054,12 +1036,89 @@ let textIdDoc = document.querySelectorAll('.customers-col__text-id')
     getCustomersListServer()
   }
 
-  function cleanerCustomers() {
+  function deleteList() {
     let rows = document.querySelectorAll('.customers-row')
+
     for (const item of rows) {
       item.remove()
-      console.log(item)
     }
+  }
+
+  function sort() {
+    let docId = document.getElementById('doc-id')
+    let docFio = document.getElementById('doc-fio')
+    let docData = document.getElementById('doc-data')
+    let docLastchange = document.getElementById('doc-lastchange')
+
+    function ab(arr, key, status) {
+      if (status == false) {
+        let result = arr.sort(function(a,b) {
+          if (a[key] < b[key]) {
+            return -1
+          }
+        })
+        return result
+
+        // ковырять будем тут нужно вернкть статус
+      }
+
+      if (status == true) {
+        let result = arr.sort(function(a,b) {
+          if (a[key] > b[key]) {
+            return -1
+          }
+        })
+        return result
+      }
+    }
+
+          docId.addEventListener('click', function() {     
+            deleteList()
+            async function getServerList() {
+                
+              const list = await fetch('http://localhost:3000/api/clients')
+              const data = await list.json()
+            
+              createTable(ab(data, 'id', false))
+            }
+            getServerList()
+          })
+          docFio.addEventListener('click', function() {     
+              deleteList()
+              async function getServerList() {
+                
+                const list = await fetch('http://localhost:3000/api/clients')
+                const data = await list.json()
+              
+                createTable(ab(data, 'surname', false))
+              }
+              getServerList() 
+          })
+          docData.addEventListener('click', function() {     
+                deleteList()
+                async function getServerList() {
+                
+                  const list = await fetch('http://localhost:3000/api/clients')
+                  const data = await list.json()
+                
+                  createTable(ab(data, 'createdAt', false))
+                }
+                getServerList()
+                
+            })
+            docLastchange.addEventListener('click', function() {     
+                  deleteList()
+                  async function getServerList() {
+                
+                    const list = await fetch('http://localhost:3000/api/clients')
+                    const data = await list.json()
+                  
+                    createTable(ab(data, 'updatedAt', false))
+                  }
+                  getServerList()
+                
+                })
+
   }
 
 
@@ -1067,7 +1126,7 @@ let textIdDoc = document.querySelectorAll('.customers-col__text-id')
 
     pictureList()
     addCustomer()
-    
+    sort()
   })
 
 })();
