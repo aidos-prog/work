@@ -282,7 +282,7 @@
       block.classList.add('block-on')
       header.classList.add('header-on')
 
-      let items = infoItems()
+    let items = infoItems()
     let docsurname = items.surname
     let docname = items.name
     let doclastname = items.middlename
@@ -1049,20 +1049,19 @@
     let docFio = document.getElementById('doc-fio')
     let docData = document.getElementById('doc-data')
     let docLastchange = document.getElementById('doc-lastchange')
-
-    function ab(arr, key, status) {
-      if (status == false) {
+    
+    function ab(arr, key, i) {
+      if (i == 1) {
         let result = arr.sort(function(a,b) {
           if (a[key] < b[key]) {
             return -1
           }
         })
         return result
-
         // ковырять будем тут нужно вернкть статус
       }
 
-      if (status == true) {
+      if (i == 0) {
         let result = arr.sort(function(a,b) {
           if (a[key] > b[key]) {
             return -1
@@ -1071,17 +1070,43 @@
         return result
       }
     }
+          let i = 0
 
           docId.addEventListener('click', function() {     
             deleteList()
-            async function getServerList() {
+
+            if (i == 1) {
+              async function getServerList() {
                 
               const list = await fetch('http://localhost:3000/api/clients')
               const data = await list.json()
+
+              let newList = ab(data, 'id', 1)
             
-              createTable(ab(data, 'id', false))
+              createTable(newList)
+              
             }
             getServerList()
+            i = i - 1
+            
+            } else {
+              async function getServerList() {
+                
+              const list = await fetch('http://localhost:3000/api/clients')
+              const data = await list.json()
+
+              let newList = ab(data, 'id', 0)
+            
+              createTable(newList)
+            }
+                getServerList()
+                i = i + 1
+            
+            }
+            console.log(i)
+
+            // победил тут надо всем так сделать
+            
           })
           docFio.addEventListener('click', function() {     
               deleteList()
@@ -1089,8 +1114,10 @@
                 
                 const list = await fetch('http://localhost:3000/api/clients')
                 const data = await list.json()
+
+                let newList = ab(data, 'surname', false)
               
-                createTable(ab(data, 'surname', false))
+                createTable(newList)
               }
               getServerList() 
           })
@@ -1100,8 +1127,10 @@
                 
                   const list = await fetch('http://localhost:3000/api/clients')
                   const data = await list.json()
+
+                  let newList = ab(data, 'createdAt', false)
                 
-                  createTable(ab(data, 'createdAt', false))
+                  createTable(newList)
                 }
                 getServerList()
                 
@@ -1112,8 +1141,10 @@
                 
                     const list = await fetch('http://localhost:3000/api/clients')
                     const data = await list.json()
+
+                    let newList = ab(data, 'createdAt', false)
                   
-                    createTable(ab(data, 'updatedAt', false))
+                    createTable(newList)
                   }
                   getServerList()
                 
