@@ -128,7 +128,7 @@
     buttonLastchange.addEventListener('click', function() {
 
       changeCustomerForm(customerObj)
-      
+     
     })
 
     buttonCancel.setAttribute('id', 'btn-cancel')
@@ -592,15 +592,19 @@
                           }
                     }
 
+
+
                     console.log(contacts)
           async function createCustomerServer(contacts) {
+
+            let now = new Date()
             
             const response = await fetch('http://localhost:3000/api/clients', {
               method: 'POST',  
               
               body: JSON.stringify({
-                createdAt: '2021-02-03T13:07:29.554Z',
-                updatedAt: '2021-02-03T13:07:29.554Z',
+                createdAt: now,
+                updatedAt: now,
                 name: name,
                 surname: surname,
                 lastName: middlename,
@@ -636,7 +640,6 @@
     let btnCancelCustomer = document.getElementById('btn-cancel__change')
     let btnCancellation = document.getElementById('btn-cancellation')
    
-    
     let items = infoItems()
     let docsurname = items.surname
     let docname = items.name
@@ -686,6 +689,7 @@
       let name = list.name
       let lastName = list.lastName
       let contacts = list.contacts
+      let createCustomer = list.createdAt
 
       docsurname.setAttribute('value', surname)
       docname.setAttribute('value', name)
@@ -739,7 +743,7 @@
 
       btnSaveChange.addEventListener('click', function(event) {
         event.preventDefault()
-        changedInfoCustomer()
+        changedInfoCustomer(createCustomer)
         form.classList.remove('show')
         block.classList.remove('block-on')
         header.classList.remove('header-on')
@@ -763,6 +767,7 @@
         doctwoInput.value = ''
         doctreeInput.value = ''
         docfourInput.value = ''
+        
       })
 
       btnCancelCustomer.addEventListener('click', function(event) {
@@ -810,8 +815,8 @@
       getListCustomer(id)
   }
 
-  function changedInfoCustomer() {
-          async function createCustomerServer() {
+  function changedInfoCustomer(createCustomer) {
+          async function changeCustomerServer(createCustomer) {
 
               let id = document.getElementById('form-id').innerHTML
               let items = infoItems()
@@ -856,8 +861,6 @@
                     contactTel.type = 'Телефон'
                     contactTel.value = oneInput.value.trim()
                     contacts.push(contactTel)
-      
-
                     break
                   }
 
@@ -1002,12 +1005,14 @@
                               }
                         }
 
+            let now = new Date()
+
             const response = await fetch('http://localhost:3000/api/clients/' + id, {
               method: 'PATCH',  
               
               body: JSON.stringify({
-                createdAt: '2021-02-03T13:07:29.554Z',
-                updatedAt: '2021-02-03T13:07:29.554Z',
+                createdAt: createCustomer,
+                updatedAt: now,
                 name: name,
                 surname: surname,
                 lastName: lastName,
@@ -1023,8 +1028,9 @@
             fourInput.value = ''
           }
 
-          createCustomerServer()
-  
+         changeCustomerServer(createCustomer)
+        deleteList()
+        pictureList()
   }
 
   function pictureList() {
@@ -1101,52 +1107,104 @@
             }
                 getServerList()
                 i = i + 1
-            
             }
-            console.log(i)
-
-            // победил тут надо всем так сделать
-            
           })
           docFio.addEventListener('click', function() {     
-              deleteList()
+            deleteList()
+
+            if (i == 1) {
               async function getServerList() {
                 
-                const list = await fetch('http://localhost:3000/api/clients')
-                const data = await list.json()
+              const list = await fetch('http://localhost:3000/api/clients')
+              const data = await list.json()
 
-                let newList = ab(data, 'surname', false)
+              let newList = ab(data, 'surname', 1)
+            
+              createTable(newList)
               
-                createTable(newList)
-              }
-              getServerList() 
+            }
+            getServerList()
+            i = i - 1
+            
+            } else {
+              async function getServerList() {
+                
+              const list = await fetch('http://localhost:3000/api/clients')
+              const data = await list.json()
+
+              let newList = ab(data, 'surname', 0)
+            
+              createTable(newList)
+            }
+                getServerList()
+                i = i + 1
+            
+            }
           })
           docData.addEventListener('click', function() {     
-                deleteList()
-                async function getServerList() {
-                
-                  const list = await fetch('http://localhost:3000/api/clients')
-                  const data = await list.json()
+            deleteList()
 
-                  let newList = ab(data, 'createdAt', false)
+            if (i == 1) {
+              async function getServerList() {
                 
-                  createTable(newList)
-                }
+              const list = await fetch('http://localhost:3000/api/clients')
+              const data = await list.json()
+
+              let newList = ab(data, 'createdAt', 1)
+            
+              createTable(newList)
+              
+            }
+            getServerList()
+            i = i - 1
+            
+            } else {
+              async function getServerList() {
+                
+              const list = await fetch('http://localhost:3000/api/clients')
+              const data = await list.json()
+
+              let newList = ab(data, 'createdAt', 0)
+            
+              createTable(newList)
+            }
                 getServerList()
+                i = i + 1
+            
+            }
                 
             })
             docLastchange.addEventListener('click', function() {     
-                  deleteList()
-                  async function getServerList() {
-                
-                    const list = await fetch('http://localhost:3000/api/clients')
-                    const data = await list.json()
+              deleteList()
 
-                    let newList = ab(data, 'createdAt', false)
+              if (i == 1) {
+                async function getServerList() {
                   
-                    createTable(newList)
-                  }
+                const list = await fetch('http://localhost:3000/api/clients')
+                const data = await list.json()
+  
+                let newList = ab(data, 'updatedAt', 1)
+              
+                createTable(newList)
+                
+              }
+              getServerList()
+              i = i - 1
+              
+              } else {
+                async function getServerList() {
+                  
+                const list = await fetch('http://localhost:3000/api/clients')
+                const data = await list.json()
+  
+                let newList = ab(data, 'updatedAt', 0)
+              
+                createTable(newList)
+              }
                   getServerList()
+                  i = i + 1
+              
+              }
                 
                 })
 
