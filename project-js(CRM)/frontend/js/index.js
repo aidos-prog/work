@@ -768,6 +768,8 @@
         doctreeInput.value = ''
         docfourInput.value = ''
         
+
+
       })
 
       btnCancelCustomer.addEventListener('click', function(event) {
@@ -1029,8 +1031,7 @@
           }
 
          changeCustomerServer(createCustomer)
-        deleteList()
-        pictureList()
+
   }
 
   function pictureList() {
@@ -1077,10 +1078,12 @@
       }
     }
           let i = 0
+          
 
           docId.addEventListener('click', function() {     
             deleteList()
-
+            let arrow = document.querySelector('.customers-header__arrow-id')
+            
             if (i == 1) {
               async function getServerList() {
                 
@@ -1094,6 +1097,7 @@
             }
             getServerList()
             i = i - 1
+            arrow.classList.remove('customers-header__arrow-close')
             
             } else {
               async function getServerList() {
@@ -1107,11 +1111,12 @@
             }
                 getServerList()
                 i = i + 1
+                arrow.classList.add('customers-header__arrow-close')
             }
           })
           docFio.addEventListener('click', function() {     
             deleteList()
-
+            let arrow = document.querySelector('.customers-header__arrow-fio')
             if (i == 1) {
               async function getServerList() {
                 
@@ -1125,6 +1130,7 @@
             }
             getServerList()
             i = i - 1
+            arrow.classList.remove('customers-header__arrow-open')
             
             } else {
               async function getServerList() {
@@ -1138,12 +1144,12 @@
             }
                 getServerList()
                 i = i + 1
-            
+                arrow.classList.add('customers-header__arrow-open')
             }
           })
           docData.addEventListener('click', function() {     
             deleteList()
-
+            let arrow = document.querySelector('.customers-header__arrow-data')
             if (i == 1) {
               async function getServerList() {
                 
@@ -1157,7 +1163,7 @@
             }
             getServerList()
             i = i - 1
-            
+            arrow.classList.remove('customers-header__arrow-open')
             } else {
               async function getServerList() {
                 
@@ -1170,13 +1176,13 @@
             }
                 getServerList()
                 i = i + 1
-            
+                arrow.classList.add('customers-header__arrow-open')
             }
                 
             })
             docLastchange.addEventListener('click', function() {     
               deleteList()
-
+              let arrow = document.querySelector('.customers-header__arrow-change')
               if (i == 1) {
                 async function getServerList() {
                   
@@ -1190,7 +1196,7 @@
               }
               getServerList()
               i = i - 1
-              
+              arrow.classList.remove('customers-header__arrow-open')
               } else {
                 async function getServerList() {
                   
@@ -1203,12 +1209,14 @@
               }
                   getServerList()
                   i = i + 1
-              
+                  arrow.classList.add('customers-header__arrow-open')
               }
                 
                 })
 
   }
+
+  
 
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -1216,6 +1224,9 @@
     pictureList()
     addCustomer()
     sort()
+
+
+
   })
 
 })();
