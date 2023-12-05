@@ -131,34 +131,35 @@
   cursor: pointer;
 }
 
-.customers-header__id-text:hover {
+.customers-header__text:hover {
   color: var(--black);
 }
 
-.customers-header__text:hover> .customers-header__arrow-id:hover {
-  margin-right: 20px;
-}
-
-.customers-header__arrow-id {
+.customers-header__id-text::after {
   content: "";
   background-image: url(../img/customers/arrow_downward.svg);
   width: 12px;
   height: 12px;
   background-repeat: no-repeat;
+  transition-duration: 0.6s;
   display: inline-block;
   background-position: right;
-  transform: rotate(180deg);
-  transition-duration: 0.6s;
   margin-left: 2px;
-  margin-top: 2px;
+  top: 1px;
+  position: relative;
   cursor: pointer;
 }
 
-.customers-header__arrow-close {
-  transform: rotate(0deg);
+.customers-header__id-text:hover::after {
+  background-image: url(../img/customers/arrow_downward-hover.svg);
 }
 
-.customers-header__arrow-fio {
+.customers-header__id-text.is-active::after {
+  transition-duration: 0.6s;
+  transform: rotate(180deg);
+}
+
+.customers-header__fio-text::after {
   content: "";
   background-image: url(../img/customers/arrow_downward.svg);
   width: 12px;
@@ -168,19 +169,26 @@
   position: relative;
   background-position: right;
   transition-duration: 0.6s;
-  right: 0px;
-  top: 2px;
+  right: 18px;
+  top: 3px;
   cursor: pointer;
 }
-.customers-header__arrow-fio:hover {
-  color: var(--black);
+
+.customers-header__fio-text:hover::after {
+  background-image: url(../img/customers/arrow_downward-hover.svg);
 }
 
-.customers-header__arrow-open {
+.customers-header__fio-text.is-active::after {
+  transition-duration: 0.6s;
   transform: rotate(180deg);
 }
 
-.customers-header__arrow-data {
+.customers-header__fio-icon {
+  left: 14px;
+  position: relative;
+}
+
+.customers-header__data-text::after {
   content: "";
   background-image: url(../img/customers/arrow_downward.svg);
   width: 12px;
@@ -194,11 +202,16 @@
   cursor: pointer;
 }
 
-.customers-header__arrow-data:hover {
-  color: var(--black);
+.customers-header__data-text:hover::after {
+  background-image: url(../img/customers/arrow_downward-hover.svg);
 }
 
-.customers-header__arrow-change {
+.customers-header__data-text.is-active::after {
+  transition-duration: 0.6s;
+  transform: rotate(180deg);
+}
+
+.customers-header__change-text::after {
   content: "";
   background-image: url(../img/customers/arrow_downward.svg);
   width: 12px;
@@ -212,8 +225,13 @@
   cursor: pointer;
 }
 
-.customers-header__arrow-charge:hover {
-  color: var(--black);
+.customers-header__change-text:hover::after {
+  background-image: url(../img/customers/arrow_downward-hover.svg);
+}
+
+.customers-header__change-text.is-active::after {
+  transition-duration: 0.6s;
+  transform: rotate(180deg);
 }
 
 .customers-col__button {

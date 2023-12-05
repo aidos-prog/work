@@ -1034,15 +1034,6 @@
 
   }
 
-  function pictureList() {
-    async function getCustomersListServer() {
-      const response = await fetch ('http://localhost:3000/api/clients')
-      let data = await response.json()
-      createTable(data)
-    }
-    getCustomersListServer()
-  }
-
   function deleteList() {
     let rows = document.querySelectorAll('.customers-row')
 
@@ -1065,7 +1056,7 @@
           }
         })
         return result
-        // ковырять будем тут нужно вернкть статус
+        
       }
 
       if (i == 0) {
@@ -1082,7 +1073,7 @@
 
           docId.addEventListener('click', function() {     
             deleteList()
-            let arrow = document.querySelector('.customers-header__arrow-id')
+            let arrow = document.querySelector('.customers-header__id-text')
             
             if (i == 1) {
               async function getServerList() {
@@ -1097,7 +1088,7 @@
             }
             getServerList()
             i = i - 1
-            arrow.classList.remove('customers-header__arrow-close')
+            arrow.classList.remove('is-active')
             
             } else {
               async function getServerList() {
@@ -1111,12 +1102,12 @@
             }
                 getServerList()
                 i = i + 1
-                arrow.classList.add('customers-header__arrow-close')
+                arrow.classList.add('is-active')
             }
           })
           docFio.addEventListener('click', function() {     
             deleteList()
-            let arrow = document.querySelector('.customers-header__arrow-fio')
+            let arrow = document.querySelector('.customers-header__fio-text')
             if (i == 1) {
               async function getServerList() {
                 
@@ -1130,7 +1121,7 @@
             }
             getServerList()
             i = i - 1
-            arrow.classList.remove('customers-header__arrow-open')
+            arrow.classList.remove('is-active')
             
             } else {
               async function getServerList() {
@@ -1144,12 +1135,12 @@
             }
                 getServerList()
                 i = i + 1
-                arrow.classList.add('customers-header__arrow-open')
+                arrow.classList.add('is-active')
             }
           })
           docData.addEventListener('click', function() {     
             deleteList()
-            let arrow = document.querySelector('.customers-header__arrow-data')
+            let arrow = document.querySelector('.customers-header__data-text')
             if (i == 1) {
               async function getServerList() {
                 
@@ -1163,7 +1154,7 @@
             }
             getServerList()
             i = i - 1
-            arrow.classList.remove('customers-header__arrow-open')
+            arrow.classList.remove('is-active')
             } else {
               async function getServerList() {
                 
@@ -1176,13 +1167,13 @@
             }
                 getServerList()
                 i = i + 1
-                arrow.classList.add('customers-header__arrow-open')
+                arrow.classList.add('is-active')
             }
                 
             })
             docLastchange.addEventListener('click', function() {     
               deleteList()
-              let arrow = document.querySelector('.customers-header__arrow-change')
+              let arrow = document.querySelector('.customers-header__change-text')
               if (i == 1) {
                 async function getServerList() {
                   
@@ -1196,7 +1187,7 @@
               }
               getServerList()
               i = i - 1
-              arrow.classList.remove('customers-header__arrow-open')
+              arrow.classList.remove('is-active')
               } else {
                 async function getServerList() {
                   
@@ -1209,19 +1200,53 @@
               }
                   getServerList()
                   i = i + 1
-                  arrow.classList.add('customers-header__arrow-open')
+                  arrow.classList.add('is-active')
               }
                 
                 })
 
   }
 
+  function start() {
+    async function getServerList() {
+
+      function ab(arr, key, i) {
+        if (i == 1) {
+          let result = arr.sort(function(a,b) {
+            if (a[key] < b[key]) {
+              return -1
+            }
+          })
+          return result
+          
+        }
+  
+        if (i == 0) {
+          let result = arr.sort(function(a,b) {
+            if (a[key] > b[key]) {
+              return -1
+            }
+          })
+          return result
+        }
+      }
+                
+      const list = await fetch('http://localhost:3000/api/clients')
+      const data = await list.json()
+
+      let newList = ab(data, 'id', 0)
+    
+      createTable(newList)
+      
+    }
+    getServerList()
+  }
   
 
 
   document.addEventListener('DOMContentLoaded', function() {
 
-    pictureList()
+    start()
     addCustomer()
     sort()
 
