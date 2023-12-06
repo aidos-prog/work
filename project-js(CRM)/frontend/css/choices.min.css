@@ -122,11 +122,11 @@
   visibility: hidden;
   z-index: 1;
   position: absolute;
-  width: 98%;
+  width: 100%;
   border: 1px solid #999999;
   top: 100%;
   color: #FFFFFF;
-  margin-top: 2px;
+  margin-top: 0px;
   overflow: hidden;
   word-break: break-all;
   will-change: visibility;
@@ -149,6 +149,11 @@
   padding: 12px 15px;background: #F4F3F6;
   background: #F4F3F6;
   color: #000000;
+  transition-duration: 0.5s;
+}
+
+.choices__list--dropdown .choices__item, .choices__list[aria-expanded] .choices__item:hover {
+  background: #E7E5EB;
 }
 
 .is-selected {
@@ -195,6 +200,11 @@
 .choices__list--dropdown .choices__item--selectable.is-highlighted, .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
   background: #F4F3F6;
   color: #000000;
+  transition-duration: 0.5s;
+}
+
+.choices__list--dropdown .choices__item--selectable.is-highlighted, .choices__list[aria-expanded] .choices__item--selectable.is-highlighted:hover {
+  background: #E7E5EB;
 }
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted::after, .choices__list[aria-expanded] .choices__item--selectable.is-highlighted::after {

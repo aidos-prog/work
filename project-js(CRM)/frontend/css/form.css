@@ -110,6 +110,7 @@
   align-items: center;
   flex-direction: row-reverse;
   cursor: pointer;
+  
 }
 
 .form-button::after {
@@ -120,6 +121,16 @@
   display: block;
   position: relative;
   bottom: 1px;
+}
+
+.form-button:hover::after {
+  background-image: url(../img/footer/add_circle_outline-hover.svg);
+  transition-duration: 0.6s;
+}
+
+.form-button__text:hover {
+  color: #9873FF;
+  transition-duration: 0.6s;
 }
 
 .row-six {
@@ -170,6 +181,19 @@
   border: 0;
   margin-bottom: 8px;
   cursor: pointer;
+  transition-duration: 0.6s;
+}
+
+.form__button-save:hover {
+  background-color: #B89EFF;
+}
+
+.form__button-save:focus {
+  background-color: #8052FF;
+}
+
+.form__button-save:active {
+  background-color: #C8C5D1;
 }
 
 .form__btn-change {
@@ -183,6 +207,19 @@
   border: 0;
   margin-bottom: 8px;
   cursor: pointer;
+  transition-duration: 0.6s;
+}
+
+.form__btn-change:hover {
+  background-color: #B89EFF;
+}
+
+.form__btn-change:focus {
+  background-color: #8052FF;
+}
+
+.form__btn-change:active {
+  background-color: #C8C5D1;
 }
 
 .form__link-cancel {
@@ -230,6 +267,12 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  transition-duration: 0.6s;
+}
+
+.five-button:hover {
+  border: 1px solid #F06A4D;
+  background-image: url(../img/customers/cancel-contact-hover.svg);
 }
 
 .open-line {
@@ -288,6 +331,19 @@
   margin-bottom: 8px;
   cursor: pointer;
   justify-content: center;
+  transition-duration: 0.6s;
+}
+
+.form__btn-delete:hover {
+  background-color: #B89EFF;
+}
+
+.form__btn-delete:focus {
+  background-color: #8052FF;
+}
+
+.form__btn-delete:active {
+  background-color: #C8C5D1;
 }
 
 .form__btn-cancellation {

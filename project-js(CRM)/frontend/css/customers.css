@@ -254,20 +254,37 @@
   height: 16px;
   background-repeat: no-repeat;
   display: block;
+  transition-duration: 0.5s;
 }
+
+.social-vk:hover {
+  background-image: url(../img/customers/vk-hover.svg);
+}
+
 .social-fb {
   background-image: url(../img/customers/fb.svg);
   width: 16px;
   height: 16px;
   background-repeat: no-repeat;
   display: block;
+  transition-duration: 0.5s;
 }
+
+.social-fb:hover {
+  background-image: url(../img/customers/fb-hover.svg);
+}
+
 .social-phone {
   background-image: url(../img/customers/phone.svg);
   width: 16px;
   height: 16px;
   background-repeat: no-repeat;
   display: block;
+  transition-duration: 0.5s;
+}
+
+.social-phone:hover {
+  background-image: url(../img/customers/phone-hover.svg);
 }
 
 .social-mail {
@@ -276,6 +293,11 @@
   height: 16px;
   background-repeat: no-repeat;
   display: block;
+  transition-duration: 0.5s;
+}
+
+.social-mail:hover {
+  background-image: url(../img/customers/mail-hover.svg);
 }
 
 .social-item:not(:last-child) {
@@ -289,6 +311,7 @@
   display: block;
   position: relative;
   text-align: right;
+  transition-duration: 0.6s;
 }
 
 .button-change::after {
@@ -301,6 +324,10 @@
   top: 2px;
 }
 
+.button-change:hover {
+  color: #9873FF;
+}
+
 .button-cancel {
   width: 87px;
   height: 20px;
@@ -308,6 +335,7 @@
   display: block;
   position: relative;
   text-align: right;
+  transition-duration: 0.6s;
 }
 
 .button-cancel::after {
@@ -318,5 +346,9 @@
   position: absolute;
   right: 62px;
   top: 2px;
+}
+
+.button-cancel:hover {
+  color: #F06A4D;
 }
 
