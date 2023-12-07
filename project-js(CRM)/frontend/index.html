@@ -26,6 +26,9 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/choices.min.js" defer></script>
   <script src="js/bootstrap.min.js" defer></script>
+  <script src="js/tippy.popper.min.js" defer></script>
+  <script src="js/tippy.min.js" defer></script>
+  <script src="js/tippy.js" defer></script>
   <script src="js/choices.js" defer></script>
   <script src="js/index.js" defer></script>
 </head>
@@ -53,9 +56,8 @@
   <main>  
     <section class="customers">
       <div class="container">
-        
         <div class="customers-main">
-          
+
         </div>
           <div class="customers-top">
             <h2 class="customers-top__h2">Клиенты</h2>
@@ -179,7 +181,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-main">
-        <button class="footer-button" id="add-customer"><span class="footer-button__text">Добавить клиента</span></button>
+        <button class="footer-button" data-tippy-content="Здесь" id="add-customer"><span class="footer-button__text">Добавить клиента</span></button>
       </div>
     </div>
   </footer>
