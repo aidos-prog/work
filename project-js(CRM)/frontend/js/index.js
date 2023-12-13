@@ -108,6 +108,7 @@
 
         case 'Телефон':
           telefonLink.setAttribute('href', contactsObj[i].value)
+          telefonLink.setAttribute('data-tippy-content', "hello")
           telefonLink.value = contactsObj[i].value
           break
 
@@ -161,6 +162,11 @@
             })
 
     })
+
+      tippy('.social-fb', {
+        content: 'dfghdfh',
+        allowHTML: true,
+      });
 
     let idCustomer = customerObj.id.substr(7, 6)
     let createDataCustomer = customerObj.createdAt.substr(8, 2) + '.' + customerObj.createdAt.substr(5, 2) + '.' + customerObj.createdAt.substr(0, 4) 
@@ -1252,6 +1258,14 @@
 
 
 
+  })
+
+  document.addEventListener('DOMContentLoaded', function() {
+    let button = document.getElementById('button-change')
+  console.log(button)
+  tippy('button', {
+    allowHTML: true,
+  });
   })
 
 })();
