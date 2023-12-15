@@ -85,16 +85,11 @@
     textTime.classList.add('customers-col__text-time')
     textTimeLastchange.classList.add('customers-col__text-time')
 
-    telefon.classList.add('social-item')
-    vk.classList.add('social-item')
-    email.classList.add('social-item')
-    facebook.classList.add('social-item')
-
     list.classList.add('social-list')
-    telefonLink.classList.add('social-phone')
-    vkLink.classList.add('social-vk')
-    emailLink.classList.add('social-mail')
-    facebookLink.classList.add('social-fb')
+    // telefonLink.classList.add('social-phone')
+    // vkLink.classList.add('social-vk')
+    // telefon.classList.add('social-item')
+    // vk.classList.add('social-item')
 
     boxButton.classList.add('col', 'col-lg-2', 'ms-lg-3', 'ps-lg-2', 'customers-col__actions')
     buttonLastchange.classList.add('customers-col__button', 'button-change')
@@ -102,27 +97,52 @@
 
     let contactsObj = customerObj.contacts
 
+
     for (let i = 0; i < contactsObj.length; i++) {
 
       switch(contactsObj[i].type) {
 
         case 'Телефон':
           telefonLink.setAttribute('href', contactsObj[i].value)
-          telefonLink.setAttribute('data-tippy-content', "hello")
-          telefonLink.value = contactsObj[i].value
+          if (telefonLink.hasAttribute('href')) {
+            telefonLink.classList.add('social-phone')
+            telefon.classList.add('social-item')
+          }
+          tippy(telefonLink, {
+            content: 'Телефон' + ': ' + contactsObj[i].value,
+            allowHTML: true,
+          });
           break
 
           case 'Email':
             emailLink.setAttribute('href', contactsObj[i].value)
-             emailLink.value = contactsObj[i].value
+            if (emailLink.hasAttribute('href')) {
+              emailLink.classList.add('social-mail')
+              email.classList.add('social-item')
+            }
+            tippy(emailLink, {
+              content: 'Email' + ': ' + contactsObj[i].value,
+              allowHTML: true,
+            });
              break
 
             case 'Facebook':
               facebookLink.setAttribute('href', contactsObj[i].value)
-                facebookLink.value = contactsObj[i].value
-                break
+
+              if (facebookLink.hasAttribute('href')) {
+                facebookLink.classList.add('social-fb')
+                facebook.classList.add('social-item')
+              }
+              
+              tippy(facebookLink, {
+                content: 'Facebook' + ': ' + contactsObj[i].value,
+                allowHTML: true,
+              });
+              break
+              
       }
     }
+
 
     buttonLastchange.setAttribute('id', 'change-customer')
 
@@ -163,10 +183,7 @@
 
     })
 
-      tippy('.social-fb', {
-        content: 'dfghdfh',
-        allowHTML: true,
-      });
+      
 
     let idCustomer = customerObj.id.substr(7, 6)
     let createDataCustomer = customerObj.createdAt.substr(8, 2) + '.' + customerObj.createdAt.substr(5, 2) + '.' + customerObj.createdAt.substr(0, 4) 
@@ -1255,17 +1272,7 @@
     start()
     addCustomer()
     sort()
-
-
-
   })
 
-  document.addEventListener('DOMContentLoaded', function() {
-    let button = document.getElementById('button-change')
-  console.log(button)
-  tippy('button', {
-    allowHTML: true,
-  });
-  })
 
 })();
