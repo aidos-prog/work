@@ -1097,6 +1097,11 @@
           docId.addEventListener('click', function() {     
             deleteList()
             let arrow = document.querySelector('.customers-header__id-text')
+            let number = document.querySelector('.numbers')
+            let numberone = document.querySelector('.numbers_one')
+            let numbertwo = document.querySelector('.numbers_two')
+            let numbertree = document.querySelector('.numbers_tree')
+            let numberfour = document.querySelector('.numbers_four')
             
             if (i == 1) {
               async function getServerList() {
@@ -1112,6 +1117,11 @@
             getServerList()
             i = i - 1
             arrow.classList.remove('is-active')
+            number.classList.add('down')
+            numberone.classList.add('color_four')
+            numbertwo.classList.add('color_tree')
+            numbertree.classList.add('color_two')
+            numberfour.classList.add('color_one')
             
             } else {
               async function getServerList() {
@@ -1126,6 +1136,11 @@
                 getServerList()
                 i = i + 1
                 arrow.classList.add('is-active')
+                number.classList.remove('down')
+                numberone.classList.remove('color_four')
+                numbertwo.classList.remove('color_tree')
+                numbertree.classList.remove('color_two')
+                numberfour.classList.remove('color_one')
             }
           })
           docFio.addEventListener('click', function() {     
