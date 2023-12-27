@@ -43,7 +43,7 @@
 .customers-table__body {
   background-color: var(--white);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  width: 984px;
+  max-width: 984px;
   display: block;
 }
 
@@ -76,30 +76,51 @@
   max-width: 102px;
 }
 
-.customers-col__up {
+.customers-col__up-id {
   padding-top: 7px;
+  max-width: 80px;
+}
+
+.customers-col__up-fio {
+  padding-top: 7px;
+  max-width: 228px;
+}
+
+.customers-col__up-lastchange {
+  max-width: 148px;
+}
+
+.customers-col__up-contacts {
+  padding-top: 7px;
+  max-width: 135px;
+}
+
+.customers-col__up-actions {
+  padding-top: 7px;
+  max-width: 165px;
 }
 
 .customers-col__up-data {
   line-height: normal;
   padding-bottom: 7px;
+  max-width: 135px;
 }
 
 .customers-col__id {
-  max-width: 62px; 
+  max-width: 80px; 
 }
 
 .customers-col__fio {
-  max-width: 234px;
+  max-width: 241px;
   display: block;
 }
 
 .customers-col__data {
-  max-width: 141px;
+  max-width: 136px;
 }
 
 .customers-col__last-change {
-  max-width: 142px;
+  max-width: 147px;
 }
 
 .customers-col__contacts {
@@ -109,7 +130,7 @@
 .customers-col__actions {
   display: flex;
   align-items: center;
-  width: 210px;
+  min-width: 212px;
   justify-content: space-between;
 }
 
@@ -133,7 +154,7 @@
   position: relative;
 }
 
-.customers-header__text:hover {
+.customers-header__text:hover  {
   color: var(--black);
 }
 
@@ -187,15 +208,17 @@
   position: absolute;
   left: 5px;
   top: 3px;
+  visibility: hidden;
   z-index: 3;
   background-color: rgba(255, 255, 255, 0.25);
   width: 7px;
   height: 58px;
   transition-duration: 0.6s;
+  cursor: pointer;
 }
 
 .open {
-  display: flex;
+  visibility: visible;
 }
 
 .down {
@@ -416,4 +439,78 @@
 
 .button-cancel:hover {
   color: #F06A4D;
+}
+
+
+@media (max-width: 1023px) {
+
+.customers-col__up-fio {
+  max-width: 230px;
+}
+
+.customers-col__up-data {
+  min-width: 103px;
+
+}
+
+.customers-col__up-contacts {
+  max-width: 129px;
+}
+
+.customers-col__up-actions {
+  max-width: 110px;
+}
+
+.customers-col__up-lastchange {
+  min-width: 89px;
+}
+
+.customers-col__text-id {
+  margin-left: 3px;
+}
+
+.customers-col__fio {
+  max-width: 230px;
+}
+
+.customers-col__data {
+  min-width: 102px; 
+  display: flex;
+  flex-direction: column;
+}
+
+.customers-col__actions {
+  max-width: 110px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.customers-col__id {
+  max-width: 81px;
+}
+
+.customers-col__last-change {
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+.customers-col__contacts {
+  max-width: 129px;
+}
+
+.customers-col__text-time {
+  margin-left: 0;
+}
+
+.button-cancel::after {
+  right: 74px;
+}
+
+.button-cancel {
+  text-align: center;
+}
+
 }

@@ -72,11 +72,11 @@
     let facebookLink = document.createElement('a')
 
     row.classList.add('row', 'customers-row')
-    boxId.classList.add('col', 'col-lg-1', 'ms-lg-1', 'ps-lg-2', 'customers-col__id', 'text-center', 'align-self-center')
-    boxFio.classList.add('col', 'col-lg-3', 'ms-lg-2', 'ps-lg-3', 'customers-col__fio', 'align-self-center')
-    boxDataTime.classList.add('col', 'col-lg-2', 'ms-lg-2', 'ps-lg-2', 'customers-col__data', 'align-self-center')
-    boxLastCharge.classList.add('col', 'col-lg-2', 'ms-lg-3', 'ps-lg-2', 'customers-col__last-change', 'align-self-center')
-    boxContact.classList.add('col', 'col-lg-2', 'ms-lg-1', 'ps-lg-2', 'customers-col__contacts', 'align-self-center')
+    boxId.classList.add('col', 'col-lg-1', 'col-md-1', 'ms-lg-0', 'ps-lg-1',  'ms-md-0', 'ps-md-1', 'customers-col__id', 'text-center', 'align-self-center')
+    boxFio.classList.add('col', 'col-lg-3', 'col-md-4','ms-lg-2','ps-lg-3','ms-md-1', 'ps-md-3', 'customers-col__fio', 'align-self-center')
+    boxDataTime.classList.add('col', 'col-lg-2', 'col-md-1','ms-lg-2','ps-lg-2','ms-md-0', 'ps-md-1', 'customers-col__data', 'align-self-center')
+    boxLastCharge.classList.add('col', 'col-lg-2', 'col-md-1','ms-lg-3','ps-lg-2','ms-md-0', 'ps-md-0', 'customers-col__last-change', 'align-self-center')
+    boxContact.classList.add('col', 'col-lg-2', 'col-md-3','ms-lg-1','ps-lg-2','ms-md-0', 'ps-md-2', 'customers-col__contacts', 'align-self-center')
 
     textId.classList.add('customers-col__text', 'customers-col__text-id')
     textFio.classList.add('customers-col__text')
@@ -91,7 +91,7 @@
     // telefon.classList.add('social-item')
     // vk.classList.add('social-item')
 
-    boxButton.classList.add('col', 'col-lg-2', 'ms-lg-3', 'ps-lg-2', 'customers-col__actions')
+    boxButton.classList.add('col', 'col-lg-2', 'col-md-2','ms-lg-3','ps-lg-2','ms-md-0', 'ps-md-2', 'customers-col__actions')
     buttonLastchange.classList.add('customers-col__button', 'button-change')
     buttonCancel.classList.add('customers-col__button', 'button-cancel')
 
@@ -1094,6 +1094,16 @@
           let i = 0
           
 
+          function numbersVisible() {
+            let number = document.querySelector('.numbers')
+            number.classList.add('open')
+            }
+
+          function unvisible() {
+            let number = document.querySelector('.numbers')
+            number.classList.remove('open')
+          }
+
           docId.addEventListener('click', function() {     
             deleteList()
             let arrow = document.querySelector('.customers-header__id-text')
@@ -1122,6 +1132,10 @@
             numbertwo.classList.add('color_tree')
             numbertree.classList.add('color_two')
             numberfour.classList.add('color_one')
+
+            
+            numbersVisible(number)
+            setTimeout(unvisible, 5000)
             
             } else {
               async function getServerList() {
@@ -1141,6 +1155,9 @@
                 numbertwo.classList.remove('color_tree')
                 numbertree.classList.remove('color_two')
                 numberfour.classList.remove('color_one')
+
+                numbersVisible(number)
+                setTimeout(unvisible, 5000)
             }
           })
           docFio.addEventListener('click', function() {     
