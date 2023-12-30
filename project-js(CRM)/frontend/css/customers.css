@@ -78,7 +78,7 @@
 
 .customers-col__up-id {
   padding-top: 7px;
-  max-width: 80px;
+  max-width: 72px;
 }
 
 .customers-col__up-fio {
@@ -107,20 +107,21 @@
 }
 
 .customers-col__id {
-  max-width: 80px; 
+  max-width: 72px; 
 }
 
 .customers-col__fio {
-  max-width: 241px;
+  max-width: 228px;
   display: block;
+  padding-right: 0;
 }
 
 .customers-col__data {
-  max-width: 136px;
+  max-width: 135px;
 }
 
 .customers-col__last-change {
-  max-width: 147px;
+  max-width: 148px;
 }
 
 .customers-col__contacts {
@@ -130,19 +131,19 @@
 .customers-col__actions {
   display: flex;
   align-items: center;
-  min-width: 212px;
+  min-width: 211px;
   justify-content: space-between;
 }
 
 .customers-col__text-id {
-  margin-left: 13px;
+  margin-left: 0px;
   font-size: 12px;
   color: var(--grey);
 }
 
 .customers-col__text-time {
   color: var(--grey);
-  margin-left: 10px;
+  margin-left: 16px;
 }
 
 .customers-header__text {

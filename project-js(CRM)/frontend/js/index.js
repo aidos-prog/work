@@ -73,7 +73,7 @@
 
     row.classList.add('row', 'customers-row')
     boxId.classList.add('col', 'col-lg-1', 'col-md-1', 'ms-lg-0', 'ps-lg-1',  'ms-md-0', 'ps-md-1', 'customers-col__id', 'text-center', 'align-self-center')
-    boxFio.classList.add('col', 'col-lg-3', 'col-md-4','ms-lg-2','ps-lg-3','ms-md-1', 'ps-md-3', 'customers-col__fio', 'align-self-center')
+    boxFio.classList.add('col', 'col-lg-3', 'col-md-4','ms-lg-0','ps-lg-2','ms-md-1', 'ps-md-3', 'customers-col__fio', 'align-self-center')
     boxDataTime.classList.add('col', 'col-lg-2', 'col-md-1','ms-lg-2','ps-lg-2','ms-md-0', 'ps-md-1', 'customers-col__data', 'align-self-center')
     boxLastCharge.classList.add('col', 'col-lg-2', 'col-md-1','ms-lg-3','ps-lg-2','ms-md-0', 'ps-md-0', 'customers-col__last-change', 'align-self-center')
     boxContact.classList.add('col', 'col-lg-2', 'col-md-3','ms-lg-1','ps-lg-2','ms-md-0', 'ps-md-2', 'customers-col__contacts', 'align-self-center')
