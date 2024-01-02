@@ -262,7 +262,7 @@
     let docId = document.getElementById('form-id')
     let btnChange = document.getElementById('btn-save__change')
     let btnSave = document.getElementById('button-save')
-    let footer = document.querySelector('.footer')
+    let table = document.querySelector('.customers-table')
 
     let hCustomer = document.querySelector('.form-h2__newcustomer')
     let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
