@@ -106,7 +106,7 @@
 
 .customers-col__up-data {
   line-height: normal;
-  padding-bottom: 7px;
+  padding-bottom: 4px;
   max-width: 135px;
 }
 
@@ -147,7 +147,7 @@
 
 .customers-col__text-time {
   color: var(--grey);
-  margin-left: 16px;
+  margin-left: 17px;
 }
 
 .customers-header__text {

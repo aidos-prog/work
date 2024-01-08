@@ -374,8 +374,50 @@
     width: 300px;
   }
 
+  .form-surname__input, .form-name__input, .form-middlename__input, .five-line__input {
+    width: 271px;
+  }
+
   .form-container {
-    
+    width: 271px;
+  }
+
+  .row-five__container {
+    width: 271px;
+  }
+
+  .five-line {
+    max-width: 270px;
+  }
+
+  .five-line__input {
+    width: 136px;
+  }
+
+  .choice {
+    width: 110px;
+  }
+
+  .choices {
+    width: 110px;
+  }
+
+  .choices__list--dropdown, .choices__list[aria-expanded] {
+    top: 99%;
+  }
+
+  .choices[data-type*=select-one].is-open::after {
+    top: 40%;
+  }
+
+  .choices__list, .choices__list--dropdown, .is-active {
+    top: 3%
+  }
+
+  .is-active.choices__list--dropdown,
+  .is-active.choices__list[aria-expanded] {
+    visibility: visible;
+    position: absolute;
   }
 }
 
