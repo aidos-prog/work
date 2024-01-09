@@ -615,14 +615,11 @@
                           }
                     }
 
-
-
-                    console.log(contacts)
           async function createCustomerServer(contacts) {
 
             let now = new Date()
             
-            const response = await fetch('http://localhost:3000/api/clients', {
+            const request = await fetch('http://localhost:3000/api/clients', {
               method: 'POST',  
               
               body: JSON.stringify({
@@ -634,8 +631,14 @@
                 contacts: contacts
               })
             })
-            let abc = await response.json()
+            if (request.status === 422) {
+              console.log('abc')
+            }
+            let abc = await request.json()
             createCustomer(abc)
+          //  пилить будем тут
+            
+            
           }
 
           createCustomerServer(contacts)
@@ -1313,6 +1316,17 @@
 
      for (const iterator of data) {
 
+      let one = iterator.surname + ' ' + iterator.lastName
+      let two = iterator.name  + ' ' + iterator.lastName
+      let tree = iterator.surname + ' ' + iterator.name
+
+      let contacts = iterator.contacts
+
+      for (let i = 0; i < contacts.length; i++) {
+        if (contacts[i].value == input.value) {
+          createCustomer(iterator)
+        }
+      }
 
       switch(input.value) {
         
@@ -1325,18 +1339,19 @@
         case iterator.lastName:
           createCustomer(iterator)
 
+        case one:
+          createCustomer(iterator)
+
+        case two:
+          createCustomer(iterator)
+
+        case tree:
+          createCustomer(iterator)
       }
 
-      // пилить тут
-let contact = iterator.contacts
-      
-      for (const item of contact) {
-        item.value
-        console.log(item.value)
+      if (input.value == '') {
+        createTable(data)
       }
-      // console.log()
-      // console.log(iterator.name)
-      // console.log(iterator.lastName)
      }
     
     }
@@ -1356,17 +1371,14 @@ let contact = iterator.contacts
       inter = setTimeout(incrementText, 300)
     }
   }
-  
-
 
   document.addEventListener('DOMContentLoaded', function() {
 
     start()
     addCustomer()
     sort()
-  
 
-let input = document.getElementById('input-search')
+    let input = document.getElementById('input-search')
 
     input.addEventListener('input', search)
   })
