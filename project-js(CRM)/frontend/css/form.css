@@ -87,7 +87,6 @@
 
 .row-five {
   background-color: #F4F3F6;
-  margin-bottom: 25px;
 }
 
 .row-five__container {
@@ -367,6 +366,21 @@
 
 .form-delete__title {
   margin-bottom: 11px;
+}
+
+.validation-messedge {
+  display: block;
+  max-width: 255px;
+  min-height: 42px;
+  visibility: hidden;
+}
+
+.validation-vision {
+  visibility: visible;
+}
+
+.messedge-id {
+
 }
 
 @media (max-width: 767px) {

@@ -408,10 +408,12 @@
 
 
     button.addEventListener('click', function(event) {
+
+
       event.preventDefault()
       saveInfo()
 
-      form.classList.remove('show')
+      // form.classList.remove('show')
       block.classList.remove('block-on')
       header.classList.remove('header-on')
 
@@ -618,6 +620,9 @@
           async function createCustomerServer(contacts) {
 
             let now = new Date()
+
+            let boxMessedge = document.getElementById('validation-messedge')
+            let messedge = document.getElementById('messedge-id')
             
             const request = await fetch('http://localhost:3000/api/clients', {
               method: 'POST',  
@@ -631,14 +636,15 @@
                 contacts: contacts
               })
             })
-            if (request.status === 422) {
-              console.log('abc')
-            }
+            
+           if (request.status === 422) {
+            boxMessedge.classList.add('validation-vision')
+            messedge.append('rere')
+            
+           }
             let abc = await request.json()
             createCustomer(abc)
-          //  пилить будем тут
-            
-            
+          
           }
 
           createCustomerServer(contacts)
