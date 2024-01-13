@@ -349,6 +349,8 @@
     deleteForm.addEventListener('click', function() {
 
       let form = document.querySelector('.form')
+      let messedge = document.getElementById('messedge-id')
+          
       form.classList.remove('show')
       block.classList.remove('block-on')
       header.classList.remove('header-on')
@@ -366,11 +368,14 @@
       twoInput.innerHTML = ''
       treeInput.innerHTML = ''
       fourInput.innerHTML = ''
+      messedge.innerHTML = ''
 
       oneLine.classList.remove("open-line")
       twoLine.classList.remove("open-line")
       treeLine.classList.remove("open-line")
       fourLine.classList.remove("open-line")
+
+
 
     })
 
@@ -387,9 +392,6 @@
   function saveBtn() {
     
     let button = document.getElementById('button-save')
-    let block = document.querySelector('.block')
-    let header = document.querySelector('.header')
-    let form = document.querySelector('.form') 
     let docId = document.getElementById('form-id')
     let inputCustomers = infoItems()
 
@@ -409,13 +411,8 @@
 
     button.addEventListener('click', function(event) {
 
-
       event.preventDefault()
       saveInfo()
-
-      // form.classList.remove('show')
-      block.classList.remove('block-on')
-      header.classList.remove('header-on')
 
       docId.innerHTML = ''
 
@@ -623,6 +620,9 @@
 
             let boxMessedge = document.getElementById('validation-messedge')
             let messedge = document.getElementById('messedge-id')
+            let block = document.querySelector('.block')
+            let header = document.querySelector('.header')
+            let form = document.querySelector('.form') 
             
             const request = await fetch('http://localhost:3000/api/clients', {
               method: 'POST',  
@@ -636,20 +636,41 @@
                 contacts: contacts
               })
             })
-            
-           if (request.status === 422) {
-            boxMessedge.classList.add('validation-vision')
-            messedge.append('rere')
-            
-           }
             let abc = await request.json()
             createCustomer(abc)
-          
+            switch(request.status) {
+              case(422): 
+               boxMessedge.classList.add('validation-vision')
+                messedge.append('Объект, переданный в теле запроса, не прошёл валидацию. Тело ответа содержит массив с описаниями ошибок валидации.')
+                return
+                case(404): 
+               boxMessedge.classList.add('validation-vision')
+                messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
+                return
+                case(500): 
+               boxMessedge.classList.add('validation-vision')
+                messedge.append('Странно, но сервер сломался.')
+                return
+                case(200): 
+                form.classList.remove('show')
+                block.classList.remove('block-on')
+                header.classList.remove('header-on')
+                return
+                case(201): 
+                form.classList.remove('show')
+                block.classList.remove('block-on')
+                header.classList.remove('header-on')
+                return
+            }
           }
 
+          let messedge = document.getElementById('messedge-id')
+          messedge.innerHTML = ''
+        
           createCustomerServer(contacts)
 
           docId.innerHTML = ''
+
   }
 
   function changeCustomerForm(customerObj) {
@@ -1053,8 +1074,7 @@
                 contacts: contacts
               })
             })
-            let abc = await response.json()
-            console.log(abc)
+
 
             oneInput.value = ''
             twoInput.value = ''

@@ -380,7 +380,10 @@
 }
 
 .messedge-id {
-
+  color: #F06A4D;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 400;
 }
 
 @media (max-width: 767px) {
