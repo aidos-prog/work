@@ -103,7 +103,7 @@
       switch(contactsObj[i].type) {
 
         case 'Телефон':
-          telefonLink.setAttribute('href', contactsObj[i].value)
+          telefonLink.setAttribute('href', 'tel:' + contactsObj[i].value)
           if (telefonLink.hasAttribute('href')) {
             telefonLink.classList.add('social-phone')
             telefon.classList.add('social-item')
@@ -244,7 +244,6 @@
           method: 'DELETE'
         })
          abc = await response.json()
-          console.log(abc)
   }
 
   function createTable(list) {
@@ -636,8 +635,7 @@
                 contacts: contacts
               })
             })
-            let abc = await request.json()
-            createCustomer(abc)
+            
             switch(request.status) {
               case(422): 
                boxMessedge.classList.add('validation-vision')
@@ -670,6 +668,9 @@
           createCustomerServer(contacts)
 
           docId.innerHTML = ''
+
+          deleteList()
+          start()
 
   }
 
@@ -715,13 +716,13 @@
     doctreeInput.value = ''
     docfourInput.value = ''
 
-      docname.removeAttribute('value')
-      docsurname.removeAttribute('value')
-      doclastname.removeAttribute('value')
-      doconeInput.removeAttribute('value')
-      doctwoInput.removeAttribute('value')
-      doctreeInput.removeAttribute('value')
-      docfourInput.removeAttribute('value')
+      // docname.removeAttribute('value')
+      // docsurname.removeAttribute('value')
+      // doclastname.removeAttribute('value')
+      // doconeInput.removeAttribute('value')
+      // doctwoInput.removeAttribute('value')
+      // doctreeInput.removeAttribute('value')
+      // docfourInput.removeAttribute('value')
     
         oneLine.classList.remove("open-line")
         twoLine.classList.remove("open-line")
@@ -745,8 +746,11 @@
       let createCustomer = list.createdAt
 
       docsurname.setAttribute('value', surname)
+      docsurname.value = surname
       docname.setAttribute('value', name)
+      docname.value = name
       doclastname.setAttribute('value', lastName)
+      doclastname.value = lastName
       docformIdText.append(id)
 
       elementone[0].setAttribute('data-value', 'Телефон')
