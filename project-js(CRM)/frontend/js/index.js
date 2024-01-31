@@ -13,6 +13,12 @@
     let twoInput = document.getElementById('line-inputTwo')
     let treeInput = document.getElementById('line-inputTree')
     let fourInput = document.getElementById('line-inputFour')
+    let fiveInput = document.getElementById('line-inputFive')
+    let sixInput = document.getElementById('line-inputSix')
+    let sevenInput = document.getElementById('line-inputSeven')
+    let eightInput = document.getElementById('line-inputEight')
+    let nineInput = document.getElementById('line-inputNine')
+    let tenInput = document.getElementById('line-inputTen')
     let oneSelect = document.getElementById('selectOne')
     let twoSelect = document.getElementById('selectTwo')
     let treeSelect = document.getElementById('selectTree')
@@ -31,6 +37,12 @@
       twoInput,
       treeInput,
       fourInput,
+      fiveInput,
+      sixInput,
+      sevenInput,
+      eightInput,
+      nineInput,
+      tenInput,
       oneSelect,
       twoSelect,
       treeSelect,
@@ -283,6 +295,12 @@
     let twoLine = document.getElementById('lineTwo')
     let treeLine = document.getElementById('lineTree')
     let fourLine = document.getElementById('lineFour')
+    let fiveLine = document.getElementById('lineFive')
+    let sixLine = document.getElementById('lineSix')
+    let sevenLine = document.getElementById('lineSeven')
+    let eightLine = document.getElementById('lineEight')
+    let nineLine = document.getElementById('lineNine')
+    let tenLine = document.getElementById('lineTen')
 
     let oneInput = document.getElementById('line-inputOne')
     let twoInput = document.getElementById('line-inputTwo')
@@ -313,11 +331,12 @@
     let doctwoInput = items.twoInput
     let doctreeInput = items.treeInput
     let docfourInput = items.fourInput
-
-    let oneLine = document.getElementById('lineOne')
-    let twoLine = document.getElementById('lineTwo')
-    let treeLine = document.getElementById('lineTree')
-    let fourLine = document.getElementById('lineFour')
+    let docfiveInput = items.fiveInput
+    let docsixInput = items.sixInput
+    let docsevenInput = items.sevenInput
+    let doceightInput = items.eightInput
+    let docnineInput = items.nineInput
+    let doctenInput = items.tenInput
     
     docformIdText.innerHTML = ''
 
@@ -325,6 +344,12 @@
     doctwoInput.value = ''
     doctreeInput.value = ''
     docfourInput.value = ''
+    docfiveInput.value = ''
+    docsixInput.value = ''
+    docsevenInput.value = ''
+    doceightInput.value = ''
+    docnineInput.value = ''
+    doctenInput.value = ''
     docname.value = ''
     docsurname.value = ''
     doclastname.value = ''
@@ -333,6 +358,12 @@
         twoLine.classList.remove("open-line")
         treeLine.classList.remove("open-line")
         fourLine.classList.remove("open-line")
+        fiveLine.classList.remove("open-line")
+        sixLine.classList.remove("open-line")
+        sevenLine.classList.remove("open-line")
+        eightLine.classList.remove("open-line")
+        nineLine.classList.remove("open-line")
+        tenLine.classList.remove("open-line")
 
       docId.innerHTML = ''
 
@@ -373,6 +404,12 @@
       twoLine.classList.remove("open-line")
       treeLine.classList.remove("open-line")
       fourLine.classList.remove("open-line")
+      fiveLine.classList.remove("open-line")
+      sixLine.classList.remove("open-line")
+      sevenLine.classList.remove("open-line")
+      eightLine.classList.remove("open-line")
+      nineLine.classList.remove("open-line")
+      tenLine.classList.remove("open-line")
 
 
 
@@ -398,6 +435,12 @@
     let twoLine = document.getElementById('lineTwo')
     let treeLine = document.getElementById('lineTree')
     let fourLine = document.getElementById('lineFour')
+    let fiveLine = document.getElementById('lineFive')
+    let sixLine = document.getElementById('lineSix')
+    let sevenLine = document.getElementById('lineSeven')
+    let eightLine = document.getElementById('lineEight')
+    let nineLine = document.getElementById('lineNine')
+    let tenLine = document.getElementById('lineTen')
 
     let docname = inputCustomers.name
     let docsurname = inputCustomers.surname
@@ -406,6 +449,12 @@
     let doctwoInput = inputCustomers.twoInput
     let doctreeInput = inputCustomers.treeInput
     let docfourInput = inputCustomers.fourInput
+    let docfiveInput = inputCustomers.fiveInput
+    let docsixInput = inputCustomers.sixInput
+    let docsevenInput = inputCustomers.sevenInput
+    let doceightInput = inputCustomers.eightInput
+    let docnineInput = inputCustomers.nineInput
+    let doctenInput = inputCustomers.tenInput
 
 
     button.addEventListener('click', function(event) {
@@ -422,11 +471,23 @@
       doctwoInput.removeAttribute('value')
       doctreeInput.removeAttribute('value')
       docfourInput.removeAttribute('value')
+      docfiveInput.removeAttribute('value')
+      docsixInput.removeAttribute('value')
+      docsevenInput.removeAttribute('value')
+      doceightInput.removeAttribute('value')
+      docnineInput.removeAttribute('value')
+      doctenInput.removeAttribute('value')
 
         oneLine.classList.remove("open-line")
         twoLine.classList.remove("open-line")
         treeLine.classList.remove("open-line")
         fourLine.classList.remove("open-line")
+        fiveLine.classList.remove("open-line")
+        sixLine.classList.remove("open-line")
+        sevenLine.classList.remove("open-line")
+        eightLine.classList.remove("open-line")
+        nineLine.classList.remove("open-line")
+        tenLine.classList.remove("open-line")
     
     })
     
@@ -445,173 +506,126 @@
       let docLineTwo = document.querySelectorAll('.lineTwo')
       let docLineTree = document.querySelectorAll('.lineTree')
       let docLineFour = document.querySelectorAll('.lineFour')
+      let docLineFive = document.querySelectorAll('.lineFive')
+      let docLineSix = document.querySelectorAll('.lineSix')
+      let docLineSeven = document.querySelectorAll('.lineSeven')
+      let docLineEight = document.querySelectorAll('.lineEight')
+      let docLineNine = document.querySelectorAll('.lineNine')
+      let docLineTen = document.querySelectorAll('.lineTen')
 
-      let elementone = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
-      let elementtwo = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
-      let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
-      let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
+      let oneInput = customers.oneInput.value
+      let twoInput = customers.twoInput.value
+      let treeInput = customers.treeInput.value
+      let fourInput = customers.fourInput.value
+      let fiveInput = customers.fiveInput.value
+      let sixInput = customers.sixInput.value
+      let sevenInput = customers.sevenInput.value
+      let eightInput = customers.eightInput.value
+      let nineInput = customers.nineInput.value
+      let tenInput = customers.tenInput.value
 
-      let oneInput = customers.oneInput
-      let twoInput = customers.twoInput
-      let treeInput = customers.treeInput
-      let fourInput = customers.fourInput
+      let oneSelect = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
+      let twoSelect = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
+      let treeSelect = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
+      let fourSelect = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
+      let fiveSelect = docLineFive[0].getElementsByClassName('choices__item choices__item--selectable')
+      let sixSelect = docLineSix[0].getElementsByClassName('choices__item choices__item--selectable')
+      let sevenSelect = docLineSeven[0].getElementsByClassName('choices__item choices__item--selectable')
+      let eightSelect = docLineEight[0].getElementsByClassName('choices__item choices__item--selectable')
+      let nineSelect = docLineNine[0].getElementsByClassName('choices__item choices__item--selectable')
+      let tenSelect = docLineTen[0].getElementsByClassName('choices__item choices__item--selectable')
 
-      let oneSelect = elementone
-      let twoSelect = elementtwo
-      let treeSelect = elementtree
-      let fourSelect = elementfour
+    let oneSelectValue = oneSelect[0].getAttribute('data-value')
+    let twoSelectValue = twoSelect[0].getAttribute('data-value')
+    let treeSelectValue = treeSelect[0].getAttribute('data-value')
+    let fourSelectValue = fourSelect[0].getAttribute('data-value')
+    let fiveSelectValue = fiveSelect[0].getAttribute('data-value')
+    let sixSelectValue = sixSelect[0].getAttribute('data-value')
+    let sevenSelectValue = sevenSelect[0].getAttribute('data-value')
+    let eightSelectValue = eightSelect[0].getAttribute('data-value')
+    let nineSelectValue = nineSelect[0].getAttribute('data-value')
+    let tenSelectValue = tenSelect[0].getAttribute('data-value')
 
-      let contacts = []
+      let selectInputList = []
 
-          switch (oneSelect[0].getAttribute('data-value')) {
-              case 'Телефон': 
+      selectInputList.push(oneSelectValue)
+      selectInputList.push(twoSelectValue)
+      selectInputList.push(treeSelectValue)
+      selectInputList.push(fourSelectValue)
+      selectInputList.push(fiveSelectValue)
+      selectInputList.push(sixSelectValue)
+      selectInputList.push(sevenSelectValue)
+      selectInputList.push(eightSelectValue)
+      selectInputList.push(nineSelectValue)
+      selectInputList.push(tenSelectValue) 
+      
+      let inputList = []
 
-              if (oneInput.value.trim() === '') {
-                break
-              }
+      inputList.push(oneInput)
+      inputList.push(twoInput)
+      inputList.push(treeInput)
+      inputList.push(fourInput)
+      inputList.push(fiveInput)
+      inputList.push(sixInput)
+      inputList.push(sevenInput)
+      inputList.push(eightInput)
+      inputList.push(nineInput)
+      inputList.push(tenInput)
+     
+      function createContacts(selectInputList, inputList) {
+        let contacts = []
 
-              if (oneInput.value.trim() !== '') {
-                let contactTel = {}
+        for (let i = 0; i < 11; i++) {
+          switch (selectInputList[i]) {
+            case 'Телефон': 
 
-                contactTel.type = 'Телефон'
-                contactTel.value = oneInput.value.trim()
-                contacts.push(contactTel)
-                break
-              }
-
-                case 'Email':
-                  if (oneInput.value.trim() === '') {
-                    break
-                  }
-
-                  if (oneInput.value.trim() !== '') {
-                    
-                    let concactEmail = {}
-
-                    concactEmail.type = 'Email'
-                    concactEmail.value = oneInput.value.trim()
-                    contacts.push(concactEmail)
-                    break
-                  }
-
-                  case 'Facebook':
-                    if (oneInput.value.trim() === '') {
-                      break
-                    }
-
-                    if (oneInput.value.trim() !== '') {
-                      let contactFacebook = {}
-
-                      contactFacebook.type = 'Facebook'
-                      contactFacebook.value = oneInput.value.trim()
-                      contacts.push(contactFacebook)
-                      break
-                    }
+            if (inputList[i] === '') {
+              break
             }
 
-              switch (twoSelect[0].getAttribute('data-value')) {
-                
-                case 'Телефон': 
+            if (inputList[i] !== '') {
+              let contactTel = {}
 
-                    if (twoInput.value.trim() === '') {
-                      break
-                    }
-                    
-                    let contactTel = {}
-      
-                    if (twoInput.value.trim() !== '') {
-                      contactTel.type = 'Телефон'
-                      contactTel.value = twoInput.value.trim()
-                      contacts.push(contactTel)
-      
-                      break
-                    }
+              contactTel.type = 'Телефон'
+              contactTel.value = inputList[i]
+              contacts.push(contactTel)
+              break
+            }
 
-                        case 'Email':
+              case 'Email':
+                if (inputList[i] === '') {
+                  break
+                }
 
-                        if (twoInput.value.trim() === '') {
-                          break
-                        }
+                if (inputList[i] !== '') {
+                  
+                  let concactEmail = {}
 
-                        if (twoInput.value.trim() !== '') {
+                  concactEmail.type = 'Email'
+                  concactEmail.value = inputList[i]
+                  contacts.push(concactEmail)
+                  break
+                }
 
-                          let concactEmail = {}
+                case 'Facebook':
+                  if (inputList[i] === '') {
+                    break
+                  }
 
-                        concactEmail.type = 'Email'
-                        concactEmail.value = twoInput.value.trim()
-                        contacts.push(concactEmail)
-                          break
-                        }
+                  if (inputList[i] !== '') {
+                    let contactFacebook = {}
 
+                    contactFacebook.type = 'Facebook'
+                    contactFacebook.value = inputList[i]
+                    contacts.push(contactFacebook)
+                    break
+                  }
+          }
 
-                        case 'Facebook':
-
-                        if (twoInput.value.trim() === '') {
-                          break
-                        }
-
-                        if (twoInput.value.trim() !== '') {
-                           let contactFacebook = {}
-
-                          contactFacebook.type = 'Facebook'
-                          contactFacebook.value = twoInput.value.trim()
-                          contacts.push(contactFacebook)
-
-                          break
-                        }
-
-                    }
-
-                    switch (treeSelect[0].getAttribute('data-value')) {
-                      case 'Телефон': 
-
-                      if (treeInput.value.trim() === '') {
-                        break
-                      }
-
-                      if (treeInput.value.trim() !== '') {
-                        
-                      let contactTel = {}
-
-                      contactTel.type = 'Телефон'
-                      contactTel.value = treeInput.value.trim()
-                      contacts.push(contactTel)
-
-                        break
-                      }
-
-                        case 'Email':
-
-                        if (treeInput.value.trim() === '') {
-                          break
-                        }
-
-                        if (treeInput.value.trim() !== '') {
-                         let concactEmail = {}
-
-                        concactEmail.type = 'Email'
-                        concactEmail.value = treeInput.value.trim()
-                        contacts.push(concactEmail)
-
-                        break
-                        }
-
-                          case 'Facebook':
-
-                          if (treeInput.value.trim() === '') {
-                            break
-                          }
-
-                          if (treeInput.value.trim() !== '') {
-                            let contactFacebook = {}
-
-                          contactFacebook.type = 'Facebook'
-                          contactFacebook.value = treeInput.value.trim()
-                          contacts.push(contactFacebook)
-
-                          break
-                          }
-                    }
+        }
+        
+      return contacts
+      }
 
           async function createCustomerServer(contacts) {
 
@@ -639,7 +653,7 @@
             switch(request.status) {
               case(422): 
                boxMessedge.classList.add('validation-vision')
-                messedge.append('Объект, переданный в теле запроса, не прошёл валидацию. Тело ответа содержит массив с описаниями ошибок валидации.')
+                messedge.append('Введите ФИО и контакты.')
                 return
                 case(404): 
                boxMessedge.classList.add('validation-vision')
@@ -665,7 +679,7 @@
           let messedge = document.getElementById('messedge-id')
           messedge.innerHTML = ''
         
-          createCustomerServer(contacts)
+          createCustomerServer(createContacts(selectInputList, inputList))
 
           docId.innerHTML = ''
 
@@ -715,14 +729,6 @@
     doctwoInput.value = ''
     doctreeInput.value = ''
     docfourInput.value = ''
-
-      // docname.removeAttribute('value')
-      // docsurname.removeAttribute('value')
-      // doclastname.removeAttribute('value')
-      // doconeInput.removeAttribute('value')
-      // doctwoInput.removeAttribute('value')
-      // doctreeInput.removeAttribute('value')
-      // docfourInput.removeAttribute('value')
     
         oneLine.classList.remove("open-line")
         twoLine.classList.remove("open-line")
