@@ -73,15 +73,6 @@
     let textTimeLastchange = document.createElement('span')
 
     let list = document.createElement('ul')
-    let telefon = document.createElement('li')
-    let vk = document.createElement('li')
-    let email = document.createElement('li')
-    let facebook = document.createElement('li')
-
-    let telefonLink = document.createElement('a')
-    let vkLink = document.createElement('a')
-    let emailLink = document.createElement('a')
-    let facebookLink = document.createElement('a')
 
     row.classList.add('row', 'customers-row')
     boxId.classList.add('col', 'col-lg-1', 'col-md-1', 'ms-lg-0', 'ps-lg-2',  'ms-md-0', 'ps-md-1', 'customers-col__id', 'text-center', 'align-self-center')
@@ -98,10 +89,6 @@
     textTimeLastchange.classList.add('customers-col__text-time')
 
     list.classList.add('social-list')
-    // telefonLink.classList.add('social-phone')
-    // vkLink.classList.add('social-vk')
-    // telefon.classList.add('social-item')
-    // vk.classList.add('social-item')
 
     boxButton.classList.add('col', 'col-lg-2', 'col-md-2','ms-lg-3','ps-lg-2','ms-md-0', 'ps-md-2', 'customers-col__actions')
     buttonLastchange.classList.add('customers-col__button', 'button-change')
@@ -109,12 +96,16 @@
 
     let contactsObj = customerObj.contacts
 
+    console.log(contactsObj)
+
 
     for (let i = 0; i < contactsObj.length; i++) {
 
       switch(contactsObj[i].type) {
 
         case 'Телефон':
+          let telefon = document.createElement('li')
+          let telefonLink = document.createElement('a')
           telefonLink.setAttribute('href', 'tel:' + contactsObj[i].value)
           if (telefonLink.hasAttribute('href')) {
             telefonLink.classList.add('social-phone')
@@ -124,9 +115,15 @@
             content: 'Телефон' + ': ' + contactsObj[i].value,
             allowHTML: true,
           });
+          telefon.append(telefonLink)
+          list.append(telefon)
+
           break
 
           case 'Email':
+            let email = document.createElement('li')
+            let emailLink = document.createElement('a')
+
             emailLink.setAttribute('href', contactsObj[i].value)
             if (emailLink.hasAttribute('href')) {
               emailLink.classList.add('social-mail')
@@ -136,9 +133,15 @@
               content: 'Email' + ': ' + contactsObj[i].value,
               allowHTML: true,
             });
+            email.append(emailLink)
+            list.append(email)
+
              break
 
             case 'Facebook':
+              let facebook = document.createElement('li')
+              let facebookLink = document.createElement('a')
+
               facebookLink.setAttribute('href', contactsObj[i].value)
 
               if (facebookLink.hasAttribute('href')) {
@@ -150,6 +153,28 @@
                 content: 'Facebook' + ': ' + contactsObj[i].value,
                 allowHTML: true,
               });
+              facebook.append(facebookLink)
+              list.append(facebook)
+              break
+
+              case 'VK':
+              let vk = document.createElement('li')
+              let vkLink = document.createElement('a')
+
+              vkLink.setAttribute('href', contactsObj[i].value)
+
+              if (vkLink.hasAttribute('href')) {
+                vkLink.classList.add('social-vk')
+                vk.classList.add('social-item')
+              }
+              
+              tippy(vkLink, {
+                content: 'VK' + ': ' + contactsObj[i].value,
+                allowHTML: true,
+              });
+              vk.append(vkLink)
+              list.append(vk)
+
               break
               
       }
@@ -221,16 +246,6 @@
     boxDataTime.append(textTime)
     boxLastCharge.append(textDataLastchange)
     boxLastCharge.append(textTimeLastchange)
-
-    telefon.append(telefonLink)
-    vk.append(vkLink)
-    email.append(emailLink)
-    facebook.append(facebookLink)
-
-    list.append(vk)
-    list.append(facebook)
-    list.append(telefon)
-    list.append(email)
 
     boxContact.append(list)
     boxButton.append(buttonLastchange)
@@ -410,9 +425,6 @@
       eightLine.classList.remove("open-line")
       nineLine.classList.remove("open-line")
       tenLine.classList.remove("open-line")
-
-
-
     })
 
     deleteFormTwo.addEventListener('click', function() {
@@ -620,6 +632,20 @@
                     contacts.push(contactFacebook)
                     break
                   }
+
+                  case 'VK':
+                  if (inputList[i] === '') {
+                    break
+                  }
+
+                  if (inputList[i] !== '') {
+                    let contactVK = {}
+
+                    contactVK.type = 'VK'
+                    contactVK.value = inputList[i]
+                    contacts.push(contactVK)
+                    break
+                  }
           }
 
         }
@@ -717,7 +743,7 @@
     let doctwoInput = items.twoInput
     let doctreeInput = items.treeInput
     let docfourInput = items.fourInput
-    let docform = items.form
+
 
     let oneLine = document.getElementById('lineOne')
     let twoLine = document.getElementById('lineTwo')
