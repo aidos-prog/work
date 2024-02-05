@@ -96,9 +96,6 @@
 
     let contactsObj = customerObj.contacts
 
-    console.log(contactsObj)
-
-
     for (let i = 0; i < contactsObj.length; i++) {
 
       switch(contactsObj[i].type) {
@@ -743,19 +740,37 @@
     let doctwoInput = items.twoInput
     let doctreeInput = items.treeInput
     let docfourInput = items.fourInput
+    let docfiveInput = items.fiveInput
+    let docsixInput = items.sixInput
+    let docsevenInput = items.sevenInput
+    let doceightInput = items.eightInput
+    let docnineInput = items.nineInput
+    let doctenInput = items.tenInput
+
+    let docInfo = []
+
+    docInfo.push(doconeInput,doctwoInput,doctreeInput,docfourInput,docfiveInput,docsixInput,docsevenInput,doceightInput,docnineInput,doctenInput)
 
 
     let oneLine = document.getElementById('lineOne')
     let twoLine = document.getElementById('lineTwo')
     let treeLine = document.getElementById('lineTree')
     let fourLine = document.getElementById('lineFour')
+    let fiveLine = document.getElementById('lineFive')
+    let sixLine = document.getElementById('lineSix')
+    let sevenLine = document.getElementById('lineSeven')
+    let eightLine = document.getElementById('lineEight')
+    let nineLine = document.getElementById('lineNine')
+    let tenLine = document.getElementById('lineTen')
+
+    let lineList = []
+
+    lineList.push(oneLine,twoLine,treeLine,fourLine,fiveLine,sixLine,sevenLine,eightLine,nineLine,tenLine)
+
+    
 
     docformIdText.innerHTML = ''
-    doconeInput.value = ''
-    doctwoInput.value = ''
-    doctreeInput.value = ''
-    docfourInput.value = ''
-    
+
         oneLine.classList.remove("open-line")
         twoLine.classList.remove("open-line")
         treeLine.classList.remove("open-line")
@@ -765,11 +780,23 @@
     let docLineTwo = document.querySelectorAll('.lineTwo')
     let docLineTree = document.querySelectorAll('.lineTree')
     let docLineFour = document.querySelectorAll('.lineFour')
+    let docLineFive = document.querySelectorAll('.lineFour')
+    let docLineSix = document.querySelectorAll('.lineFour')
+    let docLineSeven = document.querySelectorAll('.lineFour')
+    let docLineEight = document.querySelectorAll('.lineFour')
+    let docLineNine = document.querySelectorAll('.lineFour')
+    let docLineTen = document.querySelectorAll('.lineFour')
 
     let elementone = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
     let elementtwo = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
     let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
     let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementfive = docLineFive[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementsix = docLineSix[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementseven = docLineSeven[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementeight = docLineEight[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementnine = docLineNine[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementten = docLineTen[0].getElementsByClassName('choices__item choices__item--selectable')
 
       let surname = list.surname
       let name = list.name
@@ -791,6 +818,8 @@
       elementtwo[0].innerHTML = 'Email'
       elementtree[0].setAttribute('data-value', 'Facebook')
       elementtree[0].innerHTML = 'Facebook'
+      elementfour[0].setAttribute('data-value', 'VK')
+      elementfour[0].innerHTML = 'VK'
 
     for (let i = 0; i < contacts.length; i++) {
 
@@ -816,6 +845,13 @@
               doctreeInput.value = contacts[i].value
               treeLine.classList.add('open-line')
               break
+
+              case 'VK':
+              docfourInput.setAttribute('value', contacts[i].value)
+              docfourInput.append(contacts[i].value)
+              docfourInput.value = contacts[i].value
+              fourLine.classList.add('open-line')
+              break
       } 
     }
 
@@ -831,6 +867,9 @@
       btnCancellation.classList.add('close')
 
       btnSaveChange.addEventListener('click', function(event) {
+        // пилить будем тут
+        // нужно изменить кнопку
+        // задать переменные на изменение и сохранение
         event.preventDefault()
         changedInfoCustomer(createCustomer)
         form.classList.remove('show')
@@ -842,24 +881,20 @@
       docname.removeAttribute('value')
       docsurname.removeAttribute('value')
       doclastname.removeAttribute('value')
-      doconeInput.removeAttribute('value')
-      doctwoInput.removeAttribute('value')
-      doctreeInput.removeAttribute('value')
-      docfourInput.removeAttribute('value')
+
 
         oneLine.classList.remove("open-line")
         twoLine.classList.remove("open-line")
         treeLine.classList.remove("open-line")
         fourLine.classList.remove("open-line")
 
-        doconeInput.value = ''
-        doctwoInput.value = ''
-        doctreeInput.value = ''
-        docfourInput.value = ''
-        
+      for (let i = 0; i < 10; i++) {
+        docInfo[i].innerHTML = ''
+        docInfo[i].removeAttribute('value')
+      }
 
-
-      })
+      
+    })
 
       btnCancelCustomer.addEventListener('click', function(event) {
 
