@@ -719,225 +719,221 @@
       const response = await fetch('http://localhost:3000/api/clients/' + id)
       const list = await response.json()
 
-    let block = document.querySelector('.block')
-    let header = document.querySelector('.header')
-    let form = document.querySelector('.form')
-    let hCustomer = document.querySelector('.form-h2__newcustomer')
-    let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
-    let formid = document.querySelector('.form-id__case')
-    let btnSave = document.querySelector('.form__button-save')
-    let btnSaveChange = document.querySelector('.form__btn-change')
-    let docId = document.getElementById('form-id')
-    let btnCancelCustomer = document.getElementById('btn-cancel__change')
-    let btnCancellation = document.getElementById('btn-cancellation')
-   
-    let items = infoItems()
-    let docsurname = items.surname
-    let docname = items.name
-    let doclastname = items.middlename
-    let docformIdText = items.id
-    let doconeInput = items.oneInput
-    let doctwoInput = items.twoInput
-    let doctreeInput = items.treeInput
-    let docfourInput = items.fourInput
-    let docfiveInput = items.fiveInput
-    let docsixInput = items.sixInput
-    let docsevenInput = items.sevenInput
-    let doceightInput = items.eightInput
-    let docnineInput = items.nineInput
-    let doctenInput = items.tenInput
+        let block = document.querySelector('.block')
+        let header = document.querySelector('.header')
+        let form = document.querySelector('.form')
+        let hCustomer = document.querySelector('.form-h2__newcustomer')
+        let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
+        let formid = document.querySelector('.form-id__case')
+        let btnSave = document.querySelector('.form__button-save')
+        let btnSaveChange = document.getElementById('btn-save__change')
+        let docId = document.getElementById('form-id')
+        let btnCancelCustomer = document.getElementById('btn-cancel__change')
+        let btnCancellation = document.getElementById('btn-cancellation')
+      
+        let items = infoItems()
+        let docsurname = items.surname
+        let docname = items.name
+        let doclastname = items.middlename
+        let docformIdText = items.id
+        let doconeInput = items.oneInput
+        let doctwoInput = items.twoInput
+        let doctreeInput = items.treeInput
+        let docfourInput = items.fourInput
+        let docfiveInput = items.fiveInput
+        let docsixInput = items.sixInput
+        let docsevenInput = items.sevenInput
+        let doceightInput = items.eightInput
+        let docnineInput = items.nineInput
+        let doctenInput = items.tenInput
 
-    let docInfo = []
+        let docInfo = []
 
-    docInfo.push(doconeInput,doctwoInput,doctreeInput,docfourInput,docfiveInput,docsixInput,docsevenInput,doceightInput,docnineInput,doctenInput)
+        docInfo.push(doconeInput,doctwoInput,doctreeInput,docfourInput,docfiveInput,docsixInput,docsevenInput,doceightInput,docnineInput,doctenInput)
 
+        let oneLine = document.getElementById('lineOne')
+        let twoLine = document.getElementById('lineTwo')
+        let treeLine = document.getElementById('lineTree')
+        let fourLine = document.getElementById('lineFour')
+        let fiveLine = document.getElementById('lineFive')
+        let sixLine = document.getElementById('lineSix')
+        let sevenLine = document.getElementById('lineSeven')
+        let eightLine = document.getElementById('lineEight')
+        let nineLine = document.getElementById('lineNine')
+        let tenLine = document.getElementById('lineTen')
 
-    let oneLine = document.getElementById('lineOne')
-    let twoLine = document.getElementById('lineTwo')
-    let treeLine = document.getElementById('lineTree')
-    let fourLine = document.getElementById('lineFour')
-    let fiveLine = document.getElementById('lineFive')
-    let sixLine = document.getElementById('lineSix')
-    let sevenLine = document.getElementById('lineSeven')
-    let eightLine = document.getElementById('lineEight')
-    let nineLine = document.getElementById('lineNine')
-    let tenLine = document.getElementById('lineTen')
+        let listLine = []
 
-    let lineList = []
+        listLine.push(oneLine,twoLine,treeLine,fourLine,fiveLine,sixLine,sevenLine,eightLine,nineLine,tenLine)
 
-    lineList.push(oneLine,twoLine,treeLine,fourLine,fiveLine,sixLine,sevenLine,eightLine,nineLine,tenLine)
-
+        docformIdText.innerHTML = ''
     
+        let docLineOne = document.querySelectorAll('.lineOne')
+        let docLineTwo = document.querySelectorAll('.lineTwo')
+        let docLineTree = document.querySelectorAll('.lineTree')
+        let docLineFour = document.querySelectorAll('.lineFour')
+        let docLineFive = document.querySelectorAll('.lineFour')
+        let docLineSix = document.querySelectorAll('.lineFour')
+        let docLineSeven = document.querySelectorAll('.lineFour')
+        let docLineEight = document.querySelectorAll('.lineFour')
+        let docLineNine = document.querySelectorAll('.lineFour')
+        let docLineTen = document.querySelectorAll('.lineFour')
 
-    docformIdText.innerHTML = ''
+        let elementone = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
+        let elementtwo = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
+        let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
+        let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
+        let elementfive = docLineFive[0].getElementsByClassName('choices__item choices__item--selectable')
+        let elementsix = docLineSix[0].getElementsByClassName('choices__item choices__item--selectable')
+        let elementseven = docLineSeven[0].getElementsByClassName('choices__item choices__item--selectable')
+        let elementeight = docLineEight[0].getElementsByClassName('choices__item choices__item--selectable')
+        let elementnine = docLineNine[0].getElementsByClassName('choices__item choices__item--selectable')
+        let elementten = docLineTen[0].getElementsByClassName('choices__item choices__item--selectable')
 
-        oneLine.classList.remove("open-line")
-        twoLine.classList.remove("open-line")
-        treeLine.classList.remove("open-line")
-        fourLine.classList.remove("open-line")
-    
-    let docLineOne = document.querySelectorAll('.lineOne')
-    let docLineTwo = document.querySelectorAll('.lineTwo')
-    let docLineTree = document.querySelectorAll('.lineTree')
-    let docLineFour = document.querySelectorAll('.lineFour')
-    let docLineFive = document.querySelectorAll('.lineFour')
-    let docLineSix = document.querySelectorAll('.lineFour')
-    let docLineSeven = document.querySelectorAll('.lineFour')
-    let docLineEight = document.querySelectorAll('.lineFour')
-    let docLineNine = document.querySelectorAll('.lineFour')
-    let docLineTen = document.querySelectorAll('.lineFour')
+        let choiceOne = elementone[0]
+        let choiceTwo = elementtwo[0]
+        let choiceTree = elementtree[0]
+        let choiceFour = elementfour[0]
+        let choiceFive = elementfive[0]
+        let choiceSix = elementsix[0]
+        let choiceSeven = elementseven[0]
+        let choiceEight = elementeight[0]
+        let choiceNine = elementnine[0]
+        let choiceTen = elementten[0]
 
-    let elementone = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementtwo = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementfive = docLineFive[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementsix = docLineSix[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementseven = docLineSeven[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementeight = docLineEight[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementnine = docLineNine[0].getElementsByClassName('choices__item choices__item--selectable')
-    let elementten = docLineTen[0].getElementsByClassName('choices__item choices__item--selectable')
+        let choiceAtributeList = []
 
-      let surname = list.surname
-      let name = list.name
-      let lastName = list.lastName
-      let contacts = list.contacts
-      let createCustomer = list.createdAt
+        choiceAtributeList.push(choiceOne,choiceTwo,choiceTree,choiceFour,choiceFive,choiceSix,choiceSeven,choiceEight,choiceNine,choiceTen)
 
-      docsurname.setAttribute('value', surname)
-      docsurname.value = surname
-      docname.setAttribute('value', name)
-      docname.value = name
-      doclastname.setAttribute('value', lastName)
-      doclastname.value = lastName
-      docformIdText.append(id)
+          let surname = list.surname
+          let name = list.name
+          let lastName = list.lastName
+          let contacts = list.contacts
+          let createCustomer = list.createdAt
 
-      elementone[0].setAttribute('data-value', 'Телефон')
-      elementone[0].innerHTML = 'Телефон'
-      elementtwo[0].setAttribute('data-value', 'Email')
-      elementtwo[0].innerHTML = 'Email'
-      elementtree[0].setAttribute('data-value', 'Facebook')
-      elementtree[0].innerHTML = 'Facebook'
-      elementfour[0].setAttribute('data-value', 'VK')
-      elementfour[0].innerHTML = 'VK'
-
-    for (let i = 0; i < contacts.length; i++) {
-
-      switch (contacts[i].type) {
-
-        case 'Телефон':
-          doconeInput.setAttribute('value', contacts[i].value)
-          doconeInput.append(contacts[i].value)
-          doconeInput.value = contacts[i].value
-          oneLine.classList.add('open-line')
-          break
-      
-          case 'Email':
-            doctwoInput.setAttribute('value', contacts[i].value)
-            doctwoInput.append(contacts[i].value)
-            doctwoInput.value = contacts[i].value
-            twoLine.classList.add('open-line')
-            break
-
-            case 'Facebook':
-              doctreeInput.setAttribute('value', contacts[i].value)
-              doctreeInput.append(contacts[i].value)
-              doctreeInput.value = contacts[i].value
-              treeLine.classList.add('open-line')
-              break
-
-              case 'VK':
-              docfourInput.setAttribute('value', contacts[i].value)
-              docfourInput.append(contacts[i].value)
-              docfourInput.value = contacts[i].value
-              fourLine.classList.add('open-line')
-              break
-      } 
-    }
-
-      form.classList.add('show')
-      block.classList.add('block-on')
-      header.classList.add('header-on')
-      hCustomer.classList.add('close')
-      btnSave.classList.add('close')
-      hChangeCustomer.classList.remove('close')
-      formid.classList.remove('close')
-      btnSaveChange.classList.remove('close')
-      btnCancelCustomer.classList.remove('close')
-      btnCancellation.classList.add('close')
-
-      btnSaveChange.addEventListener('click', function(event) {
-        // пилить будем тут
-        // нужно изменить кнопку
-        // задать переменные на изменение и сохранение
-        event.preventDefault()
-        changedInfoCustomer(createCustomer)
-        form.classList.remove('show')
-        block.classList.remove('block-on')
-        header.classList.remove('header-on')
-
-      docId.innerHTML = ''
-
-      docname.removeAttribute('value')
-      docsurname.removeAttribute('value')
-      doclastname.removeAttribute('value')
+          docsurname.setAttribute('value', surname)
+          docsurname.value = surname
+          docname.setAttribute('value', name)
+          docname.value = name
+          doclastname.setAttribute('value', lastName)
+          doclastname.value = lastName
+          docformIdText.append(id)
 
 
-        oneLine.classList.remove("open-line")
-        twoLine.classList.remove("open-line")
-        treeLine.classList.remove("open-line")
-        fourLine.classList.remove("open-line")
+        for (let i = 0; i < contacts.length; i++) {
+          console.log(choiceAtributeList[i])
+          choiceAtributeList[i].setAttribute('data-value', contacts[i].type)
+          choiceAtributeList[i].innerHTML = contacts[i].type
+          docInfo[i].setAttribute('value', contacts[i].value)
+          docInfo[i].append(contacts[i].value)
+          docInfo[i].value = contacts[i].value
+          listLine[i].classList.add('open-line')
 
-      for (let i = 0; i < 10; i++) {
-        docInfo[i].innerHTML = ''
-        docInfo[i].removeAttribute('value')
-      }
+        }
 
-      
-    })
+          form.classList.add('show')
+          block.classList.add('block-on')
+          header.classList.add('header-on')
+          hCustomer.classList.add('close')
+          btnSave.classList.add('close')
+          hChangeCustomer.classList.remove('close')
+          formid.classList.remove('close')
+          btnSaveChange.classList.remove('close')
+          btnCancelCustomer.classList.remove('close')
+          btnCancellation.classList.add('close')
 
-      btnCancelCustomer.addEventListener('click', function(event) {
-
-        event.preventDefault()
-       
-          let formCancel = document.querySelector('.form-cancel')
-          let block = document.querySelector('.block')
-          let header = document.querySelector('.header')
-          let form = document.querySelector('.form')
-          let rows = document.querySelectorAll('.customers-row')
-          let idCustomer = id.substr(7, 6)
-      
+          btnSaveChange.addEventListener('click', function(event) {
+              event.preventDefault()
+              changedInfoCustomer(createCustomer)
               form.classList.remove('show')
-              formCancel.classList.add('show')
-              block.classList.add('block-on')
-              header.classList.add('header-on')
+              block.classList.remove('block-on')
+              header.classList.remove('header-on')
 
-          let btnCancel = document.querySelector('.form__btn-delete')
-          let btnCancellation = document.querySelector('.form__btn-cancellation')
+            docId.innerHTML = ''
 
-            btnCancel.addEventListener('click', function() {
+            docname.removeAttribute('value')
+            docsurname.removeAttribute('value')
+            doclastname.removeAttribute('value')
 
-              for (let i = 0; i < rows.length; i++) {
 
-                let infoCustomer = rows[i].textContent
+              oneLine.classList.remove('open-line')
+              twoLine.classList.remove('open-line')
+              treeLine.classList.remove('open-line')
+              fourLine.classList.remove('open-line')
+              fiveLine.classList.remove('open-line')
+              sixLine.classList.remove('open-line')
+              sevenLine.classList.remove('open-line')
+              eightLine.classList.remove('open-line')
+              nineLine.classList.remove('open-line')
+              tenLine.classList.remove('open-line')
 
-                    if (infoCustomer.includes(idCustomer) === true) {
-                     deleteCustomerServer(id)
-                      rows[i].remove()
+              
+            for (let i = 0; i < 10; i++) {
+              docInfo[i].innerHTML = ''
+              docInfo[i].removeAttribute('value')
+            }
+            for (let i = 0; i < 10; i++) {
+              choiceAtributeList[i].innerHTML = 'Телефон'
+              choiceAtributeList[i].setAttribute('data-value', 'Телефон')
+            }
 
-                      formCancel.classList.remove('show')
-                      block.classList.remove('block-on')
-                      header.classList.remove('header-on')
-                    }
-              }})
 
-              btnCancellation.addEventListener('click', function() {
-                formCancel.classList.remove('show')
-                block.classList.remove('block-on')
-                header.classList.remove('header-on')
-              })
-      })
-    }
+          
+        })
+
+          btnCancelCustomer.addEventListener('click', function(event) {
+
+            event.preventDefault()
+          
+              let formCancel = document.querySelector('.form-cancel')
+              let block = document.querySelector('.block')
+              let header = document.querySelector('.header')
+              let form = document.querySelector('.form')
+              let rows = document.querySelectorAll('.customers-row')
+              let idCustomer = id.substr(7, 6)
+          
+                  form.classList.remove('show')
+                  formCancel.classList.add('show')
+                  block.classList.add('block-on')
+                  header.classList.add('header-on')
+
+              let btnCancel = document.querySelector('.form__btn-delete')
+              let btnCancellation = document.querySelector('.form__btn-cancellation')
+
+                btnCancel.addEventListener('click', function() {
+
+                  for (let i = 0; i < rows.length; i++) {
+
+                    let infoCustomer = rows[i].textContent
+
+                        if (infoCustomer.includes(idCustomer) === true) {
+                        deleteCustomerServer(id)
+                          rows[i].remove()
+
+                          formCancel.classList.remove('show')
+                          block.classList.remove('block-on')
+                          header.classList.remove('header-on')
+                        }
+                        oneLine.classList.remove("open-line")
+                        twoLine.classList.remove("open-line")
+                        treeLine.classList.remove("open-line")
+                        fourLine.classList.remove("open-line")
+                        fiveLine.classList.remove("open-line")
+                        sixLine.classList.remove("open-line")
+                        sevenLine.classList.remove("open-line")
+                        eightLine.classList.remove("open-line")
+                        nineLine.classList.remove("open-line")
+                        tenLine.classList.remove("open-line")
+                  }})
+
+                  btnCancellation.addEventListener('click', function() {
+                    formCancel.classList.remove('show')
+                    block.classList.remove('block-on')
+                    header.classList.remove('header-on')
+                  })
+
+          })
+        }
       getListCustomer(id)
   }
 
