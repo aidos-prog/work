@@ -19,13 +19,6 @@
     let eightInput = document.getElementById('line-inputEight')
     let nineInput = document.getElementById('line-inputNine')
     let tenInput = document.getElementById('line-inputTen')
-    let oneSelect = document.getElementById('selectOne')
-    let twoSelect = document.getElementById('selectTwo')
-    let treeSelect = document.getElementById('selectTree')
-    let fourSelect = document.getElementById('selectFour')
-    let form = document.getElementById('form-info')
-
-  
 
     return {
       id,
@@ -42,12 +35,84 @@
       sevenInput,
       eightInput,
       nineInput,
-      tenInput,
-      oneSelect,
-      twoSelect,
-      treeSelect,
-      fourSelect,
-      form
+      tenInput
+    }
+  }
+
+  function docLineInfo() {
+    let items = infoItems()
+    let doconeInput = items.oneInput
+    let doctwoInput = items.twoInput
+    let doctreeInput = items.treeInput
+    let docfourInput = items.fourInput
+    let docfiveInput = items.fiveInput
+    let docsixInput = items.sixInput
+    let docsevenInput = items.sevenInput
+    let doceightInput = items.eightInput
+    let docnineInput = items.nineInput
+    let doctenInput = items.tenInput
+
+    let docInput = []
+
+    docInput.push(doconeInput,doctwoInput,doctreeInput,docfourInput,docfiveInput,docsixInput,docsevenInput,doceightInput,docnineInput,doctenInput)
+
+    let oneLine = document.getElementById('lineOne')
+    let twoLine = document.getElementById('lineTwo')
+    let treeLine = document.getElementById('lineTree')
+    let fourLine = document.getElementById('lineFour')
+    let fiveLine = document.getElementById('lineFive')
+    let sixLine = document.getElementById('lineSix')
+    let sevenLine = document.getElementById('lineSeven')
+    let eightLine = document.getElementById('lineEight')
+    let nineLine = document.getElementById('lineNine')
+    let tenLine = document.getElementById('lineTen')
+
+    let listLine = []
+
+    listLine.push(oneLine,twoLine,treeLine,fourLine,fiveLine,sixLine,sevenLine,eightLine,nineLine,tenLine)
+
+    let docLineOne = document.querySelectorAll('.lineOne')
+    let docLineTwo = document.querySelectorAll('.lineTwo')
+    let docLineTree = document.querySelectorAll('.lineTree')
+    let docLineFour = document.querySelectorAll('.lineFour')
+    let docLineFive = document.querySelectorAll('.lineFive')
+    let docLineSix = document.querySelectorAll('.lineSix')
+    let docLineSeven = document.querySelectorAll('.lineSeven')
+    let docLineEight = document.querySelectorAll('.lineEight')
+    let docLineNine = document.querySelectorAll('.lineNine')
+    let docLineTen = document.querySelectorAll('.lineTen')
+
+
+    let elementone = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementtwo = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementfive = docLineFive[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementsix = docLineSix[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementseven = docLineSeven[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementeight = docLineEight[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementnine = docLineNine[0].getElementsByClassName('choices__item choices__item--selectable')
+    let elementten = docLineTen[0].getElementsByClassName('choices__item choices__item--selectable')
+
+    let choiceOne = elementone[0]
+    let choiceTwo = elementtwo[0]
+    let choiceTree = elementtree[0]
+    let choiceFour = elementfour[0]
+    let choiceFive = elementfive[0]
+    let choiceSix = elementsix[0]
+    let choiceSeven = elementseven[0]
+    let choiceEight = elementeight[0]
+    let choiceNine = elementnine[0]
+    let choiceTen = elementten[0]
+
+    let choiceAtributeList = []
+
+    choiceAtributeList.push(choiceOne,choiceTwo,choiceTree,choiceFour,choiceFive,choiceSix,choiceSeven,choiceEight,choiceNine,choiceTen)
+
+    return {
+      docInput,
+      listLine,
+      choiceAtributeList
     }
   }
 
@@ -183,7 +248,6 @@
     buttonLastchange.addEventListener('click', function() {
 
       changeCustomerForm(customerObj)
-     
     })
 
     buttonCancel.setAttribute('id', 'btn-cancel')
@@ -773,12 +837,12 @@
         let docLineTwo = document.querySelectorAll('.lineTwo')
         let docLineTree = document.querySelectorAll('.lineTree')
         let docLineFour = document.querySelectorAll('.lineFour')
-        let docLineFive = document.querySelectorAll('.lineFour')
-        let docLineSix = document.querySelectorAll('.lineFour')
-        let docLineSeven = document.querySelectorAll('.lineFour')
-        let docLineEight = document.querySelectorAll('.lineFour')
-        let docLineNine = document.querySelectorAll('.lineFour')
-        let docLineTen = document.querySelectorAll('.lineFour')
+        let docLineFive = document.querySelectorAll('.lineFive')
+        let docLineSix = document.querySelectorAll('.lineSix')
+        let docLineSeven = document.querySelectorAll('.lineSeven')
+        let docLineEight = document.querySelectorAll('.lineEight')
+        let docLineNine = document.querySelectorAll('.lineNine')
+        let docLineTen = document.querySelectorAll('.lineTen')
 
         let elementone = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
         let elementtwo = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
@@ -806,6 +870,14 @@
 
         choiceAtributeList.push(choiceOne,choiceTwo,choiceTree,choiceFour,choiceFive,choiceSix,choiceSeven,choiceEight,choiceNine,choiceTen)
 
+        let docInfoLine = docLineInfo().listLine
+        let docInput = docLineInfo().docInput
+        let docInfoChoice = docLineInfo().choiceAtributeList
+
+        console.log(docInput)
+        console.log(docInfoLine)
+        console.log(docInfoChoice)
+        
           let surname = list.surname
           let name = list.name
           let lastName = list.lastName
