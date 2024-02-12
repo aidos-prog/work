@@ -588,23 +588,18 @@
   }
   
   function saveInfo() {
-
-      let items = infoItems()
-
       let docId = document.getElementById('form-id')
-      let surname = items.surname.value.trim()
-      let name = items.name.value.trim()
-      let middlename = items.middlename.value.trim()
 
-      let docInput = docLineInfo().docInput
-      let docInfoChoice = docLineInfo().choiceAtributeList
-
-      let contacts = contactsInfo(docInput, docInfoChoice)
-
-          async function createCustomerServer(contacts) {
-
+          async function createCustomerServer() {
+            let items = infoItems()
+            let surname = items.surname.value.trim()
+            let name = items.name.value.trim()
+            let middlename = items.middlename.value.trim()
             let now = new Date()
-
+            let docInput = docLineInfo().docInput
+            let docInfoChoice = docLineInfo().choiceAtributeList
+            let contacts = contactsInfo(docInput, docInfoChoice).contacts
+    
             let boxMessedge = document.getElementById('validation-messedge')
             let messedge = document.getElementById('messedge-id')
             let block = document.querySelector('.block')
@@ -649,17 +644,14 @@
                 return
             }
           }
-
+          
+          
           let messedge = document.getElementById('messedge-id')
           messedge.innerHTML = ''
         
-          createCustomerServer(contacts)
+          createCustomerServer()
 
           docId.innerHTML = ''
-
-          deleteList()
-          start()
-
   }
 
   function changeCustomerForm(customerObj) {
@@ -740,18 +732,6 @@
             docsurname.removeAttribute('value')
             doclastname.removeAttribute('value')
 
-
-              // oneLine.classList.remove('open-line')
-              // twoLine.classList.remove('open-line')
-              // treeLine.classList.remove('open-line')
-              // fourLine.classList.remove('open-line')
-              // fiveLine.classList.remove('open-line')
-              // sixLine.classList.remove('open-line')
-              // sevenLine.classList.remove('open-line')
-              // eightLine.classList.remove('open-line')
-              // nineLine.classList.remove('open-line')
-              // tenLine.classList.remove('open-line')
-
               
             for (let i = 0; i < 10; i++) {
               docInput[i].innerHTML = ''
@@ -763,7 +743,6 @@
             }
 
 
-          
         })
 
           btnCancelCustomer.addEventListener('click', function(event) {
@@ -830,84 +809,10 @@
               let docname = items.name.value
               let doclastname = items.middlename.value
               let docformIdText = items.id.innerHTML
-              let doconeInput = items.oneInput
-              let doctwoInput = items.twoInput
-              let doctreeInput = items.treeInput
-              let docfourInput = items.fourInput
-              let docfiveInput = items.fiveInput
-              let docsixInput = items.sixInput
-              let docsevenInput = items.sevenInput
-              let doceightInput = items.eightInput
-              let docnineInput = items.nineInput
-              let doctenInput = items.tenInput
 
-              let docInfo = []
-
-              docInfo.push(doconeInput,doctwoInput,doctreeInput,docfourInput,docfiveInput,docsixInput,docsevenInput,doceightInput,docnineInput,doctenInput)
-
-              let oneLine = document.getElementById('lineOne')
-              let twoLine = document.getElementById('lineTwo')
-              let treeLine = document.getElementById('lineTree')
-              let fourLine = document.getElementById('lineFour')
-              let fiveLine = document.getElementById('lineFive')
-              let sixLine = document.getElementById('lineSix')
-              let sevenLine = document.getElementById('lineSeven')
-              let eightLine = document.getElementById('lineEight')
-              let nineLine = document.getElementById('lineNine')
-              let tenLine = document.getElementById('lineTen')
-
-              let listLine = []
-
-              listLine.push(oneLine,twoLine,treeLine,fourLine,fiveLine,sixLine,sevenLine,eightLine,nineLine,tenLine)
-          
-              let docLineOne = document.querySelectorAll('.lineOne')
-              let docLineTwo = document.querySelectorAll('.lineTwo')
-              let docLineTree = document.querySelectorAll('.lineTree')
-              let docLineFour = document.querySelectorAll('.lineFour')
-              let docLineFive = document.querySelectorAll('.lineFive')
-              let docLineSix = document.querySelectorAll('.lineSix')
-              let docLineSeven = document.querySelectorAll('.lineSeven')
-              let docLineEight = document.querySelectorAll('.lineEight')
-              let docLineNine = document.querySelectorAll('.lineNine')
-              let docLineTen = document.querySelectorAll('.lineTen')
-
-              let elementone = docLineOne[0].getElementsByClassName('choices__item choices__item--selectable')
-              let elementtwo = docLineTwo[0].getElementsByClassName('choices__item choices__item--selectable')
-              let elementtree = docLineTree[0].getElementsByClassName('choices__item choices__item--selectable')
-              let elementfour = docLineFour[0].getElementsByClassName('choices__item choices__item--selectable')
-              let elementfive = docLineFive[0].getElementsByClassName('choices__item choices__item--selectable')
-              let elementsix = docLineSix[0].getElementsByClassName('choices__item choices__item--selectable')
-              let elementseven = docLineSeven[0].getElementsByClassName('choices__item choices__item--selectable')
-              let elementeight = docLineEight[0].getElementsByClassName('choices__item choices__item--selectable')
-              let elementnine = docLineNine[0].getElementsByClassName('choices__item choices__item--selectable')
-              let elementten = docLineTen[0].getElementsByClassName('choices__item choices__item--selectable')
-
-              let choiceOne = elementone[0]
-              let choiceTwo = elementtwo[0]
-              let choiceTree = elementtree[0]
-              let choiceFour = elementfour[0]
-              let choiceFive = elementfive[0]
-              let choiceSix = elementsix[0]
-              let choiceSeven = elementseven[0]
-              let choiceEight = elementeight[0]
-              let choiceNine = elementnine[0]
-              let choiceTen = elementten[0]
-
-              let choiceAtributeList = []
-
-              choiceAtributeList.push(choiceOne,choiceTwo,choiceTree,choiceFour,choiceFive,choiceSix,choiceSeven,choiceEight,choiceNine,choiceTen)
-
-                let contacts = []
-
-                for (let i = 0; i < docInfo.length; i++) {
-   
-                  if (docInfo[i].value.trim() === '') {
-                    break
-                  } 
-                  else {
-                    contacts.push({type: choiceAtributeList[i].getAttribute('data-value'), value: docInfo[i].value.trim()})
-                  }
-                }
+              let docInput = docLineInfo().docInput
+              let docInfoChoice = docLineInfo().choiceAtributeList
+              let contacts = contactsInfo(docInput, docInfoChoice)
               
             let now = new Date()
 
@@ -926,8 +831,8 @@
 
 
             for (let i = 0; i < 10; i++) {
-              docInfo[i].innerHTML = ''
-              docInfo[i].removeAttribute('value')
+              docInput[i].innerHTML = ''
+              docInput[i].removeAttribute('value')
             }
           }
 
