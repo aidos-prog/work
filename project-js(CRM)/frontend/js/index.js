@@ -41,6 +41,9 @@
 
   function docLineInfo() {
     let items = infoItems()
+    let docsurname = items.surname
+    let docname = items.name
+    let doclastname = items.middlename
     let doconeInput = items.oneInput
     let doctwoInput = items.twoInput
     let doctreeInput = items.treeInput
@@ -51,6 +54,10 @@
     let doceightInput = items.eightInput
     let docnineInput = items.nineInput
     let doctenInput = items.tenInput
+
+    let names = []
+
+    names.push(docsurname,docname,doclastname)
 
     let docInput = []
 
@@ -110,6 +117,7 @@
     choiceAtributeList.push(choiceOne,choiceTwo,choiceTree,choiceFour,choiceFive,choiceSix,choiceSeven,choiceEight,choiceNine,choiceTen)
 
     return {
+      names,
       docInput,
       listLine,
       choiceAtributeList
@@ -365,43 +373,14 @@
     let deleteFormTwo = document.getElementById('form-delete__two')
     let block = document.querySelector('.block')
     let header = document.querySelector('.header')
-    let docId = document.getElementById('form-id')
     let btnChange = document.getElementById('btn-save__change')
     let btnSave = document.getElementById('button-save')
-    let table = document.querySelector('.customers-table')
 
     let hCustomer = document.querySelector('.form-h2__newcustomer')
     let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
     let formid = document.querySelector('.form-id__case')
     let btnCancelCustomer = document.getElementById('btn-cancel__change')
     let btnCancellation = document.getElementById('btn-cancellation')
-
-    let inputCustomers = infoItems()
-
-    let docname = inputCustomers.name
-    let docsurname = inputCustomers.surname
-    let doclastname = inputCustomers.middlename
-    let doconeInput = inputCustomers.oneInput
-    let doctwoInput = inputCustomers.twoInput
-    let doctreeInput = inputCustomers.treeInput
-    let docfourInput = inputCustomers.fourInput
-
-    let oneLine = document.getElementById('lineOne')
-    let twoLine = document.getElementById('lineTwo')
-    let treeLine = document.getElementById('lineTree')
-    let fourLine = document.getElementById('lineFour')
-    let fiveLine = document.getElementById('lineFive')
-    let sixLine = document.getElementById('lineSix')
-    let sevenLine = document.getElementById('lineSeven')
-    let eightLine = document.getElementById('lineEight')
-    let nineLine = document.getElementById('lineNine')
-    let tenLine = document.getElementById('lineTen')
-
-    let oneInput = document.getElementById('line-inputOne')
-    let twoInput = document.getElementById('line-inputTwo')
-    let treeInput = document.getElementById('line-inputTree')
-    let fourInput = document.getElementById('line-inputFour')
-    // тут надо функцию по очистке input
 
     addButton.addEventListener('click', function() {
 
@@ -418,94 +397,59 @@
       block.classList.add('block-on')
       header.classList.add('header-on')
 
+      let docInputs = docLineInfo().docInput
+      let names = docLineInfo().names
+
+      for (let item of docInputs) {
+        item.value = ''
+        item.removeAttribute('value')
+        console.log(item)
+      }
+
+      for (let item of names) {
+        item.value = ''
+        item.removeAttribute('value')
+      }
+
     let items = infoItems()
-    let docsurname = items.surname
-    let docname = items.name
-    let doclastname = items.middlename
     let docformIdText = items.id
-    let doconeInput = items.oneInput
-    let doctwoInput = items.twoInput
-    let doctreeInput = items.treeInput
-    let docfourInput = items.fourInput
-    let docfiveInput = items.fiveInput
-    let docsixInput = items.sixInput
-    let docsevenInput = items.sevenInput
-    let doceightInput = items.eightInput
-    let docnineInput = items.nineInput
-    let doctenInput = items.tenInput
-    
+  
     docformIdText.innerHTML = ''
 
-    doconeInput.value = ''
-    doctwoInput.value = ''
-    doctreeInput.value = ''
-    docfourInput.value = ''
-    docfiveInput.value = ''
-    docsixInput.value = ''
-    docsevenInput.value = ''
-    doceightInput.value = ''
-    docnineInput.value = ''
-    doctenInput.value = ''
-    docname.value = ''
-    docsurname.value = ''
-    doclastname.value = ''
-    
-        oneLine.classList.remove("open-line")
-        twoLine.classList.remove("open-line")
-        treeLine.classList.remove("open-line")
-        fourLine.classList.remove("open-line")
-        fiveLine.classList.remove("open-line")
-        sixLine.classList.remove("open-line")
-        sevenLine.classList.remove("open-line")
-        eightLine.classList.remove("open-line")
-        nineLine.classList.remove("open-line")
-        tenLine.classList.remove("open-line")
-
-      docId.innerHTML = ''
-
-      docname.removeAttribute('value')
-      docsurname.removeAttribute('value')
-      doclastname.removeAttribute('value')
-      doconeInput.removeAttribute('value')
-      doctwoInput.removeAttribute('value')
-      doctreeInput.removeAttribute('value')
-      docfourInput.removeAttribute('value')
     })
 
     deleteForm.addEventListener('click', function() {
 
       let form = document.querySelector('.form')
       let messedge = document.getElementById('messedge-id')
+      let items = infoItems()
+      let docformIdText = items.id
           
       form.classList.remove('show')
       block.classList.remove('block-on')
       header.classList.remove('header-on')
-      docId.innerHTML = ''
-
-      docname.removeAttribute('value')
-      docsurname.removeAttribute('value')
-      doclastname.removeAttribute('value')
-      doconeInput.removeAttribute('value')
-      doctwoInput.removeAttribute('value')
-      doctreeInput.removeAttribute('value')
-      docfourInput.removeAttribute('value')
-
-      oneInput.innerHTML = ''
-      twoInput.innerHTML = ''
-      treeInput.innerHTML = ''
-      fourInput.innerHTML = ''
       messedge.innerHTML = ''
+      docformIdText.innerHTML = ''
 
-      oneLine.classList.remove("open-line")
-      twoLine.classList.remove("open-line")
-      treeLine.classList.remove("open-line")
-      fourLine.classList.remove("open-line")
-      fiveLine.classList.remove("open-line")
-      sixLine.classList.remove("open-line")
-      sevenLine.classList.remove("open-line")
-      eightLine.classList.remove("open-line")
-      nineLine.classList.remove("open-line")
-      tenLine.classList.remove("open-line")
+      let docInputs = docLineInfo().docInput
+      let names = docLineInfo().names
+      let lines = docLineInfo().listLine
+
+      for (let item of docInputs) {
+        item.value = ''
+        item.removeAttribute('value')
+        item.innerHTML = ''
+      }
+
+      for (let item of names) {
+        item.value = ''
+        item.removeAttribute('value')
+      }
+
+      for(let i = 0;i < lines.length; i++) {
+        lines[i].classList.remove("open-line")
+      }
+      
     })
 
     deleteFormTwo.addEventListener('click', function() {
@@ -513,6 +457,23 @@
       formDelete.classList.remove('show')
       block.classList.remove('block-on')
       header.classList.remove('header-on')
+      let docInputs = docLineInfo().docInput
+      let names = docLineInfo().names
+      let lines = docLineInfo().listLine
+
+
+      for (let item of docInputs) {
+        item.value = ''
+        item.removeAttribute('value')
+      }
+
+      for (let item of names) {
+        item.value = ''
+        item.removeAttribute('value')
+      }
+      for(let i = 0;i < lines.length; i++) {
+        lines[i].classList.remove("open-line")
+      }
     })
       
     saveBtn()
@@ -778,16 +739,27 @@
                           block.classList.remove('block-on')
                           header.classList.remove('header-on')
                         }
-                        oneLine.classList.remove('open-line')
-                        twoLine.classList.remove('open-line')
-                        treeLine.classList.remove('open-line')
-                        fourLine.classList.remove('open-line')
-                        fiveLine.classList.remove('open-line')
-                        sixLine.classList.remove('open-line')
-                        sevenLine.classList.remove('open-line')
-                        eightLine.classList.remove('open-line')
-                        nineLine.classList.remove('open-line')
-                        tenLine.classList.remove('open-line')
+                        let items = infoItems()
+                        let docformIdText = items.id
+                        let docInputs = docLineInfo().docInput
+                        let names = docLineInfo().names
+                        let lines = docLineInfo().listLine
+                        docformIdText.innerHTML = ''
+
+                        for (let item of docInputs) {
+                          item.value = ''
+                          item.removeAttribute('value')
+                        }
+                  
+                        for (let item of names) {
+                          item.value = ''
+                          item.removeAttribute('value')
+                        }
+                  
+                        for(let i = 0;i < lines.length; i++) {
+                          lines[i].classList.remove("open-line")
+                        }
+                       
                   }})
 
                   btnCancellation.addEventListener('click', function() {
