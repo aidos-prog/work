@@ -277,7 +277,7 @@
       changeCustomerForm(customerObj)
     })
 
-    buttonCancel.setAttribute('id', 'btn-cancel')
+    // buttonCancel.setAttribute('id', 'btn-cancel')
 
     buttonCancel.addEventListener('click', function() {
       let formCancel = document.querySelector('.form-cancel')
@@ -285,7 +285,7 @@
       let header = document.querySelector('.header')
       let btnCancel = document.querySelector('.form__btn-delete')
       let btnCancellation = document.querySelector('.form__btn-cancellation')
-
+console.log(customerObj.id)
       formCancel.classList.add('show')
       block.classList.add('block-on')
       header.classList.add('header-on')
@@ -353,9 +353,64 @@
       textId
     }
   }
+
+  async function createCustomerServer() {
+    let items = infoItems()
+    let surname = items.surname.value.trim()
+    let name = items.name.value.trim()
+    let middlename = items.middlename.value.trim()
+    let now = new Date()
+    let docInput = docLineInfo().docInput
+    let docInfoChoice = docLineInfo().choiceAtributeList
+    let contacts = contactsInfo(docInput, docInfoChoice).contacts
+
+    let boxMessedge = document.getElementById('validation-messedge')
+    let messedge = document.getElementById('messedge-id')
+    let block = document.querySelector('.block')
+    let header = document.querySelector('.header')
+    let form = document.querySelector('.form') 
+    
+    const request = await fetch('http://localhost:3000/api/clients', {
+      method: 'POST',  
+      
+      body: JSON.stringify({
+        createdAt: now,
+        updatedAt: now,
+        name: name,
+        surname: surname,
+        lastName: middlename,
+        contacts: contacts
+      })
+    })
+    
+    switch(request.status) {
+      case(422): 
+       boxMessedge.classList.add('validation-vision')
+        messedge.append('Введите ФИО и контакты.')
+        return
+        case(404): 
+       boxMessedge.classList.add('validation-vision')
+        messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
+        return
+        case(500): 
+       boxMessedge.classList.add('validation-vision')
+        messedge.append('Странно, но сервер сломался.')
+        return
+        case(200): 
+        form.classList.remove('show')
+        block.classList.remove('block-on')
+        header.classList.remove('header-on')
+        return
+        case(201): 
+        form.classList.remove('show')
+        block.classList.remove('block-on')
+        header.classList.remove('header-on')
+        return
+    }
+  }
   
   async function deleteCustomerServer(id) {
-          const response = await fetch('http://localhost:3000/api/clients/' + id, {
+          const response = await fetch('http://localhost:3000/api/client/' + id, {
           method: 'DELETE'
         })
          abc = await response.json()
@@ -367,22 +422,18 @@
     }
   }
 
-  function addCustomer() {
-    let addButton = document.getElementById('add-customer')
-    let deleteForm = document.getElementById('form-delete')
-    let deleteFormTwo = document.getElementById('form-delete__two')
+  function openForm() {
+    let form = document.querySelector('.form')
     let block = document.querySelector('.block')
     let header = document.querySelector('.header')
-    let btnChange = document.getElementById('btn-save__change')
-    let btnSave = document.getElementById('button-save')
-
     let hCustomer = document.querySelector('.form-h2__newcustomer')
     let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
     let formid = document.querySelector('.form-id__case')
     let btnCancelCustomer = document.getElementById('btn-cancel__change')
     let btnCancellation = document.getElementById('btn-cancellation')
+    let btnChange = document.getElementById('btn-save__change')
+    let btnSave = document.getElementById('button-save')
 
-    addButton.addEventListener('click', function() {
 
       hCustomer.classList.remove('close')
       hChangeCustomer.classList.add('close')
@@ -391,228 +442,111 @@
       btnSave.classList.remove('close')
       btnCancelCustomer.classList.add('close')
       btnCancellation.classList.remove('close')
-      
-      let form = document.querySelector('.form')
+
       form.classList.add('show')
       block.classList.add('block-on')
       header.classList.add('header-on')
+  }
 
-      let docInputs = docLineInfo().docInput
-      let names = docLineInfo().names
+  function closeForm() {
+    let form = document.querySelector('.form')
+    let block = document.querySelector('.block')
+    let header = document.querySelector('.header')
+    form.classList.remove('show')
+    block.classList.remove('block-on')
+    header.classList.remove('header-on')
+  }
+
+  function cleanForm() {
+    let docInputs = docLineInfo().docInput
+    let names = docLineInfo().names
+    let lines = docLineInfo().listLine
+    let messedge = document.getElementById('messedge-id')
+    let docId = infoItems().id
+
+    docId.innerHTML = ''
+    messedge.innerHTML = ''
 
       for (let item of docInputs) {
         item.value = ''
         item.removeAttribute('value')
-        console.log(item)
       }
 
       for (let item of names) {
         item.value = ''
         item.removeAttribute('value')
       }
-
-    let items = infoItems()
-    let docformIdText = items.id
-  
-    docformIdText.innerHTML = ''
-
-    })
-
-    deleteForm.addEventListener('click', function() {
-
-      let form = document.querySelector('.form')
-      let messedge = document.getElementById('messedge-id')
-      let items = infoItems()
-      let docformIdText = items.id
-          
-      form.classList.remove('show')
-      block.classList.remove('block-on')
-      header.classList.remove('header-on')
-      messedge.innerHTML = ''
-      docformIdText.innerHTML = ''
-
-      let docInputs = docLineInfo().docInput
-      let names = docLineInfo().names
-      let lines = docLineInfo().listLine
-
-      for (let item of docInputs) {
-        item.value = ''
-        item.removeAttribute('value')
-        item.innerHTML = ''
-      }
-
-      for (let item of names) {
-        item.value = ''
-        item.removeAttribute('value')
-      }
-
       for(let i = 0;i < lines.length; i++) {
         lines[i].classList.remove("open-line")
       }
-      
+  }
+
+  function btnCancel() {
+    let deleteForm = document.getElementById('form-delete')
+    deleteForm.addEventListener('click', function() {
+      closeForm()
+      cleanForm()
     })
+  }
+
+  function btnCancelTwo() {
+    let deleteFormTwo = document.getElementById('form-delete__two')
 
     deleteFormTwo.addEventListener('click', function() {
       let formDelete = document.querySelector('.form-cancel')
+      closeForm()
       formDelete.classList.remove('show')
+      cleanForm()
+    })
+  }
+
+  function btnCancellation() {
+    let btnCancellation = document.querySelector('.form__btn-cancellation')
+    btnCancellation.addEventListener('click', function() {
+      let formCancel = document.querySelector('.form-cancel')
+      let block = document.querySelector('.block')
+      let header = document.querySelector('.header')
+      formCancel.classList.remove('show')
       block.classList.remove('block-on')
       header.classList.remove('header-on')
-      let docInputs = docLineInfo().docInput
-      let names = docLineInfo().names
-      let lines = docLineInfo().listLine
+    })
+  }
 
+  function btnDelete() {
+    let btnDelete = document.getElementById('form__btn-delete')
 
-      for (let item of docInputs) {
-        item.value = ''
-        item.removeAttribute('value')
-      }
+    btnDelete.addEventListener('click', function() {
 
-      for (let item of names) {
-        item.value = ''
-        item.removeAttribute('value')
-      }
-      for(let i = 0;i < lines.length; i++) {
-        lines[i].classList.remove("open-line")
-      }
+    })
+
+  }
+
+  function addCustomer() {
+    let addButton = document.getElementById('add-customer')
+
+    addButton.addEventListener('click', function() {
+      cleanForm()
+      openForm()
     })
       
-    saveBtn()
+    saveCustomer()
   }
 
-  function saveBtn() {
+  function saveCustomer() {
     
     let button = document.getElementById('button-save')
-    let docId = document.getElementById('form-id')
-    let inputCustomers = infoItems()
-
-    let oneLine = document.getElementById('lineOne')
-    let twoLine = document.getElementById('lineTwo')
-    let treeLine = document.getElementById('lineTree')
-    let fourLine = document.getElementById('lineFour')
-    let fiveLine = document.getElementById('lineFive')
-    let sixLine = document.getElementById('lineSix')
-    let sevenLine = document.getElementById('lineSeven')
-    let eightLine = document.getElementById('lineEight')
-    let nineLine = document.getElementById('lineNine')
-    let tenLine = document.getElementById('lineTen')
-
-    let docname = inputCustomers.name
-    let docsurname = inputCustomers.surname
-    let doclastname = inputCustomers.middlename
-    let doconeInput = inputCustomers.oneInput
-    let doctwoInput = inputCustomers.twoInput
-    let doctreeInput = inputCustomers.treeInput
-    let docfourInput = inputCustomers.fourInput
-    let docfiveInput = inputCustomers.fiveInput
-    let docsixInput = inputCustomers.sixInput
-    let docsevenInput = inputCustomers.sevenInput
-    let doceightInput = inputCustomers.eightInput
-    let docnineInput = inputCustomers.nineInput
-    let doctenInput = inputCustomers.tenInput
-
 
     button.addEventListener('click', function(event) {
-
       event.preventDefault()
-      saveInfo()
 
-      docId.innerHTML = ''
+      createCustomerServer()
+      cleanForm()
+      closeForm()
 
-      docname.removeAttribute('value')
-      docsurname.removeAttribute('value')
-      doclastname.removeAttribute('value')
-      doconeInput.removeAttribute('value')
-      doctwoInput.removeAttribute('value')
-      doctreeInput.removeAttribute('value')
-      docfourInput.removeAttribute('value')
-      docfiveInput.removeAttribute('value')
-      docsixInput.removeAttribute('value')
-      docsevenInput.removeAttribute('value')
-      doceightInput.removeAttribute('value')
-      docnineInput.removeAttribute('value')
-      doctenInput.removeAttribute('value')
-
-        oneLine.classList.remove("open-line")
-        twoLine.classList.remove("open-line")
-        treeLine.classList.remove("open-line")
-        fourLine.classList.remove("open-line")
-        fiveLine.classList.remove("open-line")
-        sixLine.classList.remove("open-line")
-        sevenLine.classList.remove("open-line")
-        eightLine.classList.remove("open-line")
-        nineLine.classList.remove("open-line")
-        tenLine.classList.remove("open-line")
-        deleteList()
-        start()
+      deleteList()
+      start()
     })
     
-  }
-  
-  function saveInfo() {
-      let docId = document.getElementById('form-id')
-
-          async function createCustomerServer() {
-            let items = infoItems()
-            let surname = items.surname.value.trim()
-            let name = items.name.value.trim()
-            let middlename = items.middlename.value.trim()
-            let now = new Date()
-            let docInput = docLineInfo().docInput
-            let docInfoChoice = docLineInfo().choiceAtributeList
-            let contacts = contactsInfo(docInput, docInfoChoice).contacts
-    
-            let boxMessedge = document.getElementById('validation-messedge')
-            let messedge = document.getElementById('messedge-id')
-            let block = document.querySelector('.block')
-            let header = document.querySelector('.header')
-            let form = document.querySelector('.form') 
-            
-            const request = await fetch('http://localhost:3000/api/clients', {
-              method: 'POST',  
-              
-              body: JSON.stringify({
-                createdAt: now,
-                updatedAt: now,
-                name: name,
-                surname: surname,
-                lastName: middlename,
-                contacts: contacts
-              })
-            })
-            
-            switch(request.status) {
-              case(422): 
-               boxMessedge.classList.add('validation-vision')
-                messedge.append('Введите ФИО и контакты.')
-                return
-                case(404): 
-               boxMessedge.classList.add('validation-vision')
-                messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
-                return
-                case(500): 
-               boxMessedge.classList.add('validation-vision')
-                messedge.append('Странно, но сервер сломался.')
-                return
-                case(200): 
-                form.classList.remove('show')
-                block.classList.remove('block-on')
-                header.classList.remove('header-on')
-                return
-                case(201): 
-                form.classList.remove('show')
-                block.classList.remove('block-on')
-                header.classList.remove('header-on')
-                return
-            }
-          }
-          
-          
-          let messedge = document.getElementById('messedge-id')
-          messedge.innerHTML = ''
-        
-          createCustomerServer()
-
-          docId.innerHTML = ''
   }
 
   function changeCustomerForm(customerObj) {
@@ -716,14 +650,14 @@
               let form = document.querySelector('.form')
               let rows = document.querySelectorAll('.customers-row')
               let idCustomer = id.substr(7, 6)
-          
+              console.log(id.substr(7, 6))
+              // копать тут
                   form.classList.remove('show')
                   formCancel.classList.add('show')
                   block.classList.add('block-on')
                   header.classList.add('header-on')
 
               let btnCancel = document.querySelector('.form__btn-delete')
-              let btnCancellation = document.querySelector('.form__btn-cancellation')
 
                 btnCancel.addEventListener('click', function() {
 
@@ -732,6 +666,7 @@
                     let infoCustomer = rows[i].textContent
 
                         if (infoCustomer.includes(idCustomer) === true) {
+                          
                         deleteCustomerServer(id)
                           rows[i].remove()
 
@@ -761,12 +696,6 @@
                         }
                        
                   }})
-
-                  btnCancellation.addEventListener('click', function() {
-                    formCancel.classList.remove('show')
-                    block.classList.remove('block-on')
-                    header.classList.remove('header-on')
-                  })
 
           })
         }
@@ -1131,7 +1060,9 @@
     start()
     addCustomer()
     sort()
-
+    btnCancel()
+    btnCancelTwo()
+    btnCancellation()
     let input = document.getElementById('input-search')
 
     input.addEventListener('input', search)
