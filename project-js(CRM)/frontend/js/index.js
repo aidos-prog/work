@@ -152,10 +152,10 @@
     let boxContact = document.createElement('div')
     let boxButton = document.createElement('div')
     let buttonLastchange = document.createElement('button')
-    let buttonCancel = document.createElement('button')
+    let buttonDelete = document.createElement('button')
 
     buttonLastchange.append('Изменить')
-    buttonCancel.append('Удалить')
+    buttonDelete.append('Удалить')
 
     let textId = document.createElement('span')
     let textFio = document.createElement('span')
@@ -184,7 +184,7 @@
 
     boxButton.classList.add('col', 'col-lg-2', 'col-md-2','ms-lg-3','ps-lg-2','ms-md-0', 'ps-md-2', 'customers-col__actions')
     buttonLastchange.classList.add('customers-col__button', 'button-change')
-    buttonCancel.classList.add('customers-col__button', 'button-cancel')
+    buttonDelete.classList.add('customers-col__button', 'button-cancel')
 
     let contactsObj = customerObj.contacts
 
@@ -269,83 +269,45 @@
       }
     }
 
-
-    buttonLastchange.setAttribute('id', 'change-customer')
-
     buttonLastchange.addEventListener('click', function() {
-
-      changeCustomerForm(customerObj)
+      getListCustomer(customerObj.id)
     })
 
-    // buttonCancel.setAttribute('id', 'btn-cancel')
-
-    buttonCancel.addEventListener('click', function() {
-      let formCancel = document.querySelector('.form-cancel')
-      let block = document.querySelector('.block')
-      let header = document.querySelector('.header')
-      let btnCancel = document.querySelector('.form__btn-delete')
+    buttonDelete.addEventListener('click', function() {
+      let btnDelete = document.querySelector('.form__btn-delete')
       let btnCancellation = document.querySelector('.form__btn-cancellation')
-console.log(customerObj.id)
-      formCancel.classList.add('show')
-      block.classList.add('block-on')
-      header.classList.add('header-on')
-  
-          btnCancel.addEventListener('click', function() {
+      openDeleteform()
+          btnDelete.addEventListener('click', function() {
             let customerNumber = customerObj.id
-           
             deleteCustomerServer(customerNumber)
-            formCancel.classList.remove('show')
-            block.classList.remove('block-on')
-            header.classList.remove('header-on')
+            closeDeleteform()            
             row.remove() 
           })
 
             btnCancellation.addEventListener('click', function() {
-                formCancel.classList.remove('show')
-                block.classList.remove('block-on')
-                header.classList.remove('header-on')
+              closeDeleteform()
             })
 
     })
 
-      
+    textId.append(customerObj.id.substr(7, 6))
+    textFio.append(customerObj.surname + " ", customerObj.name + " ", customerObj.lastName)
 
-    let idCustomer = customerObj.id.substr(7, 6)
-    let createDataCustomer = customerObj.createdAt.substr(8, 2) + '.' + customerObj.createdAt.substr(5, 2) + '.' + customerObj.createdAt.substr(0, 4) 
-    let createTimeCustomer = customerObj.createdAt.substr(12, 4)
+    textData.append(customerObj.createdAt.substr(8, 2) + '.' + customerObj.createdAt.substr(5, 2) + '.' + customerObj.createdAt.substr(0, 4))
+    textTime.append(customerObj.createdAt.substr(12, 4))
 
-    let changeDataCustomer = customerObj.updatedAt.substr(8, 2) + '.' + customerObj.updatedAt.substr(5, 2) + '.' + customerObj.updatedAt.substr(0, 4) 
-    let changeTimeCustomer = customerObj.updatedAt.substr(12, 4)
-
-    textId.append(idCustomer)
-    textFio.append(customerObj.surname + " ")
-    textFio.append(customerObj.name + " ")
-    textFio.append(customerObj.lastName)
-
-    textData.append(createDataCustomer)
-    textTime.append(createTimeCustomer)
-
-    textDataLastchange.append(changeDataCustomer)
-    textTimeLastchange.append(changeTimeCustomer)
+    textDataLastchange.append(customerObj.updatedAt.substr(8, 2) + '.' + customerObj.updatedAt.substr(5, 2) + '.' + customerObj.updatedAt.substr(0, 4))
+    textTimeLastchange.append(customerObj.updatedAt.substr(12, 4))
 
     boxId.append(textId)
     boxFio.append(textFio)
-    boxDataTime.append(textData)
-    boxDataTime.append(textTime)
-    boxLastCharge.append(textDataLastchange)
-    boxLastCharge.append(textTimeLastchange)
+    boxDataTime.append(textData,textTime)
+    boxLastCharge.append(textDataLastchange,textTimeLastchange)
 
     boxContact.append(list)
-    boxButton.append(buttonLastchange)
-    boxButton.append(buttonCancel)
+    boxButton.append(buttonLastchange,buttonDelete)
 
-    row.append(boxId)
-    row.append(boxFio)
-    row.append(boxDataTime)
-    row.append(boxLastCharge)
-    row.append(boxContact)
-    row.append(boxButton)
-
+    row.append(boxId,boxFio,boxDataTime,boxLastCharge,boxContact,boxButton)
     table.append(row)
 
     return {
@@ -410,10 +372,133 @@ console.log(customerObj.id)
   }
   
   async function deleteCustomerServer(id) {
-          const response = await fetch('http://localhost:3000/api/client/' + id, {
+          const response = await fetch('http://localhost:3000/api/clients/' + id, {
           method: 'DELETE'
         })
          abc = await response.json()
+  }
+
+  async function getListCustomer(id) {
+    const response = await fetch('http://localhost:3000/api/clients/' + id)
+    const list = await response.json()
+      let btnSaveChange = document.getElementById('btn-save__change')
+
+      let items = infoItems()
+      let docsurname = items.surname
+      let docname = items.name
+      let doclastname = items.middlename
+      let docformIdText = items.id
+
+      let docInfoLine = docLineInfo().listLine
+      let docInput = docLineInfo().docInput
+      let docInfoChoice = docLineInfo().choiceAtributeList
+      // копать тут
+        let surname = list.surname
+        let name = list.name
+        let lastName = list.lastName
+        let contacts = list.contacts
+        let createCustomer = list.createdAt
+
+        docsurname.setAttribute('value', surname)
+        docsurname.value = surname
+        docname.setAttribute('value', name)
+        docname.value = name
+        doclastname.setAttribute('value', lastName)
+        doclastname.value = lastName
+        docformIdText.append(id)
+
+
+      for (let i = 0; i < contacts.length; i++) {
+        docInfoChoice[i].setAttribute('data-value', contacts[i].type)
+        docInfoChoice[i].innerHTML = contacts[i].type
+        docInput[i].setAttribute('value', contacts[i].value)
+        docInput[i].append(contacts[i].value)
+        docInput[i].value = contacts[i].value
+        docInfoLine[i].classList.add('open-line')
+      }
+      openChangeform()
+ 
+
+        btnSaveChange.addEventListener('click', function(event) {
+            event.preventDefault()
+            changedInfoCustomer(createCustomer)
+        
+            closeForm()
+            cleanForm()
+      })
+
+        btnCancelCustomer.addEventListener('click', function(event) {
+
+          event.preventDefault()
+        
+            let formCancel = document.querySelector('.form-cancel')
+            let block = document.querySelector('.block')
+            let header = document.querySelector('.header')
+            let form = document.querySelector('.form')
+            let rows = document.querySelectorAll('.customers-row')
+            let idCustomer = id.substr(7, 6)
+            console.log(rows[0].textContent)
+            
+                form.classList.remove('show')
+                formCancel.classList.add('show')
+                block.classList.add('block-on')
+                header.classList.add('header-on')
+
+            let btnCancel = document.querySelector('.form__btn-delete')
+
+              btnCancel.addEventListener('click', function() {
+
+                for (let i = 0; i < rows.length; i++) {
+
+                  let infoCustomer = rows[i].textContent
+
+                      if (infoCustomer.includes(idCustomer) === true) {
+                        
+                      deleteCustomerServer(id)
+                        rows[i].remove()
+
+                        formCancel.classList.remove('show')
+                        block.classList.remove('block-on')
+                        header.classList.remove('header-on')
+                      }
+                      let items = infoItems()
+                      let docformIdText = items.id
+                      let docInputs = docLineInfo().docInput
+                      let names = docLineInfo().names
+                      let lines = docLineInfo().listLine
+                      docformIdText.innerHTML = ''
+
+                      for (let item of docInputs) {
+                        item.value = ''
+                        item.removeAttribute('value')
+                      }
+                
+                      for (let item of names) {
+                        item.value = ''
+                        item.removeAttribute('value')
+                      }
+                
+                      for(let i = 0;i < lines.length; i++) {
+                        lines[i].classList.remove("open-line")
+                      }
+                     
+                }})
+
+        })
+  }
+
+  function closeBackground() {
+    let block = document.querySelector('.block')
+    let header = document.querySelector('.header')
+    block.classList.remove('block-on')
+    header.classList.remove('header-on')
+  }
+
+  function openBackground() {
+    let block = document.querySelector('.block')
+    let header = document.querySelector('.header')
+    block.classList.add('block-on')
+    header.classList.add('header-on')
   }
 
   function createTable(list) {
@@ -422,10 +507,8 @@ console.log(customerObj.id)
     }
   }
 
-  function openForm() {
+  function openNewForm() {
     let form = document.querySelector('.form')
-    let block = document.querySelector('.block')
-    let header = document.querySelector('.header')
     let hCustomer = document.querySelector('.form-h2__newcustomer')
     let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
     let formid = document.querySelector('.form-id__case')
@@ -433,7 +516,6 @@ console.log(customerObj.id)
     let btnCancellation = document.getElementById('btn-cancellation')
     let btnChange = document.getElementById('btn-save__change')
     let btnSave = document.getElementById('button-save')
-
 
       hCustomer.classList.remove('close')
       hChangeCustomer.classList.add('close')
@@ -444,17 +526,48 @@ console.log(customerObj.id)
       btnCancellation.classList.remove('close')
 
       form.classList.add('show')
-      block.classList.add('block-on')
-      header.classList.add('header-on')
+      openBackground()
+  }
+
+  function openChangeform() {
+    let form = document.querySelector('.form')
+    let hCustomer = document.querySelector('.form-h2__newcustomer')
+      let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
+      let formid = document.querySelector('.form-id__case')
+      let btnSave = document.querySelector('.form__button-save')
+      let btnSaveChange = document.getElementById('btn-save__change')
+      let btnCancelCustomer = document.getElementById('btn-cancel__change')
+      let btnCancellation = document.getElementById('btn-cancellation')
+
+    form.classList.add('show')
+    hCustomer.classList.add('close')
+    btnSave.classList.add('close')
+    hChangeCustomer.classList.remove('close')
+    formid.classList.remove('close')
+    btnSaveChange.classList.remove('close')
+    btnCancelCustomer.classList.remove('close')
+    btnCancellation.classList.add('close')
+
+    openBackground()
+
+  }
+
+  function openDeleteform() {
+    let formCancel = document.querySelector('.form-cancel')
+    formCancel.classList.add('show')
+    openBackground()
   }
 
   function closeForm() {
     let form = document.querySelector('.form')
-    let block = document.querySelector('.block')
-    let header = document.querySelector('.header')
     form.classList.remove('show')
-    block.classList.remove('block-on')
-    header.classList.remove('header-on')
+    closeBackground()
+  }
+
+  function closeDeleteform() {
+    let formCancel = document.querySelector('.form-cancel')
+    formCancel.classList.remove('show')
+    closeBackground()
   }
 
   function cleanForm() {
@@ -493,9 +606,7 @@ console.log(customerObj.id)
     let deleteFormTwo = document.getElementById('form-delete__two')
 
     deleteFormTwo.addEventListener('click', function() {
-      let formDelete = document.querySelector('.form-cancel')
-      closeForm()
-      formDelete.classList.remove('show')
+      closeDeleteform()
       cleanForm()
     })
   }
@@ -503,22 +614,8 @@ console.log(customerObj.id)
   function btnCancellation() {
     let btnCancellation = document.querySelector('.form__btn-cancellation')
     btnCancellation.addEventListener('click', function() {
-      let formCancel = document.querySelector('.form-cancel')
-      let block = document.querySelector('.block')
-      let header = document.querySelector('.header')
-      formCancel.classList.remove('show')
-      block.classList.remove('block-on')
-      header.classList.remove('header-on')
+      closeDeleteform()
     })
-  }
-
-  function btnDelete() {
-    let btnDelete = document.getElementById('form__btn-delete')
-
-    btnDelete.addEventListener('click', function() {
-
-    })
-
   }
 
   function addCustomer() {
@@ -526,7 +623,7 @@ console.log(customerObj.id)
 
     addButton.addEventListener('click', function() {
       cleanForm()
-      openForm()
+      openNewForm()
     })
       
     saveCustomer()
@@ -547,159 +644,6 @@ console.log(customerObj.id)
       start()
     })
     
-  }
-
-  function changeCustomerForm(customerObj) {
-    
-    let id = customerObj.id
-
-    async function getListCustomer(id) {
-      const response = await fetch('http://localhost:3000/api/clients/' + id)
-      const list = await response.json()
-
-        let block = document.querySelector('.block')
-        let header = document.querySelector('.header')
-        let form = document.querySelector('.form')
-        let hCustomer = document.querySelector('.form-h2__newcustomer')
-        let hChangeCustomer = document.querySelector('.form-h2__changecustomer')
-        let formid = document.querySelector('.form-id__case')
-        let btnSave = document.querySelector('.form__button-save')
-        let btnSaveChange = document.getElementById('btn-save__change')
-        let docId = document.getElementById('form-id')
-        let btnCancelCustomer = document.getElementById('btn-cancel__change')
-        let btnCancellation = document.getElementById('btn-cancellation')
-      
-        let items = infoItems()
-        let docsurname = items.surname
-        let docname = items.name
-        let doclastname = items.middlename
-        let docformIdText = items.id
-
-        let docInfoLine = docLineInfo().listLine
-        let docInput = docLineInfo().docInput
-        let docInfoChoice = docLineInfo().choiceAtributeList
-        
-          let surname = list.surname
-          let name = list.name
-          let lastName = list.lastName
-          let contacts = list.contacts
-          let createCustomer = list.createdAt
-
-          docsurname.setAttribute('value', surname)
-          docsurname.value = surname
-          docname.setAttribute('value', name)
-          docname.value = name
-          doclastname.setAttribute('value', lastName)
-          doclastname.value = lastName
-          docformIdText.append(id)
-
-
-        for (let i = 0; i < contacts.length; i++) {
-          docInfoChoice[i].setAttribute('data-value', contacts[i].type)
-          docInfoChoice[i].innerHTML = contacts[i].type
-          docInput[i].setAttribute('value', contacts[i].value)
-          docInput[i].append(contacts[i].value)
-          docInput[i].value = contacts[i].value
-          docInfoLine[i].classList.add('open-line')
-        }
-
-          form.classList.add('show')
-          block.classList.add('block-on')
-          header.classList.add('header-on')
-          hCustomer.classList.add('close')
-          btnSave.classList.add('close')
-          hChangeCustomer.classList.remove('close')
-          formid.classList.remove('close')
-          btnSaveChange.classList.remove('close')
-          btnCancelCustomer.classList.remove('close')
-          btnCancellation.classList.add('close')
-
-          btnSaveChange.addEventListener('click', function(event) {
-              event.preventDefault()
-              changedInfoCustomer(createCustomer)
-              form.classList.remove('show')
-              block.classList.remove('block-on')
-              header.classList.remove('header-on')
-
-            docId.innerHTML = ''
-
-            docname.removeAttribute('value')
-            docsurname.removeAttribute('value')
-            doclastname.removeAttribute('value')
-
-              
-            for (let i = 0; i < 10; i++) {
-              docInput[i].innerHTML = ''
-              docInput[i].removeAttribute('value')
-            }
-            for (let i = 0; i < 10; i++) {
-              docInfoChoice[i].innerHTML = 'Телефон'
-              docInfoChoice[i].setAttribute('data-value', 'Телефон')
-            }
-
-
-        })
-
-          btnCancelCustomer.addEventListener('click', function(event) {
-
-            event.preventDefault()
-          
-              let formCancel = document.querySelector('.form-cancel')
-              let block = document.querySelector('.block')
-              let header = document.querySelector('.header')
-              let form = document.querySelector('.form')
-              let rows = document.querySelectorAll('.customers-row')
-              let idCustomer = id.substr(7, 6)
-              console.log(id.substr(7, 6))
-              // копать тут
-                  form.classList.remove('show')
-                  formCancel.classList.add('show')
-                  block.classList.add('block-on')
-                  header.classList.add('header-on')
-
-              let btnCancel = document.querySelector('.form__btn-delete')
-
-                btnCancel.addEventListener('click', function() {
-
-                  for (let i = 0; i < rows.length; i++) {
-
-                    let infoCustomer = rows[i].textContent
-
-                        if (infoCustomer.includes(idCustomer) === true) {
-                          
-                        deleteCustomerServer(id)
-                          rows[i].remove()
-
-                          formCancel.classList.remove('show')
-                          block.classList.remove('block-on')
-                          header.classList.remove('header-on')
-                        }
-                        let items = infoItems()
-                        let docformIdText = items.id
-                        let docInputs = docLineInfo().docInput
-                        let names = docLineInfo().names
-                        let lines = docLineInfo().listLine
-                        docformIdText.innerHTML = ''
-
-                        for (let item of docInputs) {
-                          item.value = ''
-                          item.removeAttribute('value')
-                        }
-                  
-                        for (let item of names) {
-                          item.value = ''
-                          item.removeAttribute('value')
-                        }
-                  
-                        for(let i = 0;i < lines.length; i++) {
-                          lines[i].classList.remove("open-line")
-                        }
-                       
-                  }})
-
-          })
-        }
-      getListCustomer(id)
   }
 
   function changedInfoCustomer(createCustomer) {
