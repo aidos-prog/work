@@ -270,7 +270,7 @@
     }
 
     buttonLastchange.addEventListener('click', function() {
-      getListCustomer(customerObj.id)
+      getCustomerServer(customerObj.id)
     })
 
     buttonDelete.addEventListener('click', function() {
@@ -378,11 +378,19 @@
          abc = await response.json()
   }
 
-  async function getListCustomer(id) {
+  async function getCustomerServer(id) {
     const response = await fetch('http://localhost:3000/api/clients/' + id)
     const list = await response.json()
-      let btnSaveChange = document.getElementById('btn-save__change')
+   
+    deleteCustomerFormChange(list, id)
 
+  }
+
+  function deleteCustomerFormChange(list, id) {
+      let btnSaveChange = document.getElementById('btn-save__change')
+      let btnDeleteChange = document.getElementById('btn-cancel__change')
+      let btnDelete = document.getElementById('form__btn-delete')
+      let btnCancellation = document.querySelector('.form__btn-cancellation')
       let items = infoItems()
       let docsurname = items.surname
       let docname = items.name
@@ -392,7 +400,7 @@
       let docInfoLine = docLineInfo().listLine
       let docInput = docLineInfo().docInput
       let docInfoChoice = docLineInfo().choiceAtributeList
-      // копать тут
+      
         let surname = list.surname
         let name = list.name
         let lastName = list.lastName
@@ -407,7 +415,6 @@
         doclastname.value = lastName
         docformIdText.append(id)
 
-
       for (let i = 0; i < contacts.length; i++) {
         docInfoChoice[i].setAttribute('data-value', contacts[i].type)
         docInfoChoice[i].innerHTML = contacts[i].type
@@ -417,74 +424,33 @@
         docInfoLine[i].classList.add('open-line')
       }
       openChangeform()
- 
-
         btnSaveChange.addEventListener('click', function(event) {
             event.preventDefault()
             changedInfoCustomer(createCustomer)
         
             closeForm()
             cleanForm()
+
       })
 
-        btnCancelCustomer.addEventListener('click', function(event) {
 
+      btnDeleteChange.addEventListener('click', function(event) {
           event.preventDefault()
-        
-            let formCancel = document.querySelector('.form-cancel')
-            let block = document.querySelector('.block')
-            let header = document.querySelector('.header')
-            let form = document.querySelector('.form')
-            let rows = document.querySelectorAll('.customers-row')
-            let idCustomer = id.substr(7, 6)
-            console.log(rows[0].textContent)
-            
-                form.classList.remove('show')
-                formCancel.classList.add('show')
-                block.classList.add('block-on')
-                header.classList.add('header-on')
+          closeForm()
+          openDeleteform()
+          
+              btnDelete.addEventListener('click', function() {
+                deleteCustomerServer(id)
+                closeDeleteform()
+                deleteList()
+                anter = setTimeout(start, 50);
+              })
+    
+                btnCancellation.addEventListener('click', function() {
+                  closeDeleteform()
+                })
 
-            let btnCancel = document.querySelector('.form__btn-delete')
-
-              btnCancel.addEventListener('click', function() {
-
-                for (let i = 0; i < rows.length; i++) {
-
-                  let infoCustomer = rows[i].textContent
-
-                      if (infoCustomer.includes(idCustomer) === true) {
-                        
-                      deleteCustomerServer(id)
-                        rows[i].remove()
-
-                        formCancel.classList.remove('show')
-                        block.classList.remove('block-on')
-                        header.classList.remove('header-on')
-                      }
-                      let items = infoItems()
-                      let docformIdText = items.id
-                      let docInputs = docLineInfo().docInput
-                      let names = docLineInfo().names
-                      let lines = docLineInfo().listLine
-                      docformIdText.innerHTML = ''
-
-                      for (let item of docInputs) {
-                        item.value = ''
-                        item.removeAttribute('value')
-                      }
-                
-                      for (let item of names) {
-                        item.value = ''
-                        item.removeAttribute('value')
-                      }
-                
-                      for(let i = 0;i < lines.length; i++) {
-                        lines[i].classList.remove("open-line")
-                      }
-                     
-                }})
-
-        })
+      })
   }
 
   function closeBackground() {
@@ -674,13 +640,9 @@
               })
             })
 
-
-            for (let i = 0; i < 10; i++) {
-              docInput[i].innerHTML = ''
-              docInput[i].removeAttribute('value')
-            }
           }
 
+          // делать тут
          changeCustomerServer(createCustomer)
          deleteList()
          start()
@@ -1007,6 +969,7 @@
     btnCancel()
     btnCancelTwo()
     btnCancellation()
+
     let input = document.getElementById('input-search')
 
     input.addEventListener('input', search)
