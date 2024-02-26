@@ -133,7 +133,7 @@
                     break
                   } 
                   else {
-                    contacts.push({type: docInfoChoice[i].getAttribute('data-value'), value: docInput[i].value.trim()})
+                    contacts.push({type: docInfoChoice[i].getAttribute('data-value'), value: docInput[i].value.trim()},)
                   } 
                   
                 }
@@ -382,11 +382,22 @@
     const response = await fetch('http://localhost:3000/api/clients/' + id)
     const list = await response.json()
    
-    deleteCustomerFormChange(list, id)
+    openCustomerFormChange(list, id)
 
   }
 
-  function deleteCustomerFormChange(list, id) {
+  async function startServerList(i) {
+                
+    const list = await fetch('http://localhost:3000/api/clients')
+    const data = await list.json()
+
+    let newList = ab(data, 'id', i)
+  
+    createTable(newList)
+    
+  }
+
+  function openCustomerFormChange(list, id) {
       let btnSaveChange = document.getElementById('btn-save__change')
       let btnDeleteChange = document.getElementById('btn-cancel__change')
       let btnDelete = document.getElementById('form__btn-delete')
@@ -607,7 +618,7 @@
       closeForm()
 
       deleteList()
-      start()
+      startServerList()
     })
     
   }
@@ -616,18 +627,18 @@
           async function changeCustomerServer(createCustomer) {
               let items = infoItems()
 
-              let docsurname = items.surname.value
-              let docname = items.name.value
-              let doclastname = items.middlename.value
-              let docformIdText = items.id.innerHTML
-
               let docInput = docLineInfo().docInput
               let docInfoChoice = docLineInfo().choiceAtributeList
-              let contacts = contactsInfo(docInput, docInfoChoice)
+              let contacts = contactsInfo(docInput, docInfoChoice).contacts
+
+              let docsurname = items.surname.value.trim()
+              let docname = items.name.value.trim()
+              let doclastname = items.middlename.value.trim()
+              let docId = items.id.innerHTML
               
             let now = new Date()
-
-            const response = await fetch('http://localhost:3000/api/clients/' + docformIdText, {
+            console.log(contacts)
+            const request = await fetch('http://localhost:3000/api/clients/' + docId, {
               method: 'PATCH',  
               
               body: JSON.stringify({
@@ -639,13 +650,13 @@
                 contacts: contacts
               })
             })
-
+            const response = await request.json()
+      
           }
 
-          // делать тут
-         changeCustomerServer(createCustomer)
+        changeCustomerServer(createCustomer)
          deleteList()
-         start()
+         startServerList()
 
   }
 
@@ -657,44 +668,44 @@
     }
   }
 
+  function ab(arr, key, i) {
+    if (i == 1) {
+      let result = arr.sort(function(a,b) {
+        if (a[key] < b[key]) {
+          return -1
+        }
+      })
+      return result
+      
+    }
+
+    if (i == 0) {
+      let result = arr.sort(function(a,b) {
+        if (a[key] > b[key]) {
+          return -1
+        }
+      })
+      return result
+    }
+  }
+
+  function numbersVisible() {
+    let number = document.querySelector('.numbers')
+    number.classList.add('open')
+    }
+
+  function unvisible() {
+    let number = document.querySelector('.numbers')
+    number.classList.remove('open')
+  }
+
   function sort() {
     let docId = document.getElementById('doc-id')
     let docFio = document.getElementById('doc-fio')
     let docData = document.getElementById('doc-data')
     let docLastchange = document.getElementById('doc-lastchange')
     
-    function ab(arr, key, i) {
-      if (i == 1) {
-        let result = arr.sort(function(a,b) {
-          if (a[key] < b[key]) {
-            return -1
-          }
-        })
-        return result
-        
-      }
-
-      if (i == 0) {
-        let result = arr.sort(function(a,b) {
-          if (a[key] > b[key]) {
-            return -1
-          }
-        })
-        return result
-      }
-    }
           let i = 0
-          
-
-          function numbersVisible() {
-            let number = document.querySelector('.numbers')
-            number.classList.add('open')
-            }
-
-          function unvisible() {
-            let number = document.querySelector('.numbers')
-            number.classList.remove('open')
-          }
 
           docId.addEventListener('click', function() {     
             deleteList()
@@ -706,17 +717,7 @@
             let numberfour = document.querySelector('.numbers_four')
             
             if (i == 1) {
-              async function getServerList() {
-                
-              const list = await fetch('http://localhost:3000/api/clients')
-              const data = await list.json()
-
-              let newList = ab(data, 'id', 1)
-            
-              createTable(newList)
-              
-            }
-            getServerList()
+              startServerList(1)
             i = i - 1
             arrow.classList.remove('is-active')
             number.classList.add('down')
@@ -726,20 +727,11 @@
             numberfour.classList.add('color_one')
 
             
-            numbersVisible(number)
+            numbersVisible()
             setTimeout(unvisible, 5000)
             
             } else {
-              async function getServerList() {
-                
-              const list = await fetch('http://localhost:3000/api/clients')
-              const data = await list.json()
-
-              let newList = ab(data, 'id', 0)
-            
-              createTable(newList)
-            }
-                getServerList()
+              startServerList(0)
                 i = i + 1
                 arrow.classList.add('is-active')
                 number.classList.remove('down')
@@ -748,145 +740,54 @@
                 numbertree.classList.remove('color_two')
                 numberfour.classList.remove('color_one')
 
-                numbersVisible(number)
+                numbersVisible()
                 setTimeout(unvisible, 5000)
             }
           })
-          docFio.addEventListener('click', function() {     
-            deleteList()
-            let arrow = document.querySelector('.customers-header__fio-text')
-            if (i == 1) {
-              async function getServerList() {
-                
-              const list = await fetch('http://localhost:3000/api/clients')
-              const data = await list.json()
 
-              let newList = ab(data, 'surname', 1)
-            
-              createTable(newList)
-              
-            }
-            getServerList()
-            i = i - 1
-            arrow.classList.remove('is-active')
-            
-            } else {
-              async function getServerList() {
-                
-              const list = await fetch('http://localhost:3000/api/clients')
-              const data = await list.json()
-
-              let newList = ab(data, 'surname', 0)
-            
-              createTable(newList)
-            }
-                getServerList()
-                i = i + 1
-                arrow.classList.add('is-active')
-            }
-          })
-          docData.addEventListener('click', function() {     
-            deleteList()
-            let arrow = document.querySelector('.customers-header__data-text')
-            if (i == 1) {
-              async function getServerList() {
-                
-              const list = await fetch('http://localhost:3000/api/clients')
-              const data = await list.json()
-
-              let newList = ab(data, 'createdAt', 1)
-            
-              createTable(newList)
-              
-            }
-            getServerList()
-            i = i - 1
-            arrow.classList.remove('is-active')
-            } else {
-              async function getServerList() {
-                
-              const list = await fetch('http://localhost:3000/api/clients')
-              const data = await list.json()
-
-              let newList = ab(data, 'createdAt', 0)
-            
-              createTable(newList)
-            }
-                getServerList()
-                i = i + 1
-                arrow.classList.add('is-active')
-            }
-                
-            })
-            docLastchange.addEventListener('click', function() {     
+          // сделать функцию на стрелочку с параметром
+            docFio.addEventListener('click', function() {     
               deleteList()
-              let arrow = document.querySelector('.customers-header__change-text')
+              let arrow = document.querySelector('.customers-header__fio-text')
               if (i == 1) {
-                async function getServerList() {
-                  
-                const list = await fetch('http://localhost:3000/api/clients')
-                const data = await list.json()
-  
-                let newList = ab(data, 'updatedAt', 1)
-              
-                createTable(newList)
-                
-              }
-              getServerList()
+                startServerList(1)
               i = i - 1
               arrow.classList.remove('is-active')
-              } else {
-                async function getServerList() {
-                  
-                const list = await fetch('http://localhost:3000/api/clients')
-                const data = await list.json()
-  
-                let newList = ab(data, 'updatedAt', 0)
               
-                createTable(newList)
-              }
-                  getServerList()
+              } else {
+                startServerList(0)
                   i = i + 1
                   arrow.classList.add('is-active')
               }
-                
+            })
+              docData.addEventListener('click', function() {     
+                deleteList()
+                let arrow = document.querySelector('.customers-header__data-text')
+                if (i == 1) {
+                  startServerList(1)
+                i = i - 1
+                arrow.classList.remove('is-active')
+                } else {
+                  startServerList(0)
+                    i = i + 1
+                    arrow.classList.add('is-active')
+                }
+                    
                 })
-
-  }
-
-  function start() {
-    async function getServerList() {
-
-      function ab(arr, key, i) {
-        if (i == 1) {
-          let result = arr.sort(function(a,b) {
-            if (a[key] < b[key]) {
-              return -1
-            }
-          })
-          return result
-          
-        }
-  
-        if (i == 0) {
-          let result = arr.sort(function(a,b) {
-            if (a[key] > b[key]) {
-              return -1
-            }
-          })
-          return result
-        }
-      }
-                
-      const list = await fetch('http://localhost:3000/api/clients')
-      const data = await list.json()
-
-      let newList = ab(data, 'id', 0)
-    
-      createTable(newList)
-      
-    }
-    getServerList()
+                docLastchange.addEventListener('click', function() {     
+                  deleteList()
+                  let arrow = document.querySelector('.customers-header__change-text')
+                  if (i == 1) {
+                    startServerList(1)
+                  i = i - 1
+                  arrow.classList.remove('is-active')
+                  } else {
+                    startServerList(0)
+                      i = i + 1
+                      arrow.classList.add('is-active')
+                  }
+                    
+                    })
   }
 
   let i = 1
@@ -921,21 +822,27 @@
         
         case iterator.surname:
           createCustomer(iterator)
+          break
 
         case iterator.name:
           createCustomer(iterator)
+          break
 
         case iterator.lastName:
           createCustomer(iterator)
+          break
 
         case one:
           createCustomer(iterator)
+          break
 
         case two:
           createCustomer(iterator)
+          break
 
         case tree:
           createCustomer(iterator)
+          break
       }
 
       if (input.value == '') {
@@ -963,7 +870,7 @@
 
   document.addEventListener('DOMContentLoaded', function() {
 
-    start()
+    startServerList(0)
     addCustomer()
     sort()
     btnCancel()
