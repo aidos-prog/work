@@ -386,15 +386,21 @@
 
   }
 
-  async function startServerList(i) {
+  async function startServerList() {
                 
     const list = await fetch('http://localhost:3000/api/clients')
     const data = await list.json()
-
-    let newList = ab(data, 'id', i)
   
-    createTable(newList)
+    createTable(data)
     
+  }
+
+  async function startListSortServer(key,i) {
+      const list = await fetch('http://localhost:3000/api/clients')
+      const data = await list.json()
+
+     let newList = ab(data,key,i)
+     createTable(newList)
   }
 
   function openCustomerFormChange(list, id) {
@@ -704,7 +710,7 @@
     let docFio = document.getElementById('doc-fio')
     let docData = document.getElementById('doc-data')
     let docLastchange = document.getElementById('doc-lastchange')
-    
+
           let i = 0
 
           docId.addEventListener('click', function() {     
@@ -717,7 +723,7 @@
             let numberfour = document.querySelector('.numbers_four')
             
             if (i == 1) {
-              startServerList(1)
+              startListSortServer('id',1)
             i = i - 1
             arrow.classList.remove('is-active')
             number.classList.add('down')
@@ -731,7 +737,7 @@
             setTimeout(unvisible, 5000)
             
             } else {
-              startServerList(0)
+              startListSortServer('id',0)
                 i = i + 1
                 arrow.classList.add('is-active')
                 number.classList.remove('down')
@@ -745,17 +751,16 @@
             }
           })
 
-          // сделать функцию на стрелочку с параметром
             docFio.addEventListener('click', function() {     
               deleteList()
               let arrow = document.querySelector('.customers-header__fio-text')
               if (i == 1) {
-                startServerList(1)
+                startListSortServer('surname',1)
               i = i - 1
               arrow.classList.remove('is-active')
               
               } else {
-                startServerList(0)
+                startListSortServer('surname',0)
                   i = i + 1
                   arrow.classList.add('is-active')
               }
@@ -764,11 +769,11 @@
                 deleteList()
                 let arrow = document.querySelector('.customers-header__data-text')
                 if (i == 1) {
-                  startServerList(1)
+                  startListSortServer('createdAt',1)
                 i = i - 1
                 arrow.classList.remove('is-active')
                 } else {
-                  startServerList(0)
+                  startListSortServer('createdAt',0)
                     i = i + 1
                     arrow.classList.add('is-active')
                 }
@@ -778,11 +783,11 @@
                   deleteList()
                   let arrow = document.querySelector('.customers-header__change-text')
                   if (i == 1) {
-                    startServerList(1)
+                    startListSortServer('updatedAt',1)
                   i = i - 1
                   arrow.classList.remove('is-active')
                   } else {
-                    startServerList(0)
+                    startListSortServer('updatedAt',0)
                       i = i + 1
                       arrow.classList.add('is-active')
                   }
@@ -870,7 +875,7 @@
 
   document.addEventListener('DOMContentLoaded', function() {
 
-    startServerList(0)
+    startListSortServer('id',0)
     addCustomer()
     sort()
     btnCancel()
