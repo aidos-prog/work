@@ -269,6 +269,23 @@
       }
     }
 
+    // создаем тут функцию
+    function checkContacts(contactsObj) {
+
+      if (contactsObj.length > 5) {
+            console.log('many')
+            let o = document.createElement('li')
+
+          } else {
+            console.log('few')
+            console.log(contactsObj.length)
+          }
+    }
+
+    
+
+
+
     buttonLastchange.addEventListener('click', function() {
       getCustomerServer(customerObj.id)
     })
@@ -399,8 +416,7 @@
       const list = await fetch('http://localhost:3000/api/clients')
       const data = await list.json()
 
-     let newList = ab(data,key,i)
-     createTable(newList)
+     createTable(ab(data,key,i))
   }
 
   function openCustomerFormChange(list, id) {

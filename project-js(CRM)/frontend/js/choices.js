@@ -51,15 +51,7 @@ function addContact() {
     let nineLine = document.getElementById('lineNine')
     let tenLine = document.getElementById('lineTen')
 
-
-    // let container = document.getElementById('contact-container')
-
     addbutton.addEventListener('click', function() {
-
-    // let input = document.createElement('input')
-    // input.classList.add("form-name__input")
-    // container.append(input)
-    // console.log(input)
 
       if (oneLine.classList.contains("open-line") == false) {
         oneLine.classList.add("open-line")
