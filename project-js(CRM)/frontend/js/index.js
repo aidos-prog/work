@@ -272,18 +272,32 @@
     // создаем тут функцию
     function checkContacts(contactsObj) {
 
-      if (contactsObj.length > 5) {
-            console.log('many')
+      if (contactsObj.length > 4) {
             let o = document.createElement('li')
+            let text = document.createElement('span') 
+            
+            let number = contactsObj.length - 4
+            o.classList.add('social-item')
+            o.classList.add('social-contacts')
+            list.classList.add('contacts-many')
+            text.append(number)
+            o.append(text)
+            list.append(o)
 
-          } else {
-            console.log('few')
-            console.log(contactsObj.length)
-          }
+            for (let i = 0; i < 4; i++) {
+                console.log(list.children[i])
+                list.children[i].classList.add('op')
+              }
+         
+          // !!!!
+          } 
+    
+          
+          
     }
 
     
-
+    checkContacts(contactsObj)
 
 
     buttonLastchange.addEventListener('click', function() {
@@ -896,7 +910,7 @@
     sort()
     btnCancel()
     btnCancelTwo()
-    btnCancellation()
+    btnCancellation() 
 
     let input = document.getElementById('input-search')
 

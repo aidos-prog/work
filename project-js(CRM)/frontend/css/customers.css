@@ -398,6 +398,15 @@
   margin-right: 7px;
 }
 
+.social-contacts {
+  background-image: url(../img/customers/Ellipse34.svg);
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: block;
+  transition-duration: 0.5s;
+}
+
 .button-change {
   width: 87px;
   height: 20px;
