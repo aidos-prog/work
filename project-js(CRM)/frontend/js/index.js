@@ -269,36 +269,43 @@
       }
     }
 
-    // создаем тут функцию
     function checkContacts(contactsObj) {
 
       if (contactsObj.length > 4) {
-            let o = document.createElement('li')
+            let o = document.createElement('button')
             let text = document.createElement('span') 
             
             let number = contactsObj.length - 4
-            o.classList.add('social-item')
-            o.classList.add('social-contacts')
+            o.classList.add('social-item','social-contacts')
+            text.classList.add('contacts-text')
             list.classList.add('contacts-many')
-            text.append(number)
+            text.append('+' + number)
             o.append(text)
             list.append(o)
 
             for (let i = 0; i < 4; i++) {
-                console.log(list.children[i])
-                list.children[i].classList.add('op')
+              list.children[i].classList.add('signal')
+            }
+              
+              for(let i = 0; i < contactsObj.length; i++) {
+                if (list.children[i].classList.contains('signal') === false) {
+                  list.children[i].classList.add('close')
+                  console.log(list.children[i])
+                }
               }
-         
-          // !!!!
-          } 
-    
-          
-          
+              o.addEventListener('click', function() {
+                for (let i = 0; i < contactsObj.length; i++) {
+                  if (list.children[i].classList.contains("close") === true) {
+                    list.children[i].classList.remove("close")
+                    o.classList.add('close')
+                    console.log(list.children[i])
+                  }
+                }
+              })
+      }     
     }
-
     
     checkContacts(contactsObj)
-
 
     buttonLastchange.addEventListener('click', function() {
       getCustomerServer(customerObj.id)

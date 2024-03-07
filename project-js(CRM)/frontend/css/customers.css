@@ -130,6 +130,8 @@
 
 .customers-col__contacts {
   max-width: 135px;
+  display: block;
+  position: relative;
 }
 
 .customers-col__actions {
@@ -333,8 +335,18 @@
   cursor: pointer;
 }
 
+.contacts-text {
+  font-size: 8px;
+  display: block;
+  position: relative;
+  right: 2px;
+}
+
 .social-list {
+  width: 111px;
+  max-height: 45px;
   display: flex;
+  position: relative;
 }
 
 .social-item {
@@ -405,6 +417,9 @@
   background-repeat: no-repeat;
   display: block;
   transition-duration: 0.5s;
+  border: 0;
+  background-color: #ffffff;
+  cursor: pointer;
 }
 
 .button-change {
@@ -509,10 +524,6 @@
   min-width: 90px;
   display: flex;
   flex-direction: column;
-}
-
-.customers-col__contacts {
-  max-width: 129px;
 }
 
 .customers-col__text-time {
