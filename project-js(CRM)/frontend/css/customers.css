@@ -129,7 +129,7 @@
 }
 
 .customers-col__contacts {
-  max-width: 135px;
+  width: 135px;
   display: block;
   position: relative;
 }
@@ -346,6 +346,7 @@
   width: 111px;
   max-height: 45px;
   display: flex;
+  flex-wrap: wrap;
   position: relative;
 }
 

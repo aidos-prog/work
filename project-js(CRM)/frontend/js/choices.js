@@ -98,6 +98,8 @@ function addContact() {
   let deleteButtonNine = document.getElementById('line-buttonNine')
   let deleteButtonTen = document.getElementById('line-buttonTen')
 
+  let input_four = document.getElementById('line-inputFour')
+
   deleteButtonOne.addEventListener('click', function() {
     oneLine.classList.remove("open-line")
   })
@@ -109,6 +111,8 @@ function addContact() {
   })
   deleteButtonFour.addEventListener('click', function() {
     fourLine.classList.remove("open-line")
+    input_four.value = ''
+    input_four.removeAttribute('value')
   })
   deleteButtonFive.addEventListener('click', function() {
     fiveLine.classList.remove("open-line")

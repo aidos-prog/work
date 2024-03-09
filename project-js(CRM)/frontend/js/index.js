@@ -130,7 +130,7 @@
                 for (let i = 0; i < docInput.length; i++) {
                  
                   if (docInput[i].value.trim() === '') {
-                    break
+                    continue
                   } 
                   else {
                     contacts.push({type: docInfoChoice[i].getAttribute('data-value'), value: docInput[i].value.trim()},)
@@ -680,7 +680,7 @@
               let docId = items.id.innerHTML
               
             let now = new Date()
-            console.log(contacts)
+            
             const request = await fetch('http://localhost:3000/api/clients/' + docId, {
               method: 'PATCH',  
               
@@ -699,7 +699,7 @@
 
         changeCustomerServer(createCustomer)
          deleteList()
-         startServerList()
+         startListSortServer('id',0)
 
   }
 
