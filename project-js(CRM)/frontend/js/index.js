@@ -137,7 +137,7 @@
                   } 
                   
                 }
-
+console.log(contacts)
                 return {
                   contacts
                 }
@@ -290,7 +290,6 @@
               for(let i = 0; i < contactsObj.length; i++) {
                 if (list.children[i].classList.contains('signal') === false) {
                   list.children[i].classList.add('close')
-                  console.log(list.children[i])
                 }
               }
               o.addEventListener('click', function() {
@@ -298,7 +297,6 @@
                   if (list.children[i].classList.contains("close") === true) {
                     list.children[i].classList.remove("close")
                     o.classList.add('close')
-                    console.log(list.children[i])
                   }
                 }
               })
@@ -481,9 +479,12 @@
         btnSaveChange.addEventListener('click', function(event) {
             event.preventDefault()
             changedInfoCustomer(createCustomer)
-        
             closeForm()
             cleanForm()
+            deleteList()
+            
+            anter = setTimeout(startListSortServer, 50, 'id', 0);
+            
 
       })
 
@@ -602,11 +603,13 @@
 
       for (let item of docInputs) {
         item.value = ''
+        item.innerHTML = ''
         item.removeAttribute('value')
       }
 
       for (let item of names) {
         item.value = ''
+        item.innerHTML = ''
         item.removeAttribute('value')
       }
       for(let i = 0;i < lines.length; i++) {
@@ -666,6 +669,48 @@
     
   }
 
+  function addContact() {
+
+    let addbutton = document.getElementById('add-contact')
+
+    addbutton.addEventListener('click', function() {
+
+      for(let i = 0; i < lines.length; i++) {
+          if (lines[i].classList.contains("open-line") == false) {
+            lines[i].classList.add("open-line")
+            return
+          }
+        }
+      }) 
+    let deleteButtonOne = document.getElementById('line-buttonOne')
+    let deleteButtonTwo = document.getElementById('line-buttonTwo')
+    let deleteButtonTree = document.getElementById('line-buttonTree')
+    let deleteButtonFour = document.getElementById('line-buttonFour')
+    let deleteButtonFive = document.getElementById('line-buttonFive')
+    let deleteButtonSix = document.getElementById('line-buttonSix')
+    let deleteButtonSeven = document.getElementById('line-buttonSeven')
+    let deleteButtonEight = document.getElementById('line-buttonEight')
+    let deleteButtonNine = document.getElementById('line-buttonNine')
+    let deleteButtonTen = document.getElementById('line-buttonTen')
+
+    let buttons = []
+
+    buttons.push(deleteButtonOne,deleteButtonTwo,deleteButtonTree,deleteButtonFour,deleteButtonFive,deleteButtonSix,deleteButtonSeven,deleteButtonEight,deleteButtonNine,deleteButtonTen)
+
+    let docInputs = docLineInfo().docInput
+    let lines = docLineInfo().listLine
+
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function() {
+        lines[i].classList.remove("open-line")
+        docInputs[i].removeAttribute('value')
+        docInputs[i].innerHTML = ''
+
+        
+      })
+    }
+  }
+
   function changedInfoCustomer(createCustomer) {
           async function changeCustomerServer(createCustomer) {
               let items = infoItems()
@@ -698,9 +743,7 @@
           }
 
         changeCustomerServer(createCustomer)
-         deleteList()
-         startListSortServer('id',0)
-
+      
   }
 
   function deleteList() {
@@ -918,6 +961,7 @@
     btnCancel()
     btnCancelTwo()
     btnCancellation() 
+    addContact()
 
     let input = document.getElementById('input-search')
 
