@@ -137,7 +137,7 @@
                   } 
                   
                 }
-console.log(contacts)
+    
                 return {
                   contacts
                 }
@@ -364,9 +364,6 @@ console.log(contacts)
 
     let boxMessedge = document.getElementById('validation-messedge')
     let messedge = document.getElementById('messedge-id')
-    let block = document.querySelector('.block')
-    let header = document.querySelector('.header')
-    let form = document.querySelector('.form') 
     
     const request = await fetch('http://localhost:3000/api/clients', {
       method: 'POST',  
@@ -380,29 +377,46 @@ console.log(contacts)
         contacts: contacts
       })
     })
+
     
     switch(request.status) {
       case(422): 
        boxMessedge.classList.add('validation-vision')
+       if (messedge.innerHTML === 'Введите ФИО и контакты.') {
+        return
+       } else {
         messedge.append('Введите ФИО и контакты.')
+       }
         return
-        case(404): 
+
+      case(404): 
        boxMessedge.classList.add('validation-vision')
-        messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
+        if (messedge.innerHTML === 'Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.') {
+          return
+         } else {
+          messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
+         }
         return
-        case(500): 
-       boxMessedge.classList.add('validation-vision')
-        messedge.append('Странно, но сервер сломался.')
+
+      case(500): 
+        boxMessedge.classList.add('validation-vision')
+        if (messedge.innerHTML === 'Странно, но сервер сломался.') {
+          return
+        } else {
+          messedge.append('Странно, но сервер сломался.')
+        }
         return
+
         case(200): 
-        form.classList.remove('show')
-        block.classList.remove('block-on')
-        header.classList.remove('header-on')
+        cleanForm()
+        closeForm()
+        deleteList()
         return
-        case(201): 
-        form.classList.remove('show')
-        block.classList.remove('block-on')
-        header.classList.remove('header-on')
+
+        case(201):    
+        cleanForm()
+        closeForm()
+        deleteList()
         return
     }
   }
@@ -419,7 +433,6 @@ console.log(contacts)
     const list = await response.json()
    
     openCustomerFormChange(list, id)
-
   }
 
   async function startServerList() {
@@ -475,18 +488,20 @@ console.log(contacts)
         docInput[i].value = contacts[i].value
         docInfoLine[i].classList.add('open-line')
       }
+
       openChangeform()
-        btnSaveChange.addEventListener('click', function(event) {
+
+      btnSaveChange.addEventListener('click', function(event) {
             event.preventDefault()
-            changedInfoCustomer(createCustomer)
+            changedInfoCustomer(createCustomer);
+            
             closeForm()
             cleanForm()
             deleteList()
             
             anter = setTimeout(startListSortServer, 50, 'id', 0);
-            
 
-      })
+        })
 
 
       btnDeleteChange.addEventListener('click', function(event) {
@@ -500,12 +515,10 @@ console.log(contacts)
                 deleteList()
                 anter = setTimeout(start, 50);
               })
-    
-                btnCancellation.addEventListener('click', function() {
-                  closeDeleteform()
-                })
-
+              btnCancellation()
       })
+
+
   }
 
   function closeBackground() {
@@ -660,11 +673,8 @@ console.log(contacts)
       event.preventDefault()
 
       createCustomerServer()
-      cleanForm()
-      closeForm()
+      inter = setTimeout(startServerList, 300);
 
-      deleteList()
-      startServerList()
     })
     
   }
@@ -681,7 +691,8 @@ console.log(contacts)
             return
           }
         }
-      }) 
+      })
+
     let deleteButtonOne = document.getElementById('line-buttonOne')
     let deleteButtonTwo = document.getElementById('line-buttonTwo')
     let deleteButtonTree = document.getElementById('line-buttonTree')
@@ -705,7 +716,6 @@ console.log(contacts)
         lines[i].classList.remove("open-line")
         docInputs[i].removeAttribute('value')
         docInputs[i].innerHTML = ''
-
         
       })
     }
@@ -718,7 +728,7 @@ console.log(contacts)
               let docInput = docLineInfo().docInput
               let docInfoChoice = docLineInfo().choiceAtributeList
               let contacts = contactsInfo(docInput, docInfoChoice).contacts
-
+                console.log(contacts)
               let docsurname = items.surname.value.trim()
               let docname = items.name.value.trim()
               let doclastname = items.middlename.value.trim()
@@ -778,7 +788,7 @@ console.log(contacts)
   function numbersVisible() {
     let number = document.querySelector('.numbers')
     number.classList.add('open')
-    }
+  }
 
   function unvisible() {
     let number = document.querySelector('.numbers')
@@ -969,6 +979,4 @@ console.log(contacts)
 
     
   })
-
-
 })();
