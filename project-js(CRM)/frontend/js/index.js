@@ -307,6 +307,7 @@
 
     buttonLastchange.addEventListener('click', function() {
       getCustomerServer(customerObj.id)
+    
     })
 
     buttonDelete.addEventListener('click', function() {
@@ -494,11 +495,12 @@
       btnSaveChange.addEventListener('click', function(event) {
             event.preventDefault()
             changedInfoCustomer(createCustomer);
-            
+            deleteList()
             closeForm()
             cleanForm()
+            // Думать тут. Почему не изменяются данные.
+
             deleteList()
-            
             anter = setTimeout(startListSortServer, 50, 'id', 0);
 
         })
@@ -911,6 +913,7 @@
         if (contacts[i].value == input.value) {
           createCustomer(iterator)
         }
+        break
       }
 
       switch(input.value) {
@@ -940,20 +943,20 @@
           break
       }
 
-      if (input.value == '') {
-        createTable(data)
-      }
      }
-    
+     
+    if (input.value === '') {
+      deleteList()
+      startServerList()
+      }
     }
 
     getServerInfo()
     
-      i = 1
   }
 
   function search() {
-
+    i = 1
     i = i - 1
     if (i == 0) {
       inter = setTimeout(incrementText, 300);
@@ -961,6 +964,7 @@
       stopRequest()
       inter = setTimeout(incrementText, 300)
     }
+
   }
 
   document.addEventListener('DOMContentLoaded', function() {
