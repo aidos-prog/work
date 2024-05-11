@@ -429,6 +429,79 @@
          abc = await response.json()
   }
 
+  
+  async function changeCustomerServer(createCustomer, now) {
+              let items = infoItems()
+
+              let docInput = docLineInfo().docInput
+              let docInfoChoice = docLineInfo().choiceAtributeList
+              let contacts = contactsInfo(docInput, docInfoChoice).contacts
+                console.log(contacts)
+              let docsurname = items.surname.value.trim()
+              let docname = items.name.value.trim()
+              let doclastname = items.middlename.value.trim()
+              let docId = items.id.innerHTML
+              console.log(docId)
+            // let boxMessedge = document.getElementById('validation-messedge')
+            // let messedge = document.getElementById('messedge-id')
+            let now = new Date()
+            const request = await fetch('http://localhost:3000/api/clients/' + docId, {
+              method: 'PATCH',  
+              
+              body: JSON.stringify({
+                createdAt: createCustomer,
+                updatedAt: now,
+                name: docname,
+                surname: docsurname,
+                lastName: doclastname,
+                contacts: contacts
+              })
+            })
+            
+            // switch(request.status) {
+            //   case(422): 
+            //    boxMessedge.classList.add('validation-vision')
+            //    if (messedge.innerHTML === 'Введите ФИО и контакты.') {
+            //     return
+            //    } else {
+            //     messedge.append('Введите ФИО и контакты.')
+            //    }
+            //     return
+        
+            //   case(404): 
+            //    boxMessedge.classList.add('validation-vision')
+            //     if (messedge.innerHTML === 'Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.') {
+            //       return
+            //      } else {
+            //       messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
+            //      }
+            //     return
+        
+            //   case(500): 
+            //     boxMessedge.classList.add('validation-vision')
+            //     if (messedge.innerHTML === 'Странно, но сервер сломался.') {
+            //       return
+            //     } else {
+            //       messedge.append('Странно, но сервер сломался.')
+            //     }
+            //     return
+        
+            //     case(200): 
+            //     cleanForm()
+            //     closeForm()
+            //     deleteList()    
+            //     return
+        
+            //     case(201):    
+            //     cleanForm()
+            //     closeForm()
+            //     deleteList()
+            //     return
+            // }
+            
+
+  }
+
   async function getCustomerServer(id) {
     const response = await fetch('http://localhost:3000/api/clients/' + id)
     const list = await response.json()
@@ -446,6 +519,7 @@
   }
 
   async function startListSortServer(key,i) {
+
       const list = await fetch('http://localhost:3000/api/clients')
       const data = await list.json()
 
@@ -494,16 +568,15 @@
 
       btnSaveChange.addEventListener('click', function(event) {
             event.preventDefault()
-            changedInfoCustomer(createCustomer);
-            deleteList()
-            closeForm()
-            cleanForm()
-            // Думать тут. Почему не изменяются данные.
-
-            deleteList()
+            
+            changeCustomerServer(createCustomer, now)
+            
+                closeForm()
+                cleanForm()
+                deleteList()
             anter = setTimeout(startListSortServer, 50, 'id', 0);
-
-        })
+            console.log("херня 0")
+      })
 
 
       btnDeleteChange.addEventListener('click', function(event) {
@@ -723,41 +796,6 @@
     }
   }
 
-  function changedInfoCustomer(createCustomer) {
-          async function changeCustomerServer(createCustomer) {
-              let items = infoItems()
-
-              let docInput = docLineInfo().docInput
-              let docInfoChoice = docLineInfo().choiceAtributeList
-              let contacts = contactsInfo(docInput, docInfoChoice).contacts
-                console.log(contacts)
-              let docsurname = items.surname.value.trim()
-              let docname = items.name.value.trim()
-              let doclastname = items.middlename.value.trim()
-              let docId = items.id.innerHTML
-              
-            let now = new Date()
-            
-            const request = await fetch('http://localhost:3000/api/clients/' + docId, {
-              method: 'PATCH',  
-              
-              body: JSON.stringify({
-                createdAt: createCustomer,
-                updatedAt: now,
-                name: docname,
-                surname: docsurname,
-                lastName: doclastname,
-                contacts: contacts
-              })
-            })
-            const response = await request.json()
-      
-          }
-
-        changeCustomerServer(createCustomer)
-      
-  }
-
   function deleteList() {
     let rows = document.querySelectorAll('.customers-row')
 
@@ -823,7 +861,7 @@
             numbertwo.classList.add('color_tree')
             numbertree.classList.add('color_two')
             numberfour.classList.add('color_one')
-
+          
             
             numbersVisible()
             setTimeout(unvisible, 5000)
@@ -837,7 +875,7 @@
                 numbertwo.classList.remove('color_tree')
                 numbertree.classList.remove('color_two')
                 numberfour.classList.remove('color_one')
-
+            
                 numbersVisible()
                 setTimeout(unvisible, 5000)
             }
@@ -848,11 +886,13 @@
               let arrow = document.querySelector('.customers-header__fio-text')
               if (i == 1) {
                 startListSortServer('surname',1)
+              
               i = i - 1
               arrow.classList.remove('is-active')
               
               } else {
                 startListSortServer('surname',0)
+              
                   i = i + 1
                   arrow.classList.add('is-active')
               }
@@ -862,10 +902,12 @@
                 let arrow = document.querySelector('.customers-header__data-text')
                 if (i == 1) {
                   startListSortServer('createdAt',1)
+                
                 i = i - 1
                 arrow.classList.remove('is-active')
                 } else {
                   startListSortServer('createdAt',0)
+                
                     i = i + 1
                     arrow.classList.add('is-active')
                 }
@@ -876,10 +918,12 @@
                   let arrow = document.querySelector('.customers-header__change-text')
                   if (i == 1) {
                     startListSortServer('updatedAt',1)
+                  
                   i = i - 1
                   arrow.classList.remove('is-active')
                   } else {
                     startListSortServer('updatedAt',0)
+                  
                       i = i + 1
                       arrow.classList.add('is-active')
                   }
