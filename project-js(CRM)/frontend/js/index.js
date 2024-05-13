@@ -137,7 +137,7 @@
                   } 
                   
                 }
-    
+
                 return {
                   contacts
                 }
@@ -429,22 +429,27 @@
          abc = await response.json()
   }
 
-  
-  async function changeCustomerServer(createCustomer, now) {
-              let items = infoItems()
-
+  function changeCustomerServer(createCustomer) {
+    
               let docInput = docLineInfo().docInput
               let docInfoChoice = docLineInfo().choiceAtributeList
               let contacts = contactsInfo(docInput, docInfoChoice).contacts
-                console.log(contacts)
-              let docsurname = items.surname.value.trim()
-              let docname = items.name.value.trim()
-              let doclastname = items.middlename.value.trim()
-              let docId = items.id.innerHTML
-              console.log(docId)
-            // let boxMessedge = document.getElementById('validation-messedge')
-            // let messedge = document.getElementById('messedge-id')
-            let now = new Date()
+
+              let docsurname = infoItems().surname.value.trim()
+              let docname = infoItems().name.value.trim()
+              let docmiddlename = infoItems().middlename.value.trim()
+              let docId = infoItems().id.innerHTML
+              let now = new Date()
+                
+              sendCustomerServer(createCustomer, docsurname, docname, docmiddlename, contacts, docId, now)
+
+
+  }
+
+  async function sendCustomerServer(createCustomer, docsurname, docname, docmiddlename, contacts, docId, now) {
+        
+            let boxMessedge = document.getElementById('validation-messedge')
+            let messedge = document.getElementById('messedge-id')
             const request = await fetch('http://localhost:3000/api/clients/' + docId, {
               method: 'PATCH',  
               
@@ -453,59 +458,59 @@
                 updatedAt: now,
                 name: docname,
                 surname: docsurname,
-                lastName: doclastname,
+                lastName: docmiddlename,
                 contacts: contacts
               })
             })
+            let a = await request.json()
+            console.log(a)
+            switch(request.status) {
+              case(422): 
+               boxMessedge.classList.add('validation-vision')
+               if (messedge.innerHTML === 'Введите ФИО и контакты.') {
+                return
+               } else {
+                messedge.append('Введите ФИО и контакты.')
+               }
+                return
+        
+              case(404): 
+               boxMessedge.classList.add('validation-vision')
+                if (messedge.innerHTML === 'Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.') {
+                  return
+                 } else {
+                  messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
+                 }
+                return
+        
+              case(500): 
+                boxMessedge.classList.add('validation-vision')
+                if (messedge.innerHTML === 'Странно, но сервер сломался.') {
+                  return
+                } else {
+                  messedge.append('Странно, но сервер сломался.')
+                }
+                return
+        
+                case(200): 
+                cleanForm()
+                closeForm()
+                deleteList()  
+                return
+        
+                case(201):    
+                cleanForm()
+                closeForm()
+                deleteList()
+                return
+            }
             
-            // switch(request.status) {
-            //   case(422): 
-            //    boxMessedge.classList.add('validation-vision')
-            //    if (messedge.innerHTML === 'Введите ФИО и контакты.') {
-            //     return
-            //    } else {
-            //     messedge.append('Введите ФИО и контакты.')
-            //    }
-            //     return
-        
-            //   case(404): 
-            //    boxMessedge.classList.add('validation-vision')
-            //     if (messedge.innerHTML === 'Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.') {
-            //       return
-            //      } else {
-            //       messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
-            //      }
-            //     return
-        
-            //   case(500): 
-            //     boxMessedge.classList.add('validation-vision')
-            //     if (messedge.innerHTML === 'Странно, но сервер сломался.') {
-            //       return
-            //     } else {
-            //       messedge.append('Странно, но сервер сломался.')
-            //     }
-            //     return
-        
-            //     case(200): 
-            //     cleanForm()
-            //     closeForm()
-            //     deleteList()    
-            //     return
-        
-            //     case(201):    
-            //     cleanForm()
-            //     closeForm()
-            //     deleteList()
-            //     return
-            // }
-            
-
   }
 
   async function getCustomerServer(id) {
-    const response = await fetch('http://localhost:3000/api/clients/' + id)
+    const response = await fetch('http://localhost:3000/api/clients/' + id) 
     const list = await response.json()
-   
+
     openCustomerFormChange(list, id)
   }
 
@@ -566,16 +571,12 @@
 
       openChangeform()
 
-      btnSaveChange.addEventListener('click', function(event) {
-            event.preventDefault()
+      btnSaveChange.addEventListener('click', function() {
             
-            changeCustomerServer(createCustomer, now)
+            changeCustomerServer(createCustomer)
+          
+          startListSortServer(0, 'id');
             
-                closeForm()
-                cleanForm()
-                deleteList()
-            anter = setTimeout(startListSortServer, 50, 'id', 0);
-            console.log("херня 0")
       })
 
 
