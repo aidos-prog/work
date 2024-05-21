@@ -111,7 +111,9 @@ body {
   font-family: 'Open-Sans', sans-serif;
   font-size: 12px;
   min-width: 320px;
-  background: var(--grey-light);
+  background: var(--grey-light); 
+  position: relative;
+  height: 100%;
 }
 
 * {
