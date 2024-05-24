@@ -353,73 +353,89 @@
     }
   }
 
-  async function createCustomerServer() {
+  function createNewCustomer() {
     let items = infoItems()
     let surname = items.surname.value.trim()
     let name = items.name.value.trim()
     let middlename = items.middlename.value.trim()
-    let now = new Date()
+    
     let docInput = docLineInfo().docInput
     let docInfoChoice = docLineInfo().choiceAtributeList
     let contacts = contactsInfo(docInput, docInfoChoice).contacts
 
     let boxMessedge = document.getElementById('validation-messedge')
     let messedge = document.getElementById('messedge-id')
-    
-    const request = await fetch('http://localhost:3000/api/clients', {
-      method: 'POST',  
-      
-      body: JSON.stringify({
-        createdAt: now,
-        updatedAt: now,
-        name: name,
-        surname: surname,
-        lastName: middlename,
-        contacts: contacts
-      })
-    })
 
-    
-    switch(request.status) {
-      case(422): 
-       boxMessedge.classList.add('validation-vision')
-       if (messedge.innerHTML === 'Введите ФИО и контакты.') {
-        return
-       } else {
-        messedge.append('Введите ФИО и контакты.')
-       }
-        return
+    if (surname || name || middlename === "") {
+      switch(messedge.innerHTML) {
+        case 'Введите ФИО и контакты.': return
 
-      case(404): 
-       boxMessedge.classList.add('validation-vision')
-        if (messedge.innerHTML === 'Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.') {
-          return
-         } else {
-          messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
-         }
-        return
-
-      case(500): 
+        case '': 
         boxMessedge.classList.add('validation-vision')
-        if (messedge.innerHTML === 'Странно, но сервер сломался.') {
-          return
-        } else {
-          messedge.append('Странно, но сервер сломался.')
-        }
-        return
+        messedge.append('Введите ФИО и контакты.')
+      }
+     
 
-        case(200): 
-        cleanForm()
-        closeForm()
-        deleteList()
-        return
-
-        case(201):    
-        cleanForm()
-        closeForm()
-        deleteList()
-        return
     }
+    
+      // createCustomerServer(surname, name, middlename, contacts)
+   
+
+
+
+          //   case(404): 
+          //   boxMessedge.classList.add('validation-vision')
+          //     if (messedge.innerHTML === 'Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.') {
+          //       return
+          //     } else {
+          //       messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
+          //     }
+          //     return
+
+          //   case(500): 
+          //     boxMessedge.classList.add('validation-vision')
+          //     if (messedge.innerHTML === 'Странно, но сервер сломался.') {
+          //       return
+          //     } else {
+          //       messedge.append('Странно, но сервер сломался.')
+          //     }
+          //     return
+
+          //     case(200): 
+          //     cleanForm()
+          //     closeForm()
+          //     deleteList()
+          //     return
+
+          //     case(201):    
+          //     cleanForm()
+          //     closeForm()
+          //     deleteList()
+          //     return
+          // }
+
+          
+    
+  }
+
+  async function createCustomerServer(surname, name, middlename, contacts) {
+      
+          let now = new Date()
+          const request = await fetch('http://localhost:3000/api/clients', {
+            method: 'POST',  
+            
+            body: JSON.stringify({
+              createdAt: now,
+              updatedAt: now,
+              name: name,
+              surname: surname,
+              lastName: middlename,
+              contacts: contacts
+            })
+          })
+
+          
+         
   }
   
   async function deleteCustomerServer(id) {
@@ -748,8 +764,8 @@
     button.addEventListener('click', function(event) {
       event.preventDefault()
 
-      createCustomerServer()
-      inter = setTimeout(startServerList, 300);
+      createNewCustomer()
+      // inter = setTimeout(startServerList, 300);
 
     })
     
