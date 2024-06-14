@@ -433,9 +433,10 @@
               contacts: contacts
             })
           })
+          let abc = await request.json()
+          // console.log(abc)
+          return abc
 
-          
-         
   }
   
   async function deleteCustomerServer(id) {
@@ -763,9 +764,18 @@
 
     button.addEventListener('click', function(event) {
       event.preventDefault()
+      let names = docLineInfo().names
+      let surname = names[0].value
+      let name = names[1].value
+      let middlename = names[2].value
 
-      createNewCustomer()
-      // inter = setTimeout(startServerList, 300);
+      let docInput = docLineInfo().docInput
+      let docInfoChoice = docLineInfo().choiceAtributeList
+      let contacts = contactsInfo(docInput, docInfoChoice).contacts
+
+      createCustomerServer(surname, name, middlename, contacts)
+ 
+// продолжим тут нужно сделать сообщения об ошибке
 
     })
     
