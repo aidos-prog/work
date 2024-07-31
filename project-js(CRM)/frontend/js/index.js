@@ -353,36 +353,9 @@
     }
   }
 
-  function createNewCustomer() {
-    let items = infoItems()
-    let surname = items.surname.value.trim()
-    let name = items.name.value.trim()
-    let middlename = items.middlename.value.trim()
-    
-    let docInput = docLineInfo().docInput
-    let docInfoChoice = docLineInfo().choiceAtributeList
-    let contacts = contactsInfo(docInput, docInfoChoice).contacts
-
-    let boxMessedge = document.getElementById('validation-messedge')
-    let messedge = document.getElementById('messedge-id')
-
-    if (surname || name || middlename === "") {
-      switch(messedge.innerHTML) {
-        case 'Введите ФИО и контакты.': return
-
-        case '': 
-        boxMessedge.classList.add('validation-vision')
-        messedge.append('Введите ФИО и контакты.')
-      }
-     
-
-    }
     
       // createCustomerServer(surname, name, middlename, contacts)
    
-
-
-
           //   case(404): 
           //   boxMessedge.classList.add('validation-vision')
           //     if (messedge.innerHTML === 'Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.') {
@@ -416,7 +389,7 @@
 
           
     
-  }
+
 
   async function createCustomerServer(surname, name, middlename, contacts) {
       
@@ -434,8 +407,11 @@
             })
           })
           let abc = await request.json()
-          // console.log(abc)
-          return abc
+
+          createCustomer(abc)
+   
+          cleanForm()
+          closeForm()
 
   }
   
@@ -462,6 +438,8 @@
 
 
   }
+
+  // почему перезагружается таблица
 
   async function sendCustomerServer(createCustomer, docsurname, docname, docmiddlename, contacts, docId, now) {
         
@@ -513,13 +491,13 @@
                 cleanForm()
                 closeForm()
                 deleteList()  
-                return
+                
         
                 case(201):    
                 cleanForm()
                 closeForm()
                 deleteList()
-                return
+                
             }
             
   }
@@ -529,15 +507,6 @@
     const list = await response.json()
 
     openCustomerFormChange(list, id)
-  }
-
-  async function startServerList() {
-                
-    const list = await fetch('http://localhost:3000/api/clients')
-    const data = await list.json()
-  
-    createTable(data)
-    
   }
 
   async function startListSortServer(key,i) {
@@ -591,9 +560,7 @@
       btnSaveChange.addEventListener('click', function() {
             
             changeCustomerServer(createCustomer)
-          
-          startListSortServer(0, 'id');
-            
+           
       })
 
 
@@ -761,7 +728,7 @@
   function saveCustomer() {
     
     let button = document.getElementById('button-save')
-
+    
     button.addEventListener('click', function(event) {
       event.preventDefault()
       let names = docLineInfo().names
@@ -773,9 +740,22 @@
       let docInfoChoice = docLineInfo().choiceAtributeList
       let contacts = contactsInfo(docInput, docInfoChoice).contacts
 
-      createCustomerServer(surname, name, middlename, contacts)
- 
-// продолжим тут нужно сделать сообщения об ошибке
+      let boxMessedge = document.getElementById('validation-messedge')
+      let messedge = document.getElementById('messedge-id')
+  
+      if (surname == '' || name == '') {
+     
+          messedge.innerHTML = 'Введите ФИО и контакты.'
+          boxMessedge.classList.add('validation-vision')
+  
+      } else {
+
+        createCustomerServer(surname, name, middlename, contacts)
+        messedge.innerHTML = ''
+        boxMessedge.classList.remove('validation-vision')
+      }
+
+
 
     })
     
@@ -1018,7 +998,7 @@
      
     if (input.value === '') {
       deleteList()
-      startServerList()
+      startListSortServer('id',0)
       }
     }
 
