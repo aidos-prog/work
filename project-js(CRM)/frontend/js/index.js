@@ -439,7 +439,6 @@
 
   }
 
-  // почему перезагружается таблица
 
   async function sendCustomerServer(createCustomer, docsurname, docname, docmiddlename, contacts, docId, now) {
         
@@ -490,14 +489,11 @@
                 case(200): 
                 cleanForm()
                 closeForm()
-                deleteList()  
-                
-        
+
                 case(201):    
                 cleanForm()
                 closeForm()
-                deleteList()
-                
+             
             }
             
   }
@@ -557,8 +553,8 @@
 
       openChangeform()
 
-      btnSaveChange.addEventListener('click', function() {
-            
+      btnSaveChange.addEventListener('click', function(event) {
+        event.preventDefault()
             changeCustomerServer(createCustomer)
            
       })
@@ -938,84 +934,106 @@
                     })
   }
 
-  let i = 1
+  // let i = 1
 
-  function stopRequest() {
-    clearTimeout(inter)
-  }
+  // function stopRequest() {
+  //   clearTimeout(inter)
+  // }
 
   function incrementText() {
+    
+
     let input = document.getElementById('input-search')
 
-    deleteList()
-    async function getServerInfo() {
-      const list = await fetch('http://localhost:3000/api/clients')
-      const data = await list.json()
-
-     for (const iterator of data) {
-
-      let one = iterator.surname + ' ' + iterator.lastName
-      let two = iterator.name  + ' ' + iterator.lastName
-      let tree = iterator.surname + ' ' + iterator.name
-
-      let contacts = iterator.contacts
-
-      for (let i = 0; i < contacts.length; i++) {
-        if (contacts[i].value == input.value) {
-          createCustomer(iterator)
-        }
-        break
-      }
-
-      switch(input.value) {
-        
-        case iterator.surname:
-          createCustomer(iterator)
-          break
-
-        case iterator.name:
-          createCustomer(iterator)
-          break
-
-        case iterator.lastName:
-          createCustomer(iterator)
-          break
-
-        case one:
-          createCustomer(iterator)
-          break
-
-        case two:
-          createCustomer(iterator)
-          break
-
-        case tree:
-          createCustomer(iterator)
-          break
-      }
-
-     }
-     
-    if (input.value === '') {
-      deleteList()
-      startListSortServer('id',0)
-      }
+    if (input.value == '') {
+      return
+    } else {
+      async function getCustomerServer(value) {
+      const response = await fetch('http://localhost:3000/api/clients?search=' + value) 
+      const list = await response.json()
+  
+      createTable(list)
     }
 
-    getServerInfo()
+    getCustomerServer(input.value)
+    }
+
+
+    
+
+
+    // deleteList()
+    // async function getServerInfo() {
+    //   const list = await fetch('http://localhost:3000/api/clients')
+    //   const data = await list.json()
+
+    //  for (const iterator of data) {
+
+    //   let one = iterator.surname + ' ' + iterator.lastName
+    //   let two = iterator.name  + ' ' + iterator.lastName
+    //   let tree = iterator.surname + ' ' + iterator.name
+
+    //   let contacts = iterator.contacts
+
+    //   for (let i = 0; i < contacts.length; i++) {
+    //     if (contacts[i].value == input.value) {
+    //       createCustomer(iterator)
+    //     }
+    //     break
+    //   }
+
+    //   switch(input.value) {
+        
+    //     case iterator.surname:
+    //       createCustomer(iterator)
+    //       break
+
+    //     case iterator.name:
+    //       createCustomer(iterator)
+    //       break
+
+    //     case iterator.lastName:
+    //       createCustomer(iterator)
+    //       break
+
+    //     case one:
+    //       createCustomer(iterator)
+    //       break
+
+    //     case two:
+    //       createCustomer(iterator)
+    //       break
+
+    //     case tree:
+    //       createCustomer(iterator)
+    //       break
+    //   }
+
+    //  }
+     
+    // if (input.value === '') {
+    //   deleteList()
+    //   startListSortServer('id',0)
+    //   }
+    // }
+
+    // getServerInfo()
     
   }
 
   function search() {
-    i = 1
-    i = i - 1
-    if (i == 0) {
-      inter = setTimeout(incrementText, 300);
-    } else {
-      stopRequest()
-      inter = setTimeout(incrementText, 300)
-    }
+    // i = 1
+    // i = i - 1
+    // if (i == 0) {
+    //   inter = setTimeout(incrementText, 300);
+    // } else {
+    //   stopRequest()
+    //   inter = setTimeout(incrementText, 300)
+    // }
 
+    // прописываем тут условие инпута на пустое и с запросом
+    deleteList()
+    inter = setTimeout(incrementText, 1000);
   }
 
   document.addEventListener('DOMContentLoaded', function() {
