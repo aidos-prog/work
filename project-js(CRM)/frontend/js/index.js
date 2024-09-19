@@ -153,7 +153,7 @@
     let boxButton = document.createElement('div')
     let buttonLastchange = document.createElement('button')
     let buttonDelete = document.createElement('button')
-
+    
     buttonLastchange.append('Изменить')
     buttonDelete.append('Удалить')
 
@@ -306,7 +306,7 @@
     checkContacts(contactsObj)
 
     buttonLastchange.addEventListener('click', function() {
-      getCustomerServer(customerObj.id)
+      getCustomerServerId(customerObj.id, row)
     
     })
 
@@ -353,44 +353,6 @@
     }
   }
 
-    
-      // createCustomerServer(surname, name, middlename, contacts)
-   
-          //   case(404): 
-          //   boxMessedge.classList.add('validation-vision')
-          //     if (messedge.innerHTML === 'Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.') {
-          //       return
-          //     } else {
-          //       messedge.append('Переданный в запросе метод не существует или запрашиваемый элемент не найден в базе данных.')
-          //     }
-          //     return
-
-          //   case(500): 
-          //     boxMessedge.classList.add('validation-vision')
-          //     if (messedge.innerHTML === 'Странно, но сервер сломался.') {
-          //       return
-          //     } else {
-          //       messedge.append('Странно, но сервер сломался.')
-          //     }
-          //     return
-
-          //     case(200): 
-          //     cleanForm()
-          //     closeForm()
-          //     deleteList()
-          //     return
-
-          //     case(201):    
-          //     cleanForm()
-          //     closeForm()
-          //     deleteList()
-          //     return
-          // }
-
-          
-    
-
-
   async function createCustomerServer(surname, name, middlename, contacts) {
       
           let now = new Date()
@@ -422,25 +384,43 @@
          abc = await response.json()
   }
 
-  function changeCustomerServer(createCustomer) {
+  function changeCustomerServer(createCustomerTime, row) {
     
               let docInput = docLineInfo().docInput
               let docInfoChoice = docLineInfo().choiceAtributeList
               let contacts = contactsInfo(docInput, docInfoChoice).contacts
-
               let docsurname = infoItems().surname.value.trim()
               let docname = infoItems().name.value.trim()
               let docmiddlename = infoItems().middlename.value.trim()
               let docId = infoItems().id.innerHTML
               let now = new Date()
-                
-              sendCustomerServer(createCustomer, docsurname, docname, docmiddlename, contacts, docId, now)
+             
+              let childRowFirst = row.firstElementChild
+              let nameSurname = childRowFirst.nextElementSibling
+              let childRowSecond = row.lastElementChild
+              let lastItems = childRowSecond.previousElementSibling
+              let items = lastItems.firstElementChild
+              let a = items.children
+              
 
+              for (let i = 0;i < a.length; i++) {
+
+            //  console.log(contacts[i].value)
+            //     console.log(a[i].firstElementChild)
+                tippy(a[i].firstElementChild, {
+                  content: contacts[i].type + ': ' + contacts[i].value,
+                  allowHTML: true,
+                });
+
+              }
+
+              nameSurname.innerHTML = ""
+              nameSurname.append(docsurname + " ", docname + " ", docmiddlename)             
+              sendCustomerServer(createCustomerTime, docsurname, docname, docmiddlename, contacts, docId, now)
 
   }
 
-
-  async function sendCustomerServer(createCustomer, docsurname, docname, docmiddlename, contacts, docId, now) {
+  async function sendCustomerServer(createCustomerTime, docsurname, docname, docmiddlename, contacts, docId, now) {
         
             let boxMessedge = document.getElementById('validation-messedge')
             let messedge = document.getElementById('messedge-id')
@@ -448,7 +428,7 @@
               method: 'PATCH',  
               
               body: JSON.stringify({
-                createdAt: createCustomer,
+                createdAt: createCustomerTime,
                 updatedAt: now,
                 name: docname,
                 surname: docsurname,
@@ -457,7 +437,7 @@
               })
             })
             let a = await request.json()
-            console.log(a)
+            
             switch(request.status) {
               case(422): 
                boxMessedge.classList.add('validation-vision')
@@ -498,11 +478,20 @@
             
   }
 
-  async function getCustomerServer(id) {
+  async function getCustomerServerId(id, row) {
     const response = await fetch('http://localhost:3000/api/clients/' + id) 
     const list = await response.json()
 
-    openCustomerFormChange(list, id)
+    openCustomerFormChange(list, id, row)
+  }
+
+  async function getCustomerServerInput(value) {
+    deleteList()
+    const response = await fetch('http://localhost:3000/api/clients?search=' + value) 
+    const list = await response.json()
+
+    createTable(list)
+    
   }
 
   async function startListSortServer(key,i) {
@@ -513,7 +502,7 @@
      createTable(ab(data,key,i))
   }
 
-  function openCustomerFormChange(list, id) {
+  function openCustomerFormChange(list, id, row) {
       let btnSaveChange = document.getElementById('btn-save__change')
       let btnDeleteChange = document.getElementById('btn-cancel__change')
       let btnDelete = document.getElementById('form__btn-delete')
@@ -532,7 +521,7 @@
         let name = list.name
         let lastName = list.lastName
         let contacts = list.contacts
-        let createCustomer = list.createdAt
+        let createCustomerTime = list.createdAt
 
         docsurname.setAttribute('value', surname)
         docsurname.value = surname
@@ -555,7 +544,8 @@
 
       btnSaveChange.addEventListener('click', function(event) {
         event.preventDefault()
-            changeCustomerServer(createCustomer)
+            changeCustomerServer(createCustomerTime , row)
+
            
       })
 
@@ -565,11 +555,12 @@
           closeForm()
           openDeleteform()
           
-              btnDelete.addEventListener('click', function() {
+              btnDelete.addEventListener('click', function(event) {
+                event.preventDefault()
                 deleteCustomerServer(id)
                 closeDeleteform()
                 deleteList()
-                anter = setTimeout(start, 50);
+                // anter = setTimeout(startListSortServer,50,'id',0);
               })
               btnCancellation()
       })
@@ -750,8 +741,6 @@
         messedge.innerHTML = ''
         boxMessedge.classList.remove('validation-vision')
       }
-
-
 
     })
     
@@ -934,106 +923,22 @@
                     })
   }
 
-  // let i = 1
-
-  // function stopRequest() {
-  //   clearTimeout(inter)
-  // }
-
   function incrementText() {
-    
 
     let input = document.getElementById('input-search')
+    deleteList()
 
-    if (input.value == '') {
-      return
+    if (input.value === "") {
+      startListSortServer('id',0)
     } else {
-      async function getCustomerServer(value) {
-      const response = await fetch('http://localhost:3000/api/clients?search=' + value) 
-      const list = await response.json()
+      console.log(input.value)
+      getCustomerServerInput(input.value)
+    }
   
-      createTable(list)
-    }
-
-    getCustomerServer(input.value)
-    }
-
-
-    
-
-
-    // deleteList()
-    // async function getServerInfo() {
-    //   const list = await fetch('http://localhost:3000/api/clients')
-    //   const data = await list.json()
-
-    //  for (const iterator of data) {
-
-    //   let one = iterator.surname + ' ' + iterator.lastName
-    //   let two = iterator.name  + ' ' + iterator.lastName
-    //   let tree = iterator.surname + ' ' + iterator.name
-
-    //   let contacts = iterator.contacts
-
-    //   for (let i = 0; i < contacts.length; i++) {
-    //     if (contacts[i].value == input.value) {
-    //       createCustomer(iterator)
-    //     }
-    //     break
-    //   }
-
-    //   switch(input.value) {
-        
-    //     case iterator.surname:
-    //       createCustomer(iterator)
-    //       break
-
-    //     case iterator.name:
-    //       createCustomer(iterator)
-    //       break
-
-    //     case iterator.lastName:
-    //       createCustomer(iterator)
-    //       break
-
-    //     case one:
-    //       createCustomer(iterator)
-    //       break
-
-    //     case two:
-    //       createCustomer(iterator)
-    //       break
-
-    //     case tree:
-    //       createCustomer(iterator)
-    //       break
-    //   }
-
-    //  }
-     
-    // if (input.value === '') {
-    //   deleteList()
-    //   startListSortServer('id',0)
-    //   }
-    // }
-
-    // getServerInfo()
-    
   }
 
-  function search() {
-    // i = 1
-    // i = i - 1
-    // if (i == 0) {
-    //   inter = setTimeout(incrementText, 300);
-    // } else {
-    //   stopRequest()
-    //   inter = setTimeout(incrementText, 300)
-    // }
-
-    // прописываем тут условие инпута на пустое и с запросом
-    deleteList()
-    inter = setTimeout(incrementText, 1000);
+  function search() { 
+    setTimeout(incrementText, 300)
   }
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -1046,9 +951,11 @@
     btnCancellation() 
     addContact()
 
-    let input = document.getElementById('input-search')
+   let input = document.getElementById('input-search')
 
+    
     input.addEventListener('input', search)
+
 
     
   })
