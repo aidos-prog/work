@@ -187,6 +187,8 @@
     buttonDelete.classList.add('customers-col__button', 'button-cancel')
 
     let contactsObj = customerObj.contacts
+    let id = customerObj.id
+    console.log(id)
 
     for (let i = 0; i < contactsObj.length; i++) {
 
@@ -305,26 +307,17 @@
     
     checkContacts(contactsObj)
 
-    buttonLastchange.addEventListener('click', function() {
+    buttonLastchange.addEventListener('click', function(event) {
+      event.preventDefault()
       getCustomerServerId(customerObj.id, row)
-    
+    // менять логику нужно брать отдельно кнопки и отдельные данные айди
     })
 
-    buttonDelete.addEventListener('click', function() {
-      let btnDelete = document.querySelector('.form__btn-delete')
-      let btnCancellation = document.querySelector('.form__btn-cancellation')
-      openDeleteform()
-          btnDelete.addEventListener('click', function() {
-            let customerNumber = customerObj.id
-            deleteCustomerServer(customerNumber)
-            closeDeleteform()            
-            row.remove() 
-          })
-
-            btnCancellation.addEventListener('click', function() {
-              closeDeleteform()
-            })
-
+    buttonDelete.addEventListener('click', function(event) {
+      event.preventDefault()
+      openDeleteform()     
+          btnDeleteCustomer(id, row)
+          btnCancellation()
     })
 
     textId.append(customerObj.id.substr(7, 6))
@@ -378,10 +371,11 @@
   }
   
   async function deleteCustomerServer(id) {
-          const response = await fetch('http://localhost:3000/api/clients/' + id, {
+          const request = await fetch('http://localhost:3000/api/clients/' + id, {
           method: 'DELETE'
         })
-         abc = await response.json()
+        const abc = await request.json()
+         console.log(abc)
   }
 
   function changeCustomerServer(createCustomerTime, row) {
@@ -404,9 +398,6 @@
               
 
               for (let i = 0;i < a.length; i++) {
-
-            //  console.log(contacts[i].value)
-            //     console.log(a[i].firstElementChild)
                 tippy(a[i].firstElementChild, {
                   content: contacts[i].type + ': ' + contacts[i].value,
                   allowHTML: true,
@@ -505,8 +496,6 @@
   function openCustomerFormChange(list, id, row) {
       let btnSaveChange = document.getElementById('btn-save__change')
       let btnDeleteChange = document.getElementById('btn-cancel__change')
-      let btnDelete = document.getElementById('form__btn-delete')
-      let btnCancellation = document.querySelector('.form__btn-cancellation')
       let items = infoItems()
       let docsurname = items.surname
       let docname = items.name
@@ -545,24 +534,21 @@
       btnSaveChange.addEventListener('click', function(event) {
         event.preventDefault()
             changeCustomerServer(createCustomerTime , row)
-
-           
+ 
       })
 
 
       btnDeleteChange.addEventListener('click', function(event) {
           event.preventDefault()
+          let btnDelete = document.getElementById('form__btn-delete')
+          let buttomDelete = document.getElementById('form__buttom-delete')
+
+          btnDelete.classList.add('close')
+          buttomDelete.classList.remove('close')
+
           closeForm()
           openDeleteform()
-          
-              btnDelete.addEventListener('click', function(event) {
-                event.preventDefault()
-                deleteCustomerServer(id)
-                closeDeleteform()
-                deleteList()
-                // anter = setTimeout(startListSortServer,50,'id',0);
-              })
-              btnCancellation()
+          buttonDeleteCustomer(id, row)
       })
 
 
@@ -647,7 +633,13 @@
 
   function closeDeleteform() {
     let formCancel = document.querySelector('.form-cancel')
+    let btnDelete = document.getElementById('form__btn-delete')
+    let buttomDelete = document.getElementById('form__buttom-delete')
+
+          
     formCancel.classList.remove('show')
+    btnDelete.classList.remove('close')
+    buttomDelete.classList.add('close')
     closeBackground()
   }
 
@@ -683,6 +675,28 @@
       closeForm()
       cleanForm()
     })
+  }
+
+  function btnDeleteCustomer(id, row) {
+    let btnDelete = document.getElementById('form__btn-delete')
+    btnDelete.addEventListener('click', function(event) {
+      event.preventDefault()
+      deleteCustomerServer(id)
+      row.remove()
+      closeDeleteform()
+    })
+
+  }
+
+  function buttonDeleteCustomer(id, row) {
+    let btnDelete = document.getElementById('form__buttom-delete')
+    btnDelete.addEventListener('click', function(event) {
+      event.preventDefault()
+      deleteCustomerServer(id)
+      row.remove()
+      closeDeleteform()
+    })
+
   }
 
   function btnCancelTwo() {
@@ -950,6 +964,7 @@
     btnCancelTwo()
     btnCancellation() 
     addContact()
+
 
    let input = document.getElementById('input-search')
 
